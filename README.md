@@ -1,1 +1,1 @@
-Repositorio del grupo k de Sistemas de Informacion para Internet.
+Repositorio del grupo 'K' de Sistemas de Informacion para Internet.
