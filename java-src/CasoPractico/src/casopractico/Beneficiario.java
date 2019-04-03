@@ -1,13 +1,10 @@
 package casopractico;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @IdClass(BeneficiarioId.class)
@@ -20,11 +17,11 @@ public class Beneficiario implements Serializable {
     @Id
     @OneToOne
     private Nino nino;
+    @Id
+    private Integer ano;
     
     private String observaciones;
-    @Temporal(TemporalType.DATE)
-    private Date ano;
-
+    
     public Beca getBeca() {
         return beca;
     }
@@ -49,11 +46,11 @@ public class Beneficiario implements Serializable {
         this.observaciones = observaciones;
     }
 
-    public Date getAno() {
+    public Integer getAno() {
         return ano;
     }
 
-    public void setAno(Date ano) {
+    public void setAno(Integer ano) {
         this.ano = ano;
     }
     

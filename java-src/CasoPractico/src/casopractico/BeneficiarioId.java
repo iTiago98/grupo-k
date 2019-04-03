@@ -8,6 +8,7 @@ import javax.persistence.Embeddable;
 public class BeneficiarioId implements Serializable {
     private Long beca;
     private Long nino;
+    private Integer ano;
 
     public Long getBeca() {
         return beca;
@@ -25,11 +26,20 @@ public class BeneficiarioId implements Serializable {
         this.nino = nino;
     }
 
+    public Integer getAno() {
+        return ano;
+    }
+
+    public void setAno(Integer ano) {
+        this.ano = ano;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 79 * hash + Objects.hashCode(this.beca);
-        hash = 79 * hash + Objects.hashCode(this.nino);
+        int hash = 5;
+        hash = 37 * hash + Objects.hashCode(this.beca);
+        hash = 37 * hash + Objects.hashCode(this.nino);
+        hash = 37 * hash + Objects.hashCode(this.ano);
         return hash;
     }
 
@@ -49,6 +59,9 @@ public class BeneficiarioId implements Serializable {
             return false;
         }
         if (!Objects.equals(this.nino, other.nino)) {
+            return false;
+        }
+        if (!Objects.equals(this.ano, other.ano)) {
             return false;
         }
         return true;

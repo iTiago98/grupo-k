@@ -1,6 +1,7 @@
 package casopractico;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Embeddable;
 
@@ -8,6 +9,7 @@ import javax.persistence.Embeddable;
 public class DonacionId implements Serializable {
     private Long socio;
     private Long nino;
+    private Date fecha;
 
     public Long getSocio() {
         return socio;
@@ -25,11 +27,20 @@ public class DonacionId implements Serializable {
         this.nino = nino;
     }
 
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 13 * hash + Objects.hashCode(this.socio);
-        hash = 13 * hash + Objects.hashCode(this.nino);
+        hash = 89 * hash + Objects.hashCode(this.socio);
+        hash = 89 * hash + Objects.hashCode(this.nino);
+        hash = 89 * hash + Objects.hashCode(this.fecha);
         return hash;
     }
 
@@ -49,6 +60,9 @@ public class DonacionId implements Serializable {
             return false;
         }
         if (!Objects.equals(this.nino, other.nino)) {
+            return false;
+        }
+        if (!Objects.equals(this.fecha, other.fecha)) {
             return false;
         }
         return true;

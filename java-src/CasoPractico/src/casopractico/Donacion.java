@@ -20,10 +20,12 @@ public class Donacion implements Serializable {
     @Id
     @OneToOne
     private Nino nino;
-    
-    private int cantidad;
+    @Id
     @Temporal(TemporalType.DATE)
     private Date fecha;
+    
+    private int cantidad;
+
 
     public Socio getSocio() {
         return socio;
