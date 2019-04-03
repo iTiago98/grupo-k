@@ -7,38 +7,28 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class BeneficiarioId implements Serializable {
-    private Date ano;
-    private Beca beca;
-    private Nino nino;
+    private Long beca;
+    private Long nino;
 
-    public Date getAno() {
-        return ano;
-    }
-
-    public void setAno(Date ano) {
-        this.ano = ano;
-    }
-
-    public Beca getBeca() {
+    public Long getBeca() {
         return beca;
     }
 
-    public void setBeca(Beca beca) {
+    public void setBeca(Long beca) {
         this.beca = beca;
     }
 
-    public Nino getNino() {
+    public Long getNino() {
         return nino;
     }
 
-    public void setNino(Nino nino) {
+    public void setNino(Long nino) {
         this.nino = nino;
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 79 * hash + Objects.hashCode(this.ano);
         hash = 79 * hash + Objects.hashCode(this.beca);
         hash = 79 * hash + Objects.hashCode(this.nino);
         return hash;
@@ -56,9 +46,6 @@ public class BeneficiarioId implements Serializable {
             return false;
         }
         final BeneficiarioId other = (BeneficiarioId) obj;
-        if (!Objects.equals(this.ano, other.ano)) {
-            return false;
-        }
         if (!Objects.equals(this.beca, other.beca)) {
             return false;
         }

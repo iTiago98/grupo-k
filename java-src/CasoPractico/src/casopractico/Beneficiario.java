@@ -13,10 +13,7 @@ import javax.persistence.TemporalType;
 @IdClass(BeneficiarioId.class)
 public class Beneficiario implements Serializable {
     private static final long serialVersionUID = 1L;
-    
-    @Id
-    @Temporal(TemporalType.DATE)
-    private Date ano;
+   
     @Id
     @OneToOne
     private Beca beca;
@@ -25,4 +22,6 @@ public class Beneficiario implements Serializable {
     private Nino nino;
     
     private String observaciones;
+    @Temporal(TemporalType.DATE)
+    private Date ano;
 }

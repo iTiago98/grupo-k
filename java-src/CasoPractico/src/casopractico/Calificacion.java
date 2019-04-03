@@ -18,7 +18,7 @@ public class Calificacion implements Serializable {
     private Long id;
     @Id
     @OneToOne
-    private FichaAcademica fichaAcademica;
+    private FichaAcademicaId fichaAcademica;
     
     private Integer nota;
     private String observaciones;
@@ -31,11 +31,11 @@ public class Calificacion implements Serializable {
         this.id = id;
     }
 
-    public FichaAcademica getFichaAcademica() {
+    public FichaAcademicaId getFichaAcademica() {
         return fichaAcademica;
     }
 
-    public void setFichaAcademica(FichaAcademica fichaAcademica) {
+    public void setFichaAcademica(FichaAcademicaId fichaAcademica) {
         this.fichaAcademica = fichaAcademica;
     }
 

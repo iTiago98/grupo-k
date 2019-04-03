@@ -7,7 +7,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class FichaAcademicaId implements Serializable {
     private Long id; //idFicha
-    private Nino nino;
+    private Long nino;
 
     public Long getId() {
         return id;
@@ -17,11 +17,11 @@ public class FichaAcademicaId implements Serializable {
         this.id = id;
     }
 
-    public Nino getNino() {
+    public Long getNino() {
         return nino;
     }
 
-    public void setNino(Nino nino) {
+    public void setNino(Long nino) {
         this.nino = nino;
     }
 
