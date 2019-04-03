@@ -10,27 +10,27 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@IdClass(BeneficiarioId.class)
-public class Beneficiario implements Serializable {
+@IdClass(DonacionId.class)
+public class Donacion implements Serializable {
     private static final long serialVersionUID = 1L;
    
     @Id
     @OneToOne
-    private Beca beca;
+    private Socio socio;
     @Id
     @OneToOne
     private Nino nino;
     
-    private String observaciones;
+    private int cantidad;
     @Temporal(TemporalType.DATE)
-    private Date ano;
+    private Date fecha;
 
-    public Beca getBeca() {
-        return beca;
+    public Socio getSocio() {
+        return socio;
     }
 
-    public void setBeca(Beca beca) {
-        this.beca = beca;
+    public void setSocio(Socio socio) {
+        this.socio = socio;
     }
 
     public Nino getNino() {
@@ -41,20 +41,21 @@ public class Beneficiario implements Serializable {
         this.nino = nino;
     }
 
-    public String getObservaciones() {
-        return observaciones;
+    public int getCantidad() {
+        return cantidad;
     }
 
-    public void setObservaciones(String observaciones) {
-        this.observaciones = observaciones;
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
-    public Date getAno() {
-        return ano;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setAno(Date ano) {
-        this.ano = ano;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
     
 }
+    

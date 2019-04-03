@@ -2,7 +2,6 @@ package casopractico;
 
 import java.io.Serializable;
 import java.util.Set;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,10 +17,50 @@ public class Proyecto implements Serializable {
     private Long id; //idCentro
     
     private String nombre;
-    @Embedded
-    private Localizacion localizacion;
+    private String localizacion;
     private Integer capacidad;
             
     @OneToMany(mappedBy = "proyecto")
     private Set<Nino> ninos;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getLocalizacion() {
+        return localizacion;
+    }
+
+    public void setLocalizacion(String localizacion) {
+        this.localizacion = localizacion;
+    }
+
+    public Integer getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(Integer capacidad) {
+        this.capacidad = capacidad;
+    }
+
+    public Set<Nino> getNinos() {
+        return ninos;
+    }
+
+    public void setNinos(Set<Nino> ninos) {
+        this.ninos = ninos;
+    }
+    
 }

@@ -20,6 +20,37 @@ public class Envio implements Serializable {
     private Nino nino;
     @ManyToOne
     private Socio socio;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+
+    public Nino getNino() {
+        return nino;
+    }
+
+    public void setNino(Nino nino) {
+        this.nino = nino;
+    }
+
+    public Socio getSocio() {
+        return socio;
+    }
+
+    public void setSocio(Socio socio) {
+        this.socio = socio;
+    }
     
-    // TODO: Poner getters y setters
 }

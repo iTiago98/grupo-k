@@ -5,16 +5,16 @@ import java.util.Objects;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class FichaAcademicaId implements Serializable {
-    private Long id; //idFicha
+public class DonacionId implements Serializable {
+    private Long socio;
     private Long nino;
 
-    public Long getId() {
-        return id;
+    public Long getSocio() {
+        return socio;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setSocio(Long socio) {
+        this.socio = socio;
     }
 
     public Long getNino() {
@@ -28,8 +28,8 @@ public class FichaAcademicaId implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.id);
-        hash = 79 * hash + Objects.hashCode(this.nino);
+        hash = 13 * hash + Objects.hashCode(this.socio);
+        hash = 13 * hash + Objects.hashCode(this.nino);
         return hash;
     }
 
@@ -44,8 +44,8 @@ public class FichaAcademicaId implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final FichaAcademicaId other = (FichaAcademicaId) obj;
-        if (!Objects.equals(this.id, other.id)) {
+        final DonacionId other = (DonacionId) obj;
+        if (!Objects.equals(this.socio, other.socio)) {
             return false;
         }
         if (!Objects.equals(this.nino, other.nino)) {

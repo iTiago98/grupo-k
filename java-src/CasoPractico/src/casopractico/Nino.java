@@ -3,8 +3,6 @@ package casopractico;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,24 +18,117 @@ public class Nino implements Serializable {
     private Long id;
     
     private String nombre;
-    private String apellido;
-    @Enumerated(EnumType.STRING)
-    private Sexo sexo;
+    private String apellidos;
+    private Character sexo;
     private String observaciones;
-    private Integer prioridad; // TODO: Ver que es esto en realidad
+    private Integer prioridad;
     @OneToMany(mappedBy = "nino")
     private Set<Envio> envio;
     @ManyToOne
     private Colonia colonia;
     @ManyToOne
     private Proyecto proyecto;
+    @OneToMany
+    private Set<FichaAcademica> fichasAcademicas;
+    @ManyToOne
+    private Socio socio; // apadrinador
+    @OneToMany
+    private Set<Donacion> donaciones;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public Character getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(Character sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+
+    public Integer getPrioridad() {
+        return prioridad;
+    }
+
+    public void setPrioridad(Integer prioridad) {
+        this.prioridad = prioridad;
+    }
+
+    public Set<Envio> getEnvio() {
+        return envio;
+    }
+
+    public void setEnvio(Set<Envio> envio) {
+        this.envio = envio;
+    }
+
+    public Colonia getColonia() {
+        return colonia;
+    }
+
+    public void setColonia(Colonia colonia) {
+        this.colonia = colonia;
+    }
+
+    public Proyecto getProyecto() {
+        return proyecto;
+    }
+
+    public void setProyecto(Proyecto proyecto) {
+        this.proyecto = proyecto;
+    }
+
+    public Set<FichaAcademica> getFichasAcademicas() {
+        return fichasAcademicas;
+    }
+
+    public void setFichasAcademicas(Set<FichaAcademica> fichasAcademicas) {
+        this.fichasAcademicas = fichasAcademicas;
+    }
+
+    public Socio getSocio() {
+        return socio;
+    }
+
+    public void setSocio(Socio socio) {
+        this.socio = socio;
+    }
+
+    public Set<Donacion> getDonaciones() {
+        return donaciones;
+    }
+
+    public void setDonaciones(Set<Donacion> donaciones) {
+        this.donaciones = donaciones;
+    }
     
-    /*
-        @ManyToOne
-        private Socio socio;
-        @OneToOne
-        private Socio apadrinadoPor;
-    */
-    
-    // TODO: Poner las relaciones con otras entidades y los getters y setters
 }

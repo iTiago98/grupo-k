@@ -1,10 +1,12 @@
 package casopractico;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Socio implements Serializable {
@@ -21,7 +23,99 @@ public class Socio implements Serializable {
     private String telefono; // ¿Integer? ... No se van a realizar operaciones sobre el numero de todas formas
     private String correo;
     private String observaciones;
+    @OneToMany(mappedBy = "socio")
+    private Set<Envio> envios;
+    @OneToMany(mappedBy = "socio")
+    private Set<Nino> ninos; // niños apadrinados
+    @OneToMany
+    private Set<Donacion> donaciones;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getDNI() {
+        return DNI;
+    }
+
+    public void setDNI(String DNI) {
+        this.DNI = DNI;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public String getDirección() {
+        return dirección;
+    }
+
+    public void setDirección(String dirección) {
+        this.dirección = dirección;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+
+    public Set<Envio> getEnvios() {
+        return envios;
+    }
+
+    public void setEnvios(Set<Envio> envios) {
+        this.envios = envios;
+    }
+
+    public Set<Nino> getNinos() {
+        return ninos;
+    }
+
+    public void setNinos(Set<Nino> ninos) {
+        this.ninos = ninos;
+    }
+
+    public Set<Donacion> getDonaciones() {
+        return donaciones;
+    }
+
+    public void setDonaciones(Set<Donacion> donaciones) {
+        this.donaciones = donaciones;
+    }
     
-    // TODO: Poner las relaciones con otras entidades y los getters y setters
-    // Todavia no se pone nada, puede que se prescinda de esta entidad
 }
