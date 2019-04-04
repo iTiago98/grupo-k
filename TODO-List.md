@@ -1,3 +1,3 @@
-- Es necesario cambiar el nombre de la entidad Calificación a Asignatura, tal y como se ha hecho en el modelo ER.
-- Atributo Nota de la entidad Asignatura (antes Calificación), pasa a llamarse Calificación (que es más edgy), y a ser opcional (puedes estar registrado en una asignatura sin tener nota aún porque la estás cursando).
-- Propongo cambiar las relaciones con Socio y Envío, y Niño y Envío; para que Envío sea dédil respecto a ambas (igual que con la entidad donaciones).
+- Requisito Donación: cambiar en el pdf para que sean los socios los que donen, no los admins. (Jorge cabroun)
+- Entidad Donaciones: cambiarlo a singular en el dmd. (Santi cabroun)
+- Requisito Donación: completar la definición del requisito cerrar sesión. (Jorge cabroun)
