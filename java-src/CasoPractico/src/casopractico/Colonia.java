@@ -2,6 +2,7 @@ package casopractico;
 
 import java.io.Serializable;
 import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +17,9 @@ public class Colonia implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @Column(nullable = false)
     private String nombre;
+    @Column(nullable = false)
     private String localizacion;
     private String descripcion;
     @OneToMany(mappedBy = "colonia")

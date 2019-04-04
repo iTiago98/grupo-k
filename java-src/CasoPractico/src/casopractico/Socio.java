@@ -2,6 +2,7 @@ package casopractico;
 
 import java.io.Serializable;
 import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,11 +17,14 @@ public class Socio implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @Column(nullable = false)
     private String DNI;
+    @Column(nullable = false)
     private String nombre;
+    @Column(nullable = false)
     private String apellidos;
     private String dirección;
-    private String telefono; // ¿Integer? ... No se van a realizar operaciones sobre el numero de todas formas
+    private String telefono;
     private String correo;
     private String observaciones;
     @OneToMany(mappedBy = "socio")

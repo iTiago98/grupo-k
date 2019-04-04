@@ -3,6 +3,7 @@ package casopractico;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,11 +20,13 @@ public class FichaAcademica implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @Column(nullable = false)
     private Integer curso;
+    @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaMatriculacion;
     @OneToMany
-    private Set<Calificacion> calificaciones;
+    private Set<Asignatura> asignaturas;
 
     public Long getId() {
         return id;
@@ -49,12 +52,12 @@ public class FichaAcademica implements Serializable {
         this.fechaMatriculacion = fechaMatriculacion;
     }
 
-    public Set<Calificacion> getCalificaciones() {
-        return calificaciones;
+    public Set<Asignatura> getAsignaturas() {
+        return asignaturas;
     }
 
-    public void setCalificaciones(Set<Calificacion> calificaciones) {
-        this.calificaciones = calificaciones;
+    public void setAsignaturas(Set<Asignatura> asignaturas) {
+        this.asignaturas = asignaturas;
     }
     
 }

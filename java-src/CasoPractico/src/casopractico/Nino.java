@@ -1,13 +1,17 @@
 package casopractico;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Nino implements Serializable {
@@ -17,9 +21,15 @@ public class Nino implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @Column(nullable = false)
     private String nombre;
+    @Column(nullable = false)
     private String apellidos;
+    @Column(nullable = false)
     private Character sexo;
+    @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date fechaNacimiento;
     private String observaciones;
     private Integer prioridad;
     @OneToMany(mappedBy = "nino")
@@ -65,6 +75,14 @@ public class Nino implements Serializable {
 
     public void setSexo(Character sexo) {
         this.sexo = sexo;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public String getObservaciones() {

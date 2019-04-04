@@ -2,6 +2,7 @@ package casopractico;
 
 import java.io.Serializable;
 import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,8 +17,10 @@ public class Proyecto implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id; //idCentro
     
+    @Column(nullable = false)
     private String nombre;
     private String localizacion;
+    @Column(nullable = false)
     private Integer capacidad;
             
     @OneToMany(mappedBy = "proyecto")

@@ -1,6 +1,7 @@
 package casopractico;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +15,7 @@ public class Beca implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id; //idBeca
     
+    @Column(nullable = false)
     private String nombre;
     private String observaciones;
 

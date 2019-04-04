@@ -2,6 +2,7 @@ package casopractico;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
@@ -24,9 +25,11 @@ public class Donacion implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fecha;
     
-    private int cantidad;
+    @Column(nullable = false)
+    private Double importe;
 
-
+    private String observaciones;
+    
     public Socio getSocio() {
         return socio;
     }
@@ -43,14 +46,6 @@ public class Donacion implements Serializable {
         this.nino = nino;
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
     public Date getFecha() {
         return fecha;
     }
@@ -58,6 +53,22 @@ public class Donacion implements Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+    public Double getImporte() {
+        return importe;
+    }
+
+    public void setImporte(Double importe) {
+        this.importe = importe;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }    
     
 }
     
