@@ -66,5 +66,5 @@ public class BeneficiarioId implements Serializable {
         }
         return true;
     }
-    
+
 }

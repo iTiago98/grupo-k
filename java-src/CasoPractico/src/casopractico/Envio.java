@@ -10,11 +10,11 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Envio implements Serializable {
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     private String observaciones;
     @ManyToOne
     private Nino nino;
@@ -52,5 +52,6 @@ public class Envio implements Serializable {
     public void setSocio(Socio socio) {
         this.socio = socio;
     }
-    
+
 }
+

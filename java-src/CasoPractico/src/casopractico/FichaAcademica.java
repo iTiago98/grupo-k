@@ -15,11 +15,11 @@ import javax.persistence.TemporalType;
 @Entity
 public class FichaAcademica implements Serializable {
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @Column(nullable = false)
     private Integer curso;
     @Column(nullable = false)
@@ -59,5 +59,5 @@ public class FichaAcademica implements Serializable {
     public void setAsignaturas(Set<Asignatura> asignaturas) {
         this.asignaturas = asignaturas;
     }
-    
+
 }

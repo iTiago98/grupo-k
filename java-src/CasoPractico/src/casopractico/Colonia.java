@@ -12,11 +12,11 @@ import javax.persistence.OneToMany;
 @Entity
 public class Colonia implements Serializable {
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @Column(nullable = false)
     private String nombre;
     @Column(nullable = false)
@@ -64,5 +64,5 @@ public class Colonia implements Serializable {
     public void setNinos(Set<Nino> ninos) {
         this.ninos = ninos;
     }
-    
+
 }

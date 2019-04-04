@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 @IdClass(BeneficiarioId.class)
 public class Beneficiario implements Serializable {
     private static final long serialVersionUID = 1L;
-   
+
     @Id
     @OneToOne
     private Beca beca;
@@ -19,9 +19,9 @@ public class Beneficiario implements Serializable {
     private Nino nino;
     @Id
     private Integer ano;
-    
+
     private String observaciones;
-    
+
     public Beca getBeca() {
         return beca;
     }
@@ -53,5 +53,5 @@ public class Beneficiario implements Serializable {
     public void setAno(Integer ano) {
         this.ano = ano;
     }
-    
+
 }

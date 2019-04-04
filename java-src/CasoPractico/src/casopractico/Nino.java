@@ -16,11 +16,11 @@ import javax.persistence.TemporalType;
 @Entity
 public class Nino implements Serializable {
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @Column(nullable = false)
     private String nombre;
     @Column(nullable = false)
@@ -148,5 +148,6 @@ public class Nino implements Serializable {
     public void setDonaciones(Set<Donacion> donaciones) {
         this.donaciones = donaciones;
     }
-    
+
 }
+

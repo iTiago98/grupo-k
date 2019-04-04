@@ -14,7 +14,7 @@ import javax.persistence.TemporalType;
 @IdClass(DonacionId.class)
 public class Donacion implements Serializable {
     private static final long serialVersionUID = 1L;
-   
+
     @Id
     @OneToOne
     private Socio socio;
@@ -24,12 +24,12 @@ public class Donacion implements Serializable {
     @Id
     @Temporal(TemporalType.DATE)
     private Date fecha;
-    
+
     @Column(nullable = false)
     private Double importe;
 
     private String observaciones;
-    
+
     public Socio getSocio() {
         return socio;
     }
@@ -68,7 +68,8 @@ public class Donacion implements Serializable {
 
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
-    }    
-    
+    }
+
 }
-    
+
+
