@@ -39,7 +39,7 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Fecha" id="A2E93623-A075-28AA-17BA-3F4887D58086">
+<Attribute name="ID" id="A2E93623-A075-28AA-17BA-3F4887D58086">
 <createdBy>super</createdBy>
 <createdTime>2019-04-04 12:21:04 UTC</createdTime>
 <ownerDesignName>modeloER</ownerDesignName>
@@ -72,8 +72,6 @@
 <pk>true</pk>
 <usedAttributes>
 <attributeRef>A2E93623-A075-28AA-17BA-3F4887D58086</attributeRef>
-<attributeRef>4D7B98E1-AA3D-7BFC-21E9-3FFC1A7F246D</attributeRef>
-<attributeRef>A94A16AD-3ED7-CC39-1F36-471B914C3453</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>
