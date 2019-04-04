@@ -1,0 +1,74 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="6C48ACE8-695E-E060-B768-187714D1BF1E" name="Proyecto">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:44:52 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="3AA314F8-E0B8-773C-1A85-7215C11419E4">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:50:39 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Nombre" id="E67CD331-7F16-9A97-A47D-C1E6048B7F90">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:50:44 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Localización" id="0F36FB16-8B06-8593-F3CF-6D4AF04BA8B3">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:50:56 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Capacidad" id="8AB2AAF3-2F8C-AABC-334F-0E811B520F0A">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:51:03 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="D9C8B2A7-49F5-A2C9-F946-B041781638CC" name="Proyecto PK">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:50:43 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>3AA314F8-E0B8-773C-1A85-7215C11419E4</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

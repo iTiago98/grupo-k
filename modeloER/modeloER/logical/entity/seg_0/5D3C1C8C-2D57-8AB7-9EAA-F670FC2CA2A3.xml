@@ -1,0 +1,141 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="5D3C1C8C-2D57-8AB7-9EAA-F670FC2CA2A3" name="Niño">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:40:42 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="F4728C52-39E7-4D5F-A034-1479657C9156">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:41:23 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Nombre" id="8947F81B-244A-FAA5-A395-98A6E567B05C">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:41:54 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Apellidos" id="5F5DEBD6-1B8A-8578-F119-12CF837CDE0B">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:42:09 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Sexo" id="75E6B9EA-25B9-97A5-26C7-193D1FA0EB0D">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:42:15 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Fecha de Nacimiento" id="A40EA386-10EC-D40C-2F95-4A8A4BB860A7">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:43:08 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Observaciones" id="545987E4-3025-D310-73FB-A6697CE081E7">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:43:24 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Prioridad" id="027F624C-B9CF-8F2B-3E00-D8ECDDF571FC">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:43:33 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID1" id="A87A2993-51A5-1018-1CD0-85995026A31B">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 12:13:43 UTC</createdTime>
+<generatorID>78FB50DD-40B1-E32F-40B0-C2538ADB8C52</generatorID>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<referedAttribute>B4C32E6B-4442-8D1D-5FD8-201CC169A287</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID2" id="8FFA80F4-C157-9115-A95B-CDA34345BB18">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 12:14:30 UTC</createdTime>
+<generatorID>12DE7799-FD30-DCC4-FD35-932E4F2FA7CA</generatorID>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<referedAttribute>3AA314F8-E0B8-773C-1A85-7215C11419E4</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID3" id="69527A97-2FEA-B25E-438C-DB7D278F9350">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 12:15:59 UTC</createdTime>
+<generatorID>232C88D9-D074-A96F-734A-6DA8137B4DFB</generatorID>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<referedAttribute>DCF318A8-E886-3640-82BE-0BB294CA1BF5</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="74F63181-9902-DDF8-083A-B9C950CA00C6" name="Niño PK">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:41:45 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>F4728C52-39E7-4D5F-A034-1479657C9156</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

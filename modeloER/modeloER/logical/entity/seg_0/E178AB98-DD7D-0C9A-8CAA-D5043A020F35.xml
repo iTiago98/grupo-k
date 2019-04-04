@@ -1,0 +1,117 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E178AB98-DD7D-0C9A-8CAA-D5043A020F35" name="Socio">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:51:26 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="DCF318A8-E886-3640-82BE-0BB294CA1BF5">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:51:37 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="DNI" id="21B37144-C872-0E18-8FCE-E6648AC4DADE">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:52:01 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Nombre" id="6133B58D-6163-C87E-294E-E22A928F2558">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:52:33 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Apellidos" id="05C30019-82C9-69E0-1E89-1C56E97823A2">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:52:40 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Dirección" id="6EA5BE54-6645-329A-61A7-5F1465FE738D">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:52:45 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Teléfono" id="9B4A8052-5324-254A-CAD5-4433B406761E">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:52:51 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Correo" id="794FBB99-C3A0-E3D0-3C9C-CF71A47662E2">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:52:56 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Observaciones" id="98E716BF-67D2-BF32-088F-B1CBA76068D6">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:53:00 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="026D025C-E092-98BF-A229-723B7A038425" name="Socio PK">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:52:00 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>DCF318A8-E886-3640-82BE-0BB294CA1BF5</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

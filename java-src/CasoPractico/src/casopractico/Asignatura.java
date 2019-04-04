@@ -5,24 +5,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.OneToOne;
 
 @Entity
-@IdClass(CalificacionId.class)
-public class Calificacion implements Serializable {
+public class Asignatura implements Serializable {
     private static final long serialVersionUID = 1L;
-   
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Id
-    @OneToOne
-    private FichaAcademica fichaAcademica;
-    
-    private Integer nota;
+
+    private Integer calificacion;
     private String observaciones;
-    
+
     public Long getId() {
         return id;
     }
@@ -31,20 +25,12 @@ public class Calificacion implements Serializable {
         this.id = id;
     }
 
-    public FichaAcademica getFichaAcademica() {
-        return fichaAcademica;
+    public Integer getCalificacion() {
+        return calificacion;
     }
 
-    public void setFichaAcademica(FichaAcademica fichaAcademica) {
-        this.fichaAcademica = fichaAcademica;
-    }
-
-    public Integer getNota() {
-        return nota;
-    }
-
-    public void setNota(Integer nota) {
-        this.nota = nota;
+    public void setCalificacion(Integer calificacion) {
+        this.calificacion = calificacion;
     }
 
     public String getObservaciones() {

@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="DD038CA0-75AB-0F30-E9DB-530C1D16AF2F" name="Ficha Académica">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:54:44 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="5CF1EE77-DEA7-A39F-A24F-9AD2BCD70335">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:54:53 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Curso" id="8C533E5D-1A77-5164-3FD0-0F2A6F0410ED">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:54:57 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Fecha de matriculación" id="FFF9C840-01DF-7C03-6B19-399577123F7A">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:55:31 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID1" id="AE4B8D81-A540-1F6B-4C59-79000CC069D8">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 12:18:02 UTC</createdTime>
+<generatorID>3224975D-2999-9EC9-BEF1-6795D6701378</generatorID>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<referedAttribute>F4728C52-39E7-4D5F-A034-1479657C9156</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="5A8AE16E-ECE6-37A6-BAC3-8BFD1C933B91" name="Ficha Académica PK">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:54:56 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>5CF1EE77-DEA7-A39F-A24F-9AD2BCD70335</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

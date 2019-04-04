@@ -1,0 +1,80 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="915AF588-2F6F-9679-1597-CCC097AD8DAF" name="Beneficiario">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 12:04:13 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Año" id="A1298759-0EF4-07EF-CF87-5C9FC0058012">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 12:04:18 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Observaciones" id="CD33F9E5-6DE7-FDB9-5982-C06303C204FC">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 12:04:25 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID" id="A8364EFA-2A5B-A343-E10E-A2CD021B19FB">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 12:23:44 UTC</createdTime>
+<generatorID>3F47AEDB-29C1-E942-CF96-4528A9DC11F0</generatorID>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<referedAttribute>F4728C52-39E7-4D5F-A034-1479657C9156</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID1" id="77A4E69A-09CB-D3CD-493E-26FBED229537">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 12:23:49 UTC</createdTime>
+<generatorID>019A79AE-A534-960E-613E-A2C5EDA97180</generatorID>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<referedAttribute>C020F076-4C6B-842A-5679-948FCBA1FF41</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="BE7D8534-27DF-C433-FE75-7D8440222D27" name="Beneficiario PK">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 12:04:22 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>A1298759-0EF4-07EF-CF87-5C9FC0058012</attributeRef>
+<attributeRef>A8364EFA-2A5B-A343-E10E-A2CD021B19FB</attributeRef>
+<attributeRef>77A4E69A-09CB-D3CD-493E-26FBED229537</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

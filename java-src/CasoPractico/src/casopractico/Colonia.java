@@ -2,7 +2,7 @@ package casopractico;
 
 import java.io.Serializable;
 import java.util.Set;
-import javax.persistence.Embedded;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,9 +17,10 @@ public class Colonia implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @Column(nullable = false)
     private String nombre;
-    @Embedded
-    private Localizacion localizacion;
+    @Column(nullable = false)
+    private String localizacion;
     private String descripcion;
     @OneToMany(mappedBy = "colonia")
     private Set<Nino> ninos;
@@ -40,11 +41,11 @@ public class Colonia implements Serializable {
         this.nombre = nombre;
     }
 
-    public Localizacion getLocalizacion() {
+    public String getLocalizacion() {
         return localizacion;
     }
 
-    public void setLocalizacion(Localizacion localizacion) {
+    public void setLocalizacion(String localizacion) {
         this.localizacion = localizacion;
     }
 
