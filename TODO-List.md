@@ -1,3 +1,0 @@
-- Requisito Donación: cambiar en el pdf para que sean los socios los que donen, no los admins. (Jorge cabroun)
-- Entidad Donaciones: cambiarlo a singular en el dmd. (Santi cabroun)
-- Requisito Donación: completar la definición del requisito cerrar sesión. (Jorge cabroun)

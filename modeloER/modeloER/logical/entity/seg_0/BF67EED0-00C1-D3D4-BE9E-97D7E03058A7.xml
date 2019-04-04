@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="BF67EED0-00C1-D3D4-BE9E-97D7E03058A7" name="Donaciones">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="BF67EED0-00C1-D3D4-BE9E-97D7E03058A7" name="Donación">
 <createdBy>super</createdBy>
 <createdTime>2019-04-04 12:10:09 UTC</createdTime>
 <ownerDesignName>modeloER</ownerDesignName>
