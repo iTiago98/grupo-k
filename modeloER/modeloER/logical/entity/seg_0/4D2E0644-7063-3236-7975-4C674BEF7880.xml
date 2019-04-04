@@ -1,0 +1,80 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="4D2E0644-7063-3236-7975-4C674BEF7880" name="Envío">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:53:18 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID1" id="A94A16AD-3ED7-CC39-1F36-471B914C3453">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 12:16:52 UTC</createdTime>
+<generatorID>339DC938-2679-4DC5-319B-874293A13596</generatorID>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<referedAttribute>DCF318A8-E886-3640-82BE-0BB294CA1BF5</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID2" id="4D7B98E1-AA3D-7BFC-21E9-3FFC1A7F246D">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 12:16:59 UTC</createdTime>
+<generatorID>201392EE-13F9-BDAA-BF20-CD0AC3186B83</generatorID>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<referedAttribute>F4728C52-39E7-4D5F-A034-1479657C9156</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Fecha" id="A2E93623-A075-28AA-17BA-3F4887D58086">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 12:21:04 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Observaciones" id="E27FEA58-AF2F-1764-6202-AA5576725238">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 12:21:16 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="08D5F456-1D1E-BF95-24E2-5EEDF863F4ED" name="Envío PK">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 11:53:33 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>A94A16AD-3ED7-CC39-1F36-471B914C3453</attributeRef>
+<attributeRef>4D7B98E1-AA3D-7BFC-21E9-3FFC1A7F246D</attributeRef>
+<attributeRef>A2E93623-A075-28AA-17BA-3F4887D58086</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

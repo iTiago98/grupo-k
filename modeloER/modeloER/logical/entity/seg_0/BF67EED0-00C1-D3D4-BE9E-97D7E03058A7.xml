@@ -1,0 +1,90 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="BF67EED0-00C1-D3D4-BE9E-97D7E03058A7" name="Donaciones">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 12:10:09 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Fecha" id="7A153130-F031-8D1D-5A58-FC731DF605BD">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 12:10:21 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Importe" id="078823D9-6447-52C4-AAE2-52E807CF7260">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 12:10:44 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Observaciones" id="16BB65C8-3186-3F18-1E44-2A02E50FD195">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 12:10:49 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID" id="FB503A74-B48B-4BDA-FDC5-58788D4E6199">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 12:16:15 UTC</createdTime>
+<generatorID>B08053F3-CF47-7C22-1C78-1DF1D662E827</generatorID>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<referedAttribute>DCF318A8-E886-3640-82BE-0BB294CA1BF5</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID1" id="466CC917-BF45-8C3A-5492-9DE9DF44175F">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 12:16:21 UTC</createdTime>
+<generatorID>62C0B256-E6CD-0824-8D72-3F292D250F86</generatorID>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<referedAttribute>F4728C52-39E7-4D5F-A034-1479657C9156</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="2E59B3A7-130D-07E0-0FB1-698ADDD9A963" name="Donaciones PK">
+<createdBy>super</createdBy>
+<createdTime>2019-04-04 12:10:41 UTC</createdTime>
+<ownerDesignName>modeloER</ownerDesignName>
+<engineerTo>
+<item key="F0479DB8-D94D-19D2-EA59-8CB82DDA6B66" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>7A153130-F031-8D1D-5A58-FC731DF605BD</attributeRef>
+<attributeRef>FB503A74-B48B-4BDA-FDC5-58788D4E6199</attributeRef>
+<attributeRef>466CC917-BF45-8C3A-5492-9DE9DF44175F</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

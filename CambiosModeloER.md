@@ -1,5 +1,0 @@
-- Borrar entidad usuario.
-- Socio está relacionado con niño por una relación de uno a muchos. Un socio puede apadrinar a uno o más niños.
-- Entidad débil "Donaciones" que almacene información de la cantidad del donativo y la fecha en la que se hizo y que tiene como claves el socio, el niño y la fecha.
-- Ficha académica no es una entidad débil. Pasa a ser una relación de uno a muchos entre niño y ella, tiene como clave primaria su id.
-- Lo mismo para calificación.
