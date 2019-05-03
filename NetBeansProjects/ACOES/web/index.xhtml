@@ -1,12 +1,37 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-    </h:body>
-</html>
-
+<ui:composition template="/WEB-INF/res/plantilla.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                >
+    <ui:define name="title">Página principal</ui:define>
+    <ui:define name="rolUsuario">NO LOGEADO</ui:define>
+    <ui:define name="nombreUsuario">NO LOGEADO</ui:define>
+    <ui:define name="content">
+        <c:choose>
+            <c:when test="#{empty ControlAutorizacion.usuario}">
+                <h:form>
+                    <table>
+                        <tr>
+                            <td>Usuario: </td>
+                            <td><h:inputText value="#{ControlUsuario.usuarioNombre}"/></td>
+                        </tr>
+                        <tr>
+                            <td>Contraseña: </td>
+                            <td><h:inputSecret value="#{ControlUsuario.contrasenia}"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h:commandButton value="Autenticar" action="#{ControlUsuario.autenticar()}"/>
+                            </td>
+                        </tr>
+                    </table>
+                </h:form>
+            </c:when>
+            <c:otherwise>
+                <p>Debe salir de la aplicación si quiere entrar como otro usuario</p>
+            </c:otherwise>
+        </c:choose>
+        <h:messages></h:messages>
+    </ui:define>
+</ui:composition>
