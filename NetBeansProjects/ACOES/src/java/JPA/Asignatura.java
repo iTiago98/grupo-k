@@ -17,6 +17,15 @@ public class Asignatura implements Serializable {
     private Integer calificacion;
     private String observaciones;
 
+    public Asignatura(String obs, int i) {
+        this.calificacion = i;
+        this.observaciones = obs;
+    }
+    
+    public Asignatura(){
+        
+    }
+
     public Long getId() {
         return id;
     }
