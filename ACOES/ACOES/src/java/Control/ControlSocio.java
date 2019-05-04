@@ -34,7 +34,7 @@ public class ControlSocio implements Serializable {
     
     public String goModifySocio(Socio soc) {
         this.socio = soc;
-        return "sociossModificar.xhtml";
+        return "sociosModificar.xhtml";
     }
     
     public String modifySocio() {
@@ -44,7 +44,7 @@ public class ControlSocio implements Serializable {
         
         this.socio = new Socio(); // cleanup
         
-        return "socios.xhtml"; // volvemos a la página de usuarios para visualizar los cambios
+        return "socios.xhtml";
     }
     
     
