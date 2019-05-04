@@ -1,6 +1,7 @@
-package casopractico;
+package JPA;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Column;
@@ -45,6 +46,28 @@ public class Nino implements Serializable {
     @OneToMany
     private Set<Donacion> donaciones;
 
+    
+    /**** NUEVO ****/
+    public Nino() {}
+    
+    public Nino(String nombre, String apellidos, char sexo, Date fechaNacimiento) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.sexo = sexo;
+        this.fechaNacimiento = fechaNacimiento;
+    }
+    
+    public String getFechaNacimientoFormat() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-YYYY");
+        return sdf.format(this.fechaNacimiento);
+    }
+    
+    public String toString() {
+        return this.nombre + " " + this.apellidos;
+    }
+    
+    
+    
     public Long getId() {
         return id;
     }

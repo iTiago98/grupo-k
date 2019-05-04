@@ -1,4 +1,4 @@
-package casopractico;
+package JPA;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -10,21 +10,39 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Colonia implements Serializable {
+public class Proyecto implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long id; //idCentro
 
     @Column(nullable = false)
     private String nombre;
-    @Column(nullable = false)
     private String localizacion;
-    private String descripcion;
-    @OneToMany(mappedBy = "colonia")
+    @Column(nullable = false)
+    private Integer capacidad;
+
+    @OneToMany(mappedBy = "proyecto")
     private Set<Nino> ninos;
 
+    /**** NUEVO ****/
+    public Proyecto() {}
+    
+    public Proyecto(String nombre, String localizacion, int capacidad) {
+        this.nombre = nombre;
+        this.localizacion = localizacion;
+        this.capacidad = capacidad;
+    }
+    
+    public Proyecto(String nombre, String localizacion, int capacidad, Set<Nino> ninos) {
+        this.nombre = nombre;
+        this.localizacion = localizacion;
+        this.capacidad = capacidad;
+        this.ninos = ninos;
+    }
+    
+    
     public Long getId() {
         return id;
     }
@@ -49,12 +67,12 @@ public class Colonia implements Serializable {
         this.localizacion = localizacion;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public Integer getCapacidad() {
+        return capacidad;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setCapacidad(Integer capacidad) {
+        this.capacidad = capacidad;
     }
 
     public Set<Nino> getNinos() {

@@ -1,4 +1,4 @@
-package casopractico;
+package JPA;
 
 import java.io.Serializable;
 import java.util.Objects;

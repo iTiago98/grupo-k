@@ -12,17 +12,17 @@ import javax.persistence.OneToMany;
 @Entity
 public class Proyecto implements Serializable {
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id; //idCentro
-    
+
     @Column(nullable = false)
     private String nombre;
     private String localizacion;
     @Column(nullable = false)
     private Integer capacidad;
-            
+
     @OneToMany(mappedBy = "proyecto")
     private Set<Nino> ninos;
 
@@ -65,5 +65,5 @@ public class Proyecto implements Serializable {
     public void setNinos(Set<Nino> ninos) {
         this.ninos = ninos;
     }
-    
+
 }

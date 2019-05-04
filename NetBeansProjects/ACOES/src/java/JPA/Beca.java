@@ -1,20 +1,22 @@
-package casopractico;
+package JPA;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Asignatura implements Serializable {
+public class Beca implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long id; //idBeca
 
-    private Integer calificacion;
+    @Column(nullable = false)
+    private String nombre;
     private String observaciones;
 
     public Long getId() {
@@ -25,12 +27,12 @@ public class Asignatura implements Serializable {
         this.id = id;
     }
 
-    public Integer getCalificacion() {
-        return calificacion;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setCalificacion(Integer calificacion) {
-        this.calificacion = calificacion;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getObservaciones() {

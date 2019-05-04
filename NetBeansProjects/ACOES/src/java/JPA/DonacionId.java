@@ -1,21 +1,22 @@
-package casopractico;
+package JPA;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class BeneficiarioId implements Serializable {
-    private Long beca;
+public class DonacionId implements Serializable {
+    private Long socio;
     private Long nino;
-    private Integer ano;
+    private Date fecha;
 
-    public Long getBeca() {
-        return beca;
+    public Long getSocio() {
+        return socio;
     }
 
-    public void setBeca(Long beca) {
-        this.beca = beca;
+    public void setSocio(Long socio) {
+        this.socio = socio;
     }
 
     public Long getNino() {
@@ -26,20 +27,20 @@ public class BeneficiarioId implements Serializable {
         this.nino = nino;
     }
 
-    public Integer getAno() {
-        return ano;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setAno(Integer ano) {
-        this.ano = ano;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 37 * hash + Objects.hashCode(this.beca);
-        hash = 37 * hash + Objects.hashCode(this.nino);
-        hash = 37 * hash + Objects.hashCode(this.ano);
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.socio);
+        hash = 89 * hash + Objects.hashCode(this.nino);
+        hash = 89 * hash + Objects.hashCode(this.fecha);
         return hash;
     }
 
@@ -54,14 +55,14 @@ public class BeneficiarioId implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final BeneficiarioId other = (BeneficiarioId) obj;
-        if (!Objects.equals(this.beca, other.beca)) {
+        final DonacionId other = (DonacionId) obj;
+        if (!Objects.equals(this.socio, other.socio)) {
             return false;
         }
         if (!Objects.equals(this.nino, other.nino)) {
             return false;
         }
-        if (!Objects.equals(this.ano, other.ano)) {
+        if (!Objects.equals(this.fecha, other.fecha)) {
             return false;
         }
         return true;

@@ -10,11 +10,11 @@ import javax.persistence.Id;
 @Entity
 public class Beca implements Serializable {
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id; //idBeca
-    
+
     @Column(nullable = false)
     private String nombre;
     private String observaciones;
@@ -42,5 +42,5 @@ public class Beca implements Serializable {
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
     }
-    
+
 }
