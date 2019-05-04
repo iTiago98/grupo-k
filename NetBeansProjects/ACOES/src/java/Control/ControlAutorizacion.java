@@ -21,7 +21,7 @@ public class ControlAutorizacion implements Serializable {
     }
     
     public String logout()
-    {
+    {             
         FacesContext ctx = FacesContext.getCurrentInstance();
         ctx.getExternalContext().invalidateSession();
         usuario = null;
