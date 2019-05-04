@@ -62,6 +62,7 @@ public class Nino implements Serializable {
         return sdf.format(this.fechaNacimiento);
     }
     
+    @Override
     public String toString() {
         return this.nombre + " " + this.apellidos;
     }

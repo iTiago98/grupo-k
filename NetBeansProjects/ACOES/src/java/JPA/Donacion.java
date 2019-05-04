@@ -1,6 +1,7 @@
 package JPA;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,6 +31,30 @@ public class Donacion implements Serializable {
 
     private String observaciones;
 
+    /**** NUEVO ****/
+    public Donacion() {}
+    
+    public Donacion(Date fecha, Double importe, String observaciones) {
+        this.fecha = fecha;
+        this.importe = importe;
+        this.observaciones = observaciones;
+    }
+    
+    public Donacion(Socio socio, Nino nino, Date fecha, Double importe, String observaciones) {
+        this.socio = socio;
+        this.nino = nino;
+        this.fecha = fecha;
+        this.importe = importe;
+        this.observaciones = observaciones;
+    }
+    
+    public String getFechaFormat() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-YYYY");
+        return sdf.format(this.fecha);
+    }
+    
+    
+    
     public Socio getSocio() {
         return socio;
     }

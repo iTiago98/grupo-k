@@ -1,4 +1,3 @@
-/* Todo metido en la misma clase */
 package Control;
 
 import java.io.Serializable;
@@ -27,7 +26,7 @@ public class ControlProyecto implements Serializable {
     
     public String addProyecto() {
         proyectos.add(this.proyecto);
-        this.proyecto = new Proyecto(); // cleanup
+        this.proyecto = new Proyecto();
         return null;
     }
     
@@ -47,9 +46,9 @@ public class ControlProyecto implements Serializable {
             if(pro.equals(this.proyecto)) pro = this.proyecto;
         }
         
-        this.proyecto = new Proyecto(); // cleanup
+        this.proyecto = new Proyecto();
         
-        return "proyectos.xhtml"; // volvemos a la página de usuarios para visualizar los cambios
+        return "proyectos.xhtml";
     }
     
     

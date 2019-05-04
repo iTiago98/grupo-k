@@ -38,19 +38,26 @@ public class Socio implements Serializable {
     public Socio() {}
     
     public Socio(String DNI,String nombre, String apellidos){
-        this.DNI=DNI;
-        this.nombre=nombre;
-        this.apellidos=apellidos;
+        this.DNI = DNI;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
     }
     
     public Socio(String DNI,String nombre, String apellidos, Set<Envio> envios, Set<Nino> ninos, Set<Donacion> donaciones){
-        this.DNI=DNI;
-        this.nombre=nombre;
-        this.apellidos=apellidos;
-        this.ninos=ninos;
-        this.envios=envios;
-        this.donaciones=donaciones;
+        this.DNI = DNI;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.ninos = ninos;
+        this.envios = envios;
+        this.donaciones = donaciones;
     }
+    
+    @Override
+    public String toString() {
+        return this.nombre + " " + this.apellidos;
+    }
+    
+    
     
     public Long getId() {
         return id;

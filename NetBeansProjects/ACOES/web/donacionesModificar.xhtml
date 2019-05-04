@@ -5,18 +5,21 @@
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                     
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:define name="title">Modificar socio</ui:define>
+    <ui:define name="title">Modificar donación</ui:define>
     <ui:define name="rolUsuario"><h:outputText value="#{ControlAutorizacion.usuario.rol}"></h:outputText></ui:define>
     <ui:define name="nombreUsuario"><h:outputText value="#{ControlAutorizacion.usuario.usuario}"></h:outputText></ui:define>
     <ui:define name="content">
         <h:form>
-            <h3>Modificando socio <h:outputText value="#{ControlSocio.socio}"/></h3>
-            Nombre:
-            <h:inputText value="#{ControlSocio.socio.nombre}"></h:inputText><br/>
-            Apellido:
-            <h:inputText value="#{ControlSocio.socio.apellidos}"></h:inputText><br/>
+            <h3>Modificando donación del <h:outputText value="#{ControlDonacion.donacion.getFechaFormat()}"/></h3>
+            Cantidad:
+            <h:inputText value="#{ControlDonacion.donacion.importe}"></h:inputText>
             <hr/>
-            <h:commandButton value="Modificar" action="#{ControlSocio.modifySocio()}"></h:commandButton>
+            Fecha:<br/>
+            Año: <h:inputText value="#{ControlDonacion.year}"></h:inputText> <br/> 
+            Mes: <h:inputText value="#{ControlDonacion.month}"></h:inputText> <br/>
+            Día: <h:inputText value="#{ControlDonacion.day}"></h:inputText> <br/>
+            <hr/>
+            <h:commandButton value="Modificar" action="#{ControlDonacion.modifyDonacion}"></h:commandButton>
         </h:form>
         <h:messages></h:messages>
     </ui:define>

@@ -1,4 +1,3 @@
-/* Todo metido en la misma clase */
 package Control;
 
 import java.io.Serializable;
@@ -22,14 +21,14 @@ public class ControlSocio implements Serializable {
     
     public String addSocio() {
         socios.add(this.socio);
-        this.socio = new Socio(); // cleanup
+        this.socio = new Socio();
         return null;
     }
     
     public String removeSocio(Socio soc) {
         socios.remove(soc);
         
-        return null; // la misma página
+        return null;
     }
     
     public String goModifySocio(Socio soc) {
@@ -42,7 +41,7 @@ public class ControlSocio implements Serializable {
             if(soc.equals(this.socio)) soc = this.socio;
         }
         
-        this.socio = new Socio(); // cleanup
+        this.socio = new Socio();
         
         return "socios.xhtml";
     }
@@ -67,8 +66,5 @@ public class ControlSocio implements Serializable {
     public void setProyectos(ArrayList<Socio> socios) {
         this.socios = socios;
     }
-     
-     
-     
      
 }

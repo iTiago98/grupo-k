@@ -14,7 +14,7 @@
 
     <h:body>
         <div id="topbar">
-            <div id="logo"><a href="index.xhtml">ACOES</a></div>
+            <div id="logo"><a href="home.xhtml">ACOES</a></div>
             <div id="nombreUsuario">
                 Bienvenido <ui:insert name="nombreUsuario"></ui:insert>
                 <br/>Logeado como <ui:insert name="rolUsuario"></ui:insert>
@@ -27,6 +27,7 @@
                 <li><a href="ninos.xhtml">Niños apadrinados</a></li>
                 <li><a href="proyectos.xhtml">Proyectos</a></li>
                 <li><a href="socios.xhtml">Socios</a></li>
+                <li><a href="donaciones.xhtml">Donaciones</a></li>
                 <li><h:form><h:commandButton value="Cerrar sesión" action="#{ControlAutorizacion.logout}"></h:commandButton></h:form></li>
             </ul>
         </div>

@@ -1,0 +1,45 @@
+<ui:composition template="/WEB-INF/res/plantilla.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="title">Donaciones</ui:define>
+    <ui:define name="rolUsuario"><h:outputText value="#{ControlAutorizacion.usuario.rol}"></h:outputText></ui:define>
+    <ui:define name="nombreUsuario"><h:outputText value="#{ControlAutorizacion.usuario.usuario}"></h:outputText></ui:define>
+    <ui:define name="content">
+        <h:form>
+            <h:dataTable value="#{ControlDonacion.getDonaciones()}" var="don" border="1">
+                <h:column>
+                    <f:facet name="header">Fecha</f:facet>
+                    <h:outputText value="#{don.getFechaFormat()}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Cantidad</f:facet>
+                    <h:outputText value="#{don.importe}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Observaciones</f:facet>
+                    <h:outputText value="#{don.observaciones}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Acción</f:facet>
+                    <h:commandButton value="Borrar" action="#{ControlDonacion.removeDonacion(don)}"></h:commandButton>
+                    <h:commandButton value="Modificar" action="#{ControlDonacion.goModifyDonacion(don)}"></h:commandButton>
+                </h:column>
+            </h:dataTable>
+            <h3>Añadir nueva donación</h3>
+            Cantidad:
+            <h:inputText value="#{ControlDonacion.donacion.importe}"></h:inputText>
+            <hr/>
+            Fecha:<br/>
+            Año: <h:inputText value="#{ControlDonacion.year}"></h:inputText> <br/> 
+            Mes: <h:inputText value="#{ControlDonacion.month}"></h:inputText> <br/>
+            Día: <h:inputText value="#{ControlDonacion.day}"></h:inputText> <br/>
+            <hr/>
+            <h:commandButton value="Añadir" action="#{ControlDonacion.addDonacion}"></h:commandButton>
+        </h:form>
+        <h:messages></h:messages>
+    </ui:define>
+</ui:composition>

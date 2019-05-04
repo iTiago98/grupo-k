@@ -33,7 +33,7 @@ public class ControlNino implements Serializable {
     public String addNino() {
         this.nino.setFechaNacimiento(new Date(this.year - 1900, this.month - 1, this.day));
         ninos.add(this.nino);
-        this.nino = new Nino(); // cleanup
+        this.nino = new Nino();
         this.year = 1;
         this.month = 1;
         this.day = 1;
@@ -69,7 +69,7 @@ public class ControlNino implements Serializable {
         this.day = 1;
         
         
-        return "ninos.xhtml"; // volvemos a la página de usuarios para visualizar los cambios
+        return "ninos.xhtml";
     }
     
 
