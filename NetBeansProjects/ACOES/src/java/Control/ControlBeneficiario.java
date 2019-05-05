@@ -1,4 +1,3 @@
-/* Todo metido en la misma clase */
 package Control;
 
 import JPA.Beca;
@@ -13,33 +12,46 @@ import java.util.Date;
 @Named(value = "ControlBeneficiario")
 @SessionScoped
 public class ControlBeneficiario implements Serializable {
-     private Beneficiario beneficiario;
-     private ArrayList<Beneficiario> beneficiarios;
+    private Beneficiario beneficiario;
+    private ArrayList<Beneficiario> beneficiarios;
      
-     public ControlBeneficiario() {
+    private Beca beca;
+    private Nino nino;
+       
+    public ControlBeneficiario() {
         beneficiario = new Beneficiario();
         
-        beneficiarios = new ArrayList<>();
+        this.beca = new Beca();
+        this.nino = new Nino();
         
-        /****SANTIAGO, TERMINA DE IMPLEMENTAR DONDE PONGA BECA****/
+        beneficiarios = new ArrayList<>();    
         beneficiarios.add(new Beneficiario(new Beca("BAB", "Beca para alumnos con mayor rendimiento que la media."), new Nino("Ramón", "Yuzo", 'H', new Date(1999 - 1900, 10 - 1, 20)), 2005, null));
     }
     
     public String addBeneficiario() {
+        this.beneficiario.setNino(this.nino);
+        this.beneficiario.setBeca(this.beca);
         beneficiarios.add(this.beneficiario);
-        this.beneficiario = new Beneficiario(); // cleanup
+        
+        this.beneficiario = new Beneficiario();
+        this.nino = new Nino();
+        this.beca = new Beca();
+
         return null;
     }
     
     public String removeBeneficiario(Beneficiario bene) {
         beneficiarios.remove(bene);
         
-        return null; // la misma página
+        return null;
     }
     
     public String goModifyBeneficiario(Beneficiario bene) {
+        this.nino = bene.getNino();
+        this.beca = bene.getBeca();
         this.beneficiario = bene;
-        return "beneficiarioModificar.xhtml";
+        
+        return "beneficiariosModificar.xhtml";
     }
     
     public String modifyBeneficiario() {
@@ -47,9 +59,11 @@ public class ControlBeneficiario implements Serializable {
             if(bene.equals(this.beneficiario)) bene = this.beneficiario;
         }
         
-        this.beneficiario = new Beneficiario(); // cleanup
+        this.beneficiario = new Beneficiario();
+        this.nino = new Nino();
+        this.beca = new Beca();
         
-        return "beneficiario.xhtml"; // volvemos a la página de usuarios para visualizar los cambios
+        return "beneficiarios.xhtml";
     }
     
     
@@ -72,8 +86,21 @@ public class ControlBeneficiario implements Serializable {
     public void setSocios(ArrayList<Beneficiario> benes) {
         this.beneficiarios = benes;
     }
-     
-     
-     
-     
+
+    public Beca getBeca() {
+        return beca;
+    }
+
+    public void setBeca(Beca beca) {
+        this.beca = beca;
+    }
+
+    public Nino getNino() {
+        return nino;
+    }
+
+    public void setNino(Nino nino) {
+        this.nino = nino;
+    }
+    
 }

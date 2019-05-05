@@ -33,7 +33,7 @@ public class ControlColonia implements Serializable {
     public String removeColonia(Colonia col) {
         colonias.remove(col);
         
-        return null; // la misma página
+        return null;
     }
     
     public String goModifyColonia(Colonia col) {

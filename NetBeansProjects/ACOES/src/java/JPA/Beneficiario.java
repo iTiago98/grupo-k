@@ -24,16 +24,17 @@ public class Beneficiario implements Serializable {
     public Beneficiario(){}
     
     public Beneficiario(Beca beca, Nino nino){
-        this.beca=beca;
-        this.nino=nino;
+        this.beca = beca;
+        this.nino = nino;
     }
     
     public Beneficiario(Beca beca, Nino nino, Integer ano, String observaciones){
-        this.beca=beca;
-        this.nino=nino;
-        this.ano=ano;
-        this.observaciones=observaciones;
+        this.beca = beca;
+        this.nino = nino;
+        this.ano = ano;
+        this.observaciones = observaciones;
     }
+    
     
     public Beca getBeca() {
         return beca;

@@ -21,8 +21,7 @@ public class Beca implements Serializable {
     
     public Beca() {}
     
-    public Beca(String nombre, String observaciones)
-    {
+    public Beca(String nombre, String observaciones) {
         this.nombre = nombre;
         this.observaciones = observaciones;
     }
