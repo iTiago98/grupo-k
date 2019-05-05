@@ -22,7 +22,7 @@ public class ControlBeneficiario implements Serializable {
         beneficiarios = new ArrayList<>();
         
         /****SANTIAGO, TERMINA DE IMPLEMENTAR DONDE PONGA BECA****/
-        beneficiarios.add(new Beneficiario(new Beca("BAB", "Beca para alumnos con mayor rendimiento que la media."), new Nino("Ramón", "Yuzo", 'H', new Date(1999 - 1900, 10 - 1, 20))));
+        beneficiarios.add(new Beneficiario(new Beca("BAB", "Beca para alumnos con mayor rendimiento que la media."), new Nino("Ramón", "Yuzo", 'H', new Date(1999 - 1900, 10 - 1, 20)), 2005, null));
     }
     
     public String addBeneficiario() {
