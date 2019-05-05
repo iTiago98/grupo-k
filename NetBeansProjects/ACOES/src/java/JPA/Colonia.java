@@ -24,6 +24,22 @@ public class Colonia implements Serializable {
     private String descripcion;
     @OneToMany(mappedBy = "colonia")
     private Set<Nino> ninos;
+    
+    /**** NUEVO ****/
+    public Colonia() {}
+    
+    public Colonia(String nombre, String localizacion, String descripcion) {
+        this.nombre = nombre;
+        this.localizacion = localizacion;
+        this.descripcion = descripcion;
+    }
+    
+    public Colonia(String nombre, String localizacion, String descripcion, Set<Nino> ninos) {
+        this.nombre = nombre;
+        this.localizacion = localizacion;
+        this.descripcion = descripcion;
+        this.ninos = ninos;
+    }
 
     public Long getId() {
         return id;
