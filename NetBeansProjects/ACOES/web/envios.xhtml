@@ -12,6 +12,10 @@
         <h:form>
             <h:dataTable value="#{ControlEnvio.getEnvios()}" var="env" border="1">
                 <h:column>                   
+                    <f:facet name="header">Id envío</f:facet>                 
+                    <h:outputText value="#{env.id}"></h:outputText>
+                </h:column>
+                <h:column>                   
                     <f:facet name="header">Nombre niño</f:facet>                 
                     <h:outputText value="#{env.nino.nombre}"></h:outputText>
                 </h:column>
