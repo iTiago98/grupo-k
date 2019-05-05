@@ -12,10 +12,6 @@
         <h:form>
             <h:dataTable value="#{ControlEnvio.getEnvios()}" var="env" border="1">
                 <h:column>                   
-                    <f:facet name="header">Id envío</f:facet>                 
-                    <h:outputText value="#{env.id}"></h:outputText>
-                </h:column>
-                <h:column>                   
                     <f:facet name="header">Nombre niño</f:facet>                 
                     <h:outputText value="#{env.nino.nombre}"></h:outputText>
                 </h:column>
@@ -43,23 +39,16 @@
             </h:dataTable>
             <h3>Añadir nuevo envío</h3>
             Nombre niño:
-            <h:inputText value="#{ControlNino.nino.nombre}"></h:inputText>
+            <h:inputText value="#{ControlEnvio.nino.nombre}"></h:inputText>
             Apellidos niño:
-            <h:inputText value="#{ControlNino.nino.apellidos}"></h:inputText>
-            Sexo:
-            <h:inputText value="#{ControlNino.nino.sexo}"></h:inputText>
-            <br/>
-            Fecha de nacimiento:<br/>
-            Año: <h:inputText value="#{ControlNino.year}"></h:inputText> <br/> 
-            Mes: <h:inputText value="#{ControlNino.month}"></h:inputText> <br/>
-            Día: <h:inputText value="#{ControlNino.day}"></h:inputText> <br/>
+            <h:inputText value="#{ControlEnvio.nino.apellidos}"></h:inputText>
             <hr/>
             Nombre socio:
-            <h:inputText value="#{ControlSocio.socio.nombre}"></h:inputText>
+            <h:inputText value="#{ControlEnvio.socio.nombre}"></h:inputText>
             Apellidos socio:
-            <h:inputText value="#{ControlSocio.socio.nombre}"></h:inputText>
+            <h:inputText value="#{ControlEnvio.socio.apellidos}"></h:inputText>
             DNI socio:
-            <h:inputText value="#{ControlSocio.socio.DNI}"></h:inputText>
+            <h:inputText value="#{ControlEnvio.socio.DNI}"></h:inputText>
             <hr/>
             Observaciones:
             <h:inputText value="#{ControlEnvio.envio.observaciones}"></h:inputText>
