@@ -8,6 +8,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import JPA.Beneficiario;
 import JPA.Nino;
+import java.util.Date;
 
 @Named(value = "ControlBeneficiario")
 @SessionScoped
@@ -21,7 +22,7 @@ public class ControlBeneficiario implements Serializable {
         beneficiarios = new ArrayList<>();
         
         /****SANTIAGO, TERMINA DE IMPLEMENTAR DONDE PONGA BECA****/
-        beneficiarios.add(new Beneficiario(new Beca(), new Nino()));
+        beneficiarios.add(new Beneficiario(new Beca("BAB", "Beca para alumnos con mayor rendimiento que la media."), new Nino("Ramón", "Yuzo", 'H', new Date(1999 - 1900, 10 - 1, 20))));
     }
     
     public String addBeneficiario() {
