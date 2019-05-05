@@ -19,9 +19,23 @@ public class Beneficiario implements Serializable {
     private Nino nino;
     @Id
     private Integer ano;
-
     private String observaciones;
 
+    public Beneficiario(){}
+    
+    public Beneficiario(Beca beca, Nino nino){
+        this.beca = beca;
+        this.nino = nino;
+    }
+    
+    public Beneficiario(Beca beca, Nino nino, Integer ano, String observaciones){
+        this.beca = beca;
+        this.nino = nino;
+        this.ano = ano;
+        this.observaciones = observaciones;
+    }
+    
+    
     public Beca getBeca() {
         return beca;
     }

@@ -14,20 +14,34 @@
 
     <h:body>
         <div id="topbar">
-            <div id="logo"><a href="index.xhtml">ACOES</a></div>
+            <div id="logo"><a href="home.xhtml">ACOES</a></div>
             <div id="nombreUsuario">
                 Bienvenido <ui:insert name="nombreUsuario"></ui:insert>
                 <br/>Logeado como <ui:insert name="rolUsuario"></ui:insert>
             </div>
         </div>
-        
+
         <div id="navbar">
-            <ul>
-                <li><a href="usuarios.xhtml">Usuarios</a></li>
-                <li><a href="ninos.xhtml">Niños apadrinados</a></li>
-                <li><a href="proyectos.xhtml">Proyectos</a></li>
-                <li><h:form><h:commandButton value="Cerrar sesión" action="#{ControlAutorizacion.logout}"></h:commandButton></h:form></li>
-            </ul>
+            <c:choose>
+                <c:when test="#{not empty ControlAutorizacion.usuario}">
+                    <ul>
+                        <li><a href="usuarios.xhtml">Usuarios</a></li>
+                        <li><a href="ninos.xhtml">Niños apadrinados</a></li>
+                        <li><a href="becas.xhtml">Becas</a></li>
+                        <li><a href="beneficiarios.xhtml">Beneficiarios</a></li>
+                        <li><a href="proyectos.xhtml">Proyectos</a></li>
+                        <li><a href="colonias.xhtml">Colonias</a></li>
+                        <li><a href="socios.xhtml">Socios</a></li>
+                        <li><a href="donaciones.xhtml">Donaciones</a></li>
+                        <li><a href="envios.xhtml">Envios</a></li>
+                        <li><a href="ficha.xhtml">Fichas Academicas</a></li>
+                        <li><h:form><h:commandButton value="Cerrar sesión" action="#{ControlAutorizacion.logout}"></h:commandButton></h:form></li>
+                    </ul>
+                </c:when>
+                <c:otherwise>
+                    No está logeado.
+                </c:otherwise>
+            </c:choose>
         </div>
 
         <div id="content">

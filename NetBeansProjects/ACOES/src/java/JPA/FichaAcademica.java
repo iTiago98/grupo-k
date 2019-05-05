@@ -2,6 +2,7 @@ package JPA;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,10 +25,21 @@ public class FichaAcademica implements Serializable {
     private Integer curso;
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date fechaMatriculacion;
+    private String fechaMatriculacion;
     @OneToMany
     private Set<Asignatura> asignaturas;
 
+    public FichaAcademica(int i, String date, Set<Asignatura> asignaturas) {
+        this.curso = i;
+        this.fechaMatriculacion = date;
+        this.asignaturas = new HashSet<>();
+        this.asignaturas.addAll(asignaturas);
+    }
+    
+    public FichaAcademica() {
+        this.asignaturas = new HashSet<>();
+    }
+    
     public Long getId() {
         return id;
     }
@@ -44,11 +56,11 @@ public class FichaAcademica implements Serializable {
         this.curso = curso;
     }
 
-    public Date getFechaMatriculacion() {
+    public String getFechaMatriculacion() {
         return fechaMatriculacion;
     }
 
-    public void setFechaMatriculacion(Date fechaMatriculacion) {
+    public void setFechaMatriculacion(String fechaMatriculacion) {
         this.fechaMatriculacion = fechaMatriculacion;
     }
 
@@ -58,6 +70,17 @@ public class FichaAcademica implements Serializable {
 
     public void setAsignaturas(Set<Asignatura> asignaturas) {
         this.asignaturas = asignaturas;
+    }
+    
+    public String asignaturas(){
+        String msg = "";
+        if(!asignaturas.isEmpty()){
+            for(Asignatura asig : asignaturas){
+                msg += "Asignatura: " + asig.getObservaciones() + " - Nota: " + asig.getCalificacion()+" || ";
+            }
+            msg = msg.substring(0,msg.length()-3);
+        }
+        return msg;
     }
 
 }

@@ -23,7 +23,7 @@ public class Socio implements Serializable {
     private String nombre;
     @Column(nullable = false)
     private String apellidos;
-    private String dirección;
+    private String direccion;
     private String telefono;
     private String correo;
     private String observaciones;
@@ -34,6 +34,31 @@ public class Socio implements Serializable {
     @OneToMany
     private Set<Donacion> donaciones;
 
+    /*** NUEVO ***/
+    public Socio() {}
+    
+    public Socio(String DNI,String nombre, String apellidos){
+        this.DNI = DNI;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+    }
+    
+    public Socio(String DNI,String nombre, String apellidos, Set<Envio> envios, Set<Nino> ninos, Set<Donacion> donaciones){
+        this.DNI = DNI;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.ninos = ninos;
+        this.envios = envios;
+        this.donaciones = donaciones;
+    }
+    
+    @Override
+    public String toString() {
+        return this.nombre + " " + this.apellidos;
+    }
+    
+    
+    
     public Long getId() {
         return id;
     }
@@ -66,12 +91,12 @@ public class Socio implements Serializable {
         this.apellidos = apellidos;
     }
 
-    public String getDirección() {
-        return dirección;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setDirección(String dirección) {
-        this.dirección = dirección;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
     public String getTelefono() {

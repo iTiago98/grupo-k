@@ -1,6 +1,8 @@
 package JPA;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +22,31 @@ public class Envio implements Serializable {
     private Nino nino;
     @ManyToOne
     private Socio socio;
+    
+    /**** NUEVO ****/
+    public Envio() {}
+    
+    public Envio(String observaciones, Nino nino, Socio socio) {
+        this.observaciones = observaciones;
+        this.nino = nino;
+        this.socio = socio;
+    }
+    
+    public Envio(Nino nino, Socio socio) {
+        this.nino = nino;
+        this.socio = socio;
+    }
+    
+    public Envio(String observaciones, String NombreN, String ApellidoN, char sexo, Date fechaNacimiento, String DNI, String NombreS, String ApellidoS) {
+        this.nino = new Nino(NombreN, ApellidoN, sexo, fechaNacimiento);
+        this.socio = new Socio(DNI, NombreS, ApellidoS);
+        this.observaciones = observaciones;
+    }
+    
+    public Envio(String NombreN, String ApellidoN, char sexo, Date fechaNacimiento, String DNI, String NombreS, String ApellidoS) {
+        this.nino = new Nino(NombreN, ApellidoN, sexo, fechaNacimiento);
+        this.socio = new Socio(DNI, NombreS, ApellidoS);
+    }
 
     public Long getId() {
         return id;

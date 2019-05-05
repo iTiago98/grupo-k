@@ -5,22 +5,21 @@
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     
-    <ui:define name="title">Modificar proyecto</ui:define>
+    <ui:define name="title">Añadir ficha</ui:define>
     <ui:define name="rolUsuario"><h:outputText value="#{ControlAutorizacion.usuario.rol}"></h:outputText></ui:define>
     <ui:define name="nombreUsuario"><h:outputText value="#{ControlAutorizacion.usuario.usuario}"></h:outputText></ui:define>
     <ui:define name="content">
         <h:form>
-            <h3>Modificando proyecto <h:outputText value="#{ControlProyecto.proyecto.nombre}"></h:outputText></h3>
-            Nombre:
-            <h:inputText value="#{ControlProyecto.proyecto.nombre}"></h:inputText>
+            Expediente número:
+            <h:inputText value="#{ControlFicha.ficha.id}"></h:inputText>
             <hr/>
-            Localización:
-            <h:inputText value="#{ControlProyecto.proyecto.localizacion}"></h:inputText>
+            Fecha:
+            <h:inputText value="#{ControlFicha.ficha.fechaMatriculacion}"></h:inputText>
             <hr/>
-            Capacidad:
-            <h:inputText value="#{ControlProyecto.proyecto.capacidad}"></h:inputText>
+            Curso:
+            <h:inputText value="#{ControlFicha.ficha.curso}"></h:inputText>
             <hr/>
-            <h:commandButton value="Modificar" action="#{ControlProyecto.modifyProyecto}"></h:commandButton>
+            <h:commandButton value="Insertar Ficha" action="#{ControlFicha.addFicha}"></h:commandButton>
         </h:form>
         <h:messages></h:messages>
     </ui:define>

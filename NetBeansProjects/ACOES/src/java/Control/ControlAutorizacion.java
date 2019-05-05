@@ -20,8 +20,7 @@ public class ControlAutorizacion implements Serializable {
         return usuario;
     }
     
-    public String logout()
-    {
+    public String logout() {             
         FacesContext ctx = FacesContext.getCurrentInstance();
         ctx.getExternalContext().invalidateSession();
         usuario = null;
@@ -29,6 +28,6 @@ public class ControlAutorizacion implements Serializable {
     }
 
     public ControlAutorizacion() {
-    
+        this.usuario = null;
     }
 }

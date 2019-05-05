@@ -31,7 +31,7 @@ public class ControlUsuario implements Serializable {
     
     public String addUsuario() {
         usuarios.add(this.usuario);
-        this.usuario = new Usuario(); // cleanup
+        this.usuario = new Usuario();
         return null;
     }
     
@@ -51,7 +51,7 @@ public class ControlUsuario implements Serializable {
             if(user.equals(this.usuario)) user = this.usuario;
         }
         
-        this.usuario = new Usuario(); // cleanup
+        this.usuario = new Usuario();
         
         return "usuarios.xhtml"; // volvemos a la página de usuarios para visualizar los cambios
     } 

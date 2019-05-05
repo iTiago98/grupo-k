@@ -18,6 +18,13 @@ public class Beca implements Serializable {
     @Column(nullable = false)
     private String nombre;
     private String observaciones;
+    
+    public Beca() {}
+    
+    public Beca(String nombre, String observaciones) {
+        this.nombre = nombre;
+        this.observaciones = observaciones;
+    }
 
     public Long getId() {
         return id;
