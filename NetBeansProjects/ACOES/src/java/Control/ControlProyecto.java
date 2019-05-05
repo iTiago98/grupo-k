@@ -20,7 +20,6 @@ public class ControlProyecto implements Serializable {
         proyectos = new ArrayList<>();
         proyectos.add(new Proyecto("Construcción de instituto", "Comayagua", 100));
         proyectos.add(new Proyecto("Reparación de carretera", "La Paz - Comayagua", 20));
-        proyectos.add(new Proyecto("Viva el betis", "Santiago de Honduras", 69));
 
     }
     
