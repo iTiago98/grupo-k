@@ -67,5 +67,24 @@ public class Beneficiario implements Serializable {
     public void setAno(Integer ano) {
         this.ano = ano;
     }
+    
+      /**** NUEVO ****/
+    @Override
+    public boolean equals(Object o){
+        if(this==o)
+            return true;
+        if(!(o instanceof Beneficiario))
+            return false;
+        
+        Beneficiario s = (Beneficiario)o;
+        return super.equals(s)
+            && this.beca.equals(s.beca)
+            && this.nino.equals(s.nino);
+    } 
+    
+    @Override
+    public int hashCode(){
+        return Objects.hash(beca,nino);
+    }
 
 }
