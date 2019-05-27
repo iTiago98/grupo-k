@@ -57,7 +57,26 @@ public class Socio implements Serializable {
         return this.nombre + " " + this.apellidos;
     }
     
+    /*NUEVO*/
+    @Override
+    public boolean equals(Object o){
+        if(this==o)
+            return true;
+        if(!(o instanceof Socio))
+            return false;
+        
+        Socio s = (Socio)o;
+        return super.equals(s)
+            && this.DNI.equals(s.DNI)
+            && this.id.equals(s.id);
+    } 
     
+    @Override
+    public int hashCode(){
+        return Objects.hash(DNI,id);
+    }
+    /*FIN NUEVO*/
+   
     
     public Long getId() {
         return id;
