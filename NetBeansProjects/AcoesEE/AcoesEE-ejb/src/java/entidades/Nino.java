@@ -47,7 +47,6 @@ public class Nino implements Serializable {
     private Set<Donacion> donaciones;
 
     
-    /**** NUEVO ****/
     public Nino() {}
     
     public Nino(String nombre, String apellidos, char sexo, Date fechaNacimiento) {
@@ -171,6 +170,24 @@ public class Nino implements Serializable {
 
     public void setDonaciones(Set<Donacion> donaciones) {
         this.donaciones = donaciones;
+    }
+    
+      /**** NUEVO ****/
+    @Override
+    public boolean equals(Object o){
+        if(this==o)
+            return true;
+        if(!(o instanceof Nino))
+            return false;
+        
+        Nino s = (Nino)o;
+        return super.equals(s)
+            && this.id.equals(s.id);
+    } 
+    
+    @Override
+    public int hashCode(){
+        return Objects.hash(id);
     }
 
 }
