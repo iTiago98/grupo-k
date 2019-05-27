@@ -49,5 +49,23 @@ public class Beca implements Serializable {
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
     }
+    
+      /**** NUEVO ****/
+    @Override
+    public boolean equals(Object o){
+        if(this==o)
+            return true;
+        if(!(o instanceof Beca))
+            return false;
+        
+        Beca s = (Beca)o;
+        return super.equals(s)
+            && this.id.equals(s.id);
+    } 
+    
+    @Override
+    public int hashCode(){
+        return Objects.hash(id);
+    }
 
 }
