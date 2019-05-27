@@ -31,7 +31,7 @@ public class Donacion implements Serializable {
 
     private String observaciones;
 
-    /**** NUEVO ****/
+    
     public Donacion() {}
     
     public Donacion(Date fecha, Double importe, String observaciones) {
@@ -93,6 +93,26 @@ public class Donacion implements Serializable {
 
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
+    }
+    
+      /**** NUEVO ****/
+    @Override
+    public boolean equals(Object o){
+        if(this==o)
+            return true;
+        if(!(o instanceof Donacion))
+            return false;
+        
+        Donacion s = (Donacion)o;
+        return super.equals(s)
+            && this.socio.equals(s.socio)
+            && this.nino.equals(s.nino)
+            && this.fecha.equals(s.fecha);
+    } 
+    
+    @Override
+    public int hashCode(){
+        return Objects.hash(socio,nino,fecha);
     }
 
 }
