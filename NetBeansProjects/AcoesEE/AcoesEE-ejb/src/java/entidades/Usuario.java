@@ -8,7 +8,12 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
+@NamedQuery(
+    name = "getUsuarios",
+    query = "SELECT u FROM Usuario u"
+)
 
 @Named (value = "Usuario")
 @Entity
