@@ -25,7 +25,7 @@ public class Colonia implements Serializable {
     @OneToMany(mappedBy = "colonia")
     private Set<Nino> ninos;
     
-    /**** NUEVO ****/
+    
     public Colonia() {}
     
     public Colonia(String nombre, String localizacion, String descripcion) {
@@ -79,6 +79,24 @@ public class Colonia implements Serializable {
 
     public void setNinos(Set<Nino> ninos) {
         this.ninos = ninos;
+    }
+    
+      /**** NUEVO ****/
+    @Override
+    public boolean equals(Object o){
+        if(this==o)
+            return true;
+        if(!(o instanceof Colonia))
+            return false;
+        
+        Colonia s = (Colonia)o;
+        return super.equals(s)
+            && this.id.equals(s.id);
+    } 
+    
+    @Override
+    public int hashCode(){
+        return Objects.hash(id);
     }
 
 }
