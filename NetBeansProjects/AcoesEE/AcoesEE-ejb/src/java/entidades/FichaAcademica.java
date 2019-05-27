@@ -82,5 +82,23 @@ public class FichaAcademica implements Serializable {
         }
         return msg;
     }
+    
+      /**** NUEVO ****/
+    @Override
+    public boolean equals(Object o){
+        if(this==o)
+            return true;
+        if(!(o instanceof FichaAcademica))
+            return false;
+        
+        FichaAcademica s = (FichaAcademica)o;
+        return super.equals(s)
+            && this.id.equals(s.id);
+    } 
+    
+    @Override
+    public int hashCode(){
+        return Objects.hash(id);
+    }
 
 }
