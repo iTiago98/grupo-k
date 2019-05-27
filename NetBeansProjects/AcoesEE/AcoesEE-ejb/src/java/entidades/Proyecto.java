@@ -26,7 +26,7 @@ public class Proyecto implements Serializable {
     @OneToMany(mappedBy = "proyecto")
     private Set<Nino> ninos;
 
-    /**** NUEVO ****/
+   
     public Proyecto() {}
     
     public Proyecto(String nombre, String localizacion, int capacidad) {
@@ -81,6 +81,24 @@ public class Proyecto implements Serializable {
 
     public void setNinos(Set<Nino> ninos) {
         this.ninos = ninos;
+    }
+    
+     /**** NUEVO ****/
+    @Override
+    public boolean equals(Object o){
+        if(this==o)
+            return true;
+        if(!(o instanceof Proyecto))
+            return false;
+        
+        Proyecto s = (Proyecto)o;
+        return super.equals(s)
+            && this.id.equals(s.id);
+    } 
+    
+    @Override
+    public int hashCode(){
+        return Objects.hash(id);
     }
 
 }
