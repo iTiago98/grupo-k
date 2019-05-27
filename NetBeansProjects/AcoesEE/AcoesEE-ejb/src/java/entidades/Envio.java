@@ -23,7 +23,6 @@ public class Envio implements Serializable {
     @ManyToOne
     private Socio socio;
     
-    /**** NUEVO ****/
     public Envio() {}
     
     public Envio(String observaciones, Nino nino, Socio socio) {
@@ -78,6 +77,24 @@ public class Envio implements Serializable {
 
     public void setSocio(Socio socio) {
         this.socio = socio;
+    }
+    
+      /**** NUEVO ****/
+    @Override
+    public boolean equals(Object o){
+        if(this==o)
+            return true;
+        if(!(o instanceof Envio))
+            return false;
+        
+        Envio s = (Envio)o;
+        return super.equals(s)
+            && this.id.equals(s.id);
+    } 
+    
+    @Override
+    public int hashCode(){
+        return Objects.hash(id);
     }
 
 }
