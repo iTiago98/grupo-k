@@ -5,29 +5,30 @@ import java.util.ArrayList;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import entidades.Socio;
+import java.util.List;
+import negocio.NegocioSocio;
+import javax.ejb.EJB;
 
 @Named(value = "ControlSocio")
 @SessionScoped
 public class ControlSocio implements Serializable {
-     private Socio socio;
-     private ArrayList<Socio> socios;
+    private Socio socio;
      
-     public ControlSocio() {
+    @EJB
+    private NegocioSocio negSocio;
+     
+    public ControlSocio() {
         socio = new Socio();
-        
-        socios = new ArrayList<>();
-        socios.add(new Socio("123456789A", "Joaquin","Cortes"));
     }
     
     public String addSocio() {
-        socios.add(this.socio);
-        this.socio = new Socio();
+        negSocio.addSocio(socio);
+        socio = new Socio();
         return null;
     }
     
     public String removeSocio(Socio soc) {
-        socios.remove(soc);
-        
+        negSocio.removeSocio(soc);
         return null;
     }
     
@@ -37,8 +38,8 @@ public class ControlSocio implements Serializable {
     }
     
     public String modifySocio() {
-        for(Socio soc: socios) {
-            if(soc.equals(this.socio)) soc = this.socio;
+        for(Socio soc: negSocio.getSocios()) {
+            if(soc.equals(this.socio)) negSocio.modifySocio(this.socio);
         }
         
         this.socio = new Socio();
@@ -59,12 +60,8 @@ public class ControlSocio implements Serializable {
         this.socio = socio;
     }
     
-    public ArrayList<Socio> getSocios() {
-        return socios;
-    }
-
-    public void setProyectos(ArrayList<Socio> socios) {
-        this.socios = socios;
+    public List<Socio> getSocios() {
+        return negSocio.getSocios();
     }
      
 }

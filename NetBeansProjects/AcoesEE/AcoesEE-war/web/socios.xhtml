@@ -38,7 +38,11 @@
                 <h:column>
                     <f:facet name="header">Teléfono</f:facet>
                     <h:outputText value="#{soc.telefono}"></h:outputText>
-                </h:column>   
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Observaciones</f:facet>
+                    <h:outputText value="#{soc.observaciones}"></h:outputText>
+                </h:column>  
                 <h:column>
                     <f:facet name="header">Acción</f:facet>
                     <h:commandButton value="Borrar" action="#{ControlSocio.removeSocio(soc)}"></h:commandButton>
@@ -62,7 +66,11 @@
             <h:inputText value="#{ControlSocio.socio.correo}"></h:inputText>
             <br/>
             Telefono:
-            <h:inputSecret value="#{ControlSocio.socio.telefono}"></h:inputSecret>
+            <h:inputText value="#{ControlSocio.socio.telefono}"></h:inputText>
+            <hr/>
+            Observaciones:
+            <br/>
+            <h:inputTextarea value="#{ControlSocio.socio.observaciones}"></h:inputTextarea>
             <hr/>
             <h:commandButton value="Añadir" action="#{ControlSocio.addSocio()}"></h:commandButton>
         </h:form>

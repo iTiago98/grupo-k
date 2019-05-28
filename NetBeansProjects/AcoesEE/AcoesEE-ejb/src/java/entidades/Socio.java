@@ -9,6 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.NamedQuery;
+
+@NamedQuery(
+    name = "getSocios",
+    query = "SELECT s FROM Socio s"
+)
 
 @Entity
 public class Socio implements Serializable {
@@ -60,67 +66,13 @@ public class Socio implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 37 * hash + Objects.hashCode(this.id);
-        hash = 37 * hash + Objects.hashCode(this.DNI);
-        hash = 37 * hash + Objects.hashCode(this.nombre);
-        hash = 37 * hash + Objects.hashCode(this.apellidos);
-        hash = 37 * hash + Objects.hashCode(this.direccion);
-        hash = 37 * hash + Objects.hashCode(this.telefono);
-        hash = 37 * hash + Objects.hashCode(this.correo);
-        hash = 37 * hash + Objects.hashCode(this.observaciones);
-        hash = 37 * hash + Objects.hashCode(this.envios);
-        hash = 37 * hash + Objects.hashCode(this.ninos);
-        hash = 37 * hash + Objects.hashCode(this.donaciones);
-        return hash;
+        return id != null ? id.hashCode() : 0;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Socio other = (Socio) obj;
-        if (!Objects.equals(this.DNI, other.DNI)) {
-            return false;
-        }
-        if (!Objects.equals(this.nombre, other.nombre)) {
-            return false;
-        }
-        if (!Objects.equals(this.apellidos, other.apellidos)) {
-            return false;
-        }
-        if (!Objects.equals(this.direccion, other.direccion)) {
-            return false;
-        }
-        if (!Objects.equals(this.telefono, other.telefono)) {
-            return false;
-        }
-        if (!Objects.equals(this.correo, other.correo)) {
-            return false;
-        }
-        if (!Objects.equals(this.observaciones, other.observaciones)) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.envios, other.envios)) {
-            return false;
-        }
-        if (!Objects.equals(this.ninos, other.ninos)) {
-            return false;
-        }
-        if (!Objects.equals(this.donaciones, other.donaciones)) {
-            return false;
-        }
-        return true;
+        if (!(obj instanceof Socio)) return false;
+        return this.id.equals(((Socio)obj).id);
     }
     
     public Long getId() {
