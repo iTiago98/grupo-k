@@ -91,12 +91,7 @@ public class FichaAcademica implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 53 * hash + Objects.hashCode(this.id);
-        hash = 53 * hash + Objects.hashCode(this.curso);
-        hash = 53 * hash + Objects.hashCode(this.fechaMatriculacion);
-        hash = 53 * hash + Objects.hashCode(this.asignaturas);
-        return hash;
+       return id != null ? id.hashCode() : 0;
     }
 
     @Override
