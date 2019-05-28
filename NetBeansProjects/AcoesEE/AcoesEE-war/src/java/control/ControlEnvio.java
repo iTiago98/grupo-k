@@ -15,6 +15,9 @@ import entidades.Socio;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import negocio.NegocioGenerico;
 
 @Named(value = "ControlEnvio")
@@ -40,9 +43,22 @@ public class ControlEnvio implements Serializable {
     }
     
     public String addEnvio() {
+        
+        this.nino.setFechaNacimiento(new Date(this.year - 1900, this.month - 1, this.day));
+        this.nino.setSexo('i');
         this.envio.setNino(this.nino);
         this.envio.setSocio(this.socio);
-        neg.add(this.envio);
+        
+        //try {
+            neg.add(this.nino);
+            neg.add(this.socio);
+            neg.add(this.envio);
+            
+        /*} catch(EJBException e) {
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage()));
+            //ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error de creacion", null));
+        }*/
         
         this.envio = new Envio();
         this.nino = new Nino();
