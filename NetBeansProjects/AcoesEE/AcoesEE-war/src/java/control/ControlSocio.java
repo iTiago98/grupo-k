@@ -67,7 +67,8 @@ public class ControlSocio implements Serializable {
     }
     
     public List<Socio> getSocios() {
-        return negSocio.getSocios();
+        //return negSocio.getSocios();
+        return neg.getRows("getSocios");
     }
      
 }
