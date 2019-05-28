@@ -13,13 +13,17 @@ import entidades.Envio;
 import entidades.Nino;
 import entidades.Socio;
 import java.util.Date;
+import java.util.List;
+import javax.ejb.EJB;
+import negocio.NegocioGenerico;
 
 @Named(value = "ControlEnvio")
 @SessionScoped
 public class ControlEnvio implements Serializable {
-    private Envio envio;
-    private ArrayList<Envio> envios;
     
+    @EJB
+    private NegocioGenerico neg;
+    private Envio envio;
     private Nino nino;
     private Socio socio;
     
@@ -27,25 +31,18 @@ public class ControlEnvio implements Serializable {
     
     public ControlEnvio() {
         envio = new Envio();
-        
-        envios = new ArrayList<>();
-        envios.add(new Envio("Camiseta y pantalon", new Nino("Ramón", "Yuzo", 'H', new Date(1999 - 1900, 10 - 1, 20)), new Socio("123456789A", "Joaquin","Cortes")));
-        envios.add(new Envio("Material escolar", new Nino("Pedro", "Aguilar", 'H', new Date(2001 - 1900, 8 - 1, 18)), new Socio("123454321B", "Carlos","Leroy")));
-        envios.add(new Envio("Ropa interior", new Nino("Lucía", "Matamoros", 'M', new Date(2003 - 1900, 3 - 1, 5)), new Socio("123123123D", "Mercedes","Millán")));
-
         nino = new Nino();
         socio = new Socio();
         
         year = 1;
         month = 1;
-        day = 1;
-        
+        day = 1; 
     }
     
     public String addEnvio() {
         this.envio.setNino(this.nino);
         this.envio.setSocio(this.socio);
-        envios.add(this.envio);
+        neg.add(this.envio);
         
         this.envio = new Envio();
         this.nino = new Nino();
@@ -59,7 +56,7 @@ public class ControlEnvio implements Serializable {
     }
     
     public String removeEnvio(Envio env) {
-        envios.remove(env);
+        neg.remove(env);
         
         return null;
     }
@@ -77,8 +74,8 @@ public class ControlEnvio implements Serializable {
     }
     
     public String modifyEnvio() {
-        for(Envio env: envios) {
-            if(env.equals(this.envio)) env = this.envio;
+        for(Object b : neg.getRows("getEnvios")){
+            if(b.equals(this.envio)) neg.modify(this.envio);
         }
         
         this.envio = new Envio();
@@ -94,21 +91,21 @@ public class ControlEnvio implements Serializable {
     /***************************************************/
 
     public Envio getEnvio() {
-        return envio;
+        return this.envio;
     }
 
     public void setEnvio(Envio envio) {
         this.envio = envio;
     }
     
-    public ArrayList<Envio> getEnvios() {
-        return envios;
+    public List<Envio> getEnvios() {
+        return neg.getRows("getEnvios");
     }
-
+    /*
     public void setEnvio(ArrayList<Envio> envios) {
         this.envios = envios;
     }
-
+    */
     public Nino getNino() {
         return nino;
     }

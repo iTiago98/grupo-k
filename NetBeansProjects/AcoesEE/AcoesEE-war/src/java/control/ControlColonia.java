@@ -1,37 +1,35 @@
 package control;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import entidades.Colonia;
+import java.util.List;
+import javax.ejb.EJB;
+import negocio.NegocioGenerico;
 
 @Named(value = "ControlColonia")
 @SessionScoped
 public class ControlColonia implements Serializable {
+    
+    @EJB
+    private NegocioGenerico neg;
     private Colonia colonia;
-    private ArrayList<Colonia> colonias;
 
     
     public ControlColonia() {
-        colonia = new Colonia();
-        
-        colonias = new ArrayList<>();
-        colonias.add(new Colonia("Calpules", "Honduras", "Condiciones muy precarias"));
-        colonias.add(new Colonia("San Jorge de Sula", "Honduras", "Segunda ciudad en población"));
-        colonias.add(new Colonia("Sandoval", "Honduras", "Zona conflictiva"));
-
+        this.colonia = new Colonia();
     }
     
     public String addColonia() {
-        colonias.add(this.colonia);
+        neg.add(this.colonia);
         this.colonia = new Colonia();
         return null;
     }
     
     public String removeColonia(Colonia col) {
-        colonias.remove(col);
+        neg.remove(col);
         
         return null;
     }
@@ -42,8 +40,8 @@ public class ControlColonia implements Serializable {
     }
     
     public String modifyColonia() {
-        for(Colonia col: colonias) {
-            if(col.equals(this.colonia)) col = this.colonia;
+        for(Object b : neg.getRows("getColonias")){
+            if(b.equals(this.colonia)) neg.modify(this.colonia);
         }
         
         this.colonia = new Colonia();
@@ -58,19 +56,19 @@ public class ControlColonia implements Serializable {
      * @return ************************************************/
 
     public Colonia getColonia() {
-        return colonia;
+        return this.colonia;
     }
 
     public void setColonia(Colonia colonia) {
         this.colonia = colonia;
     }
     
-    public ArrayList<Colonia> getColonias() {
-        return colonias;
+    public List<Colonia> getColonias() {
+        return neg.getRows("getColonias");
     }
 
-    public void setColonias(ArrayList<Colonia> colonias) {
+   /* public void setColonias(ArrayList<Colonia> colonias) {
         this.colonias = colonias;
     }
-    
+    */
 }
