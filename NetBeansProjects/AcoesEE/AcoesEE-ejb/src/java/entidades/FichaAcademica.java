@@ -14,10 +14,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@NamedQuery(
+/*@NamedQuery(
     name = "getFichaAcademica",
     query = "SELECT f FROM FichaAcademica f"
-)
+)*/
 
 @Entity
 public class FichaAcademica implements Serializable {
@@ -96,29 +96,8 @@ public class FichaAcademica implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final FichaAcademica other = (FichaAcademica) obj;
-        if (!Objects.equals(this.fechaMatriculacion, other.fechaMatriculacion)) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.curso, other.curso)) {
-            return false;
-        }
-        if (!Objects.equals(this.asignaturas, other.asignaturas)) {
-            return false;
-        }
-        return true;
+        if (!(obj instanceof FichaAcademica)) return false;
+        return this.id.equals(((FichaAcademica)obj).id);
     }
     
     
