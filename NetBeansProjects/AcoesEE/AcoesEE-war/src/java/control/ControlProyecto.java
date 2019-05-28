@@ -1,38 +1,54 @@
 package control;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import entidades.Proyecto;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.ejb.EJBException;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import negocio.NegocioGenerico;
 
 @Named(value = "ControlProyecto")
 @SessionScoped
-public class ControlProyecto implements Serializable {
+public class ControlProyecto implements Serializable {  
     private Proyecto proyecto;
-    private ArrayList<Proyecto> proyectos;
-
+    //private ArrayList<Proyecto> proyectos;
+    
+    @EJB
+    private NegocioGenerico neg;
+    
     
     public ControlProyecto() {
         proyecto = new Proyecto();
-        
+        /*
         proyectos = new ArrayList<>();
         proyectos.add(new Proyecto("Construcción de instituto", "Comayagua", 100));
         proyectos.add(new Proyecto("Reparación de carretera", "La Paz - Comayagua", 20));
+        */
 
     }
     
     public String addProyecto() {
-        proyectos.add(this.proyecto);
+        try {
+            neg.add(this.proyecto);
+        } catch(EJBException e) {
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage()));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Probablemente hay algún campo de tipo numérico incorrecto o algún campo está incompleto", null));
+        }
+        
         this.proyecto = new Proyecto();
         return null;
     }
     
     public String removeProyecto(Proyecto pro) {
-        proyectos.remove(pro);
+        neg.remove(pro);
         
-        return null; // la misma página
+        return null;
     }
     
     public String goModifyProyecto(Proyecto pro) {
@@ -41,10 +57,16 @@ public class ControlProyecto implements Serializable {
     }
     
     public String modifyProyecto() {
-        for(Proyecto pro: proyectos) {
-            if(pro.equals(this.proyecto)) pro = this.proyecto;
+        try {
+            for(Object pro: neg.getRows("getProyectos")) {
+                if(pro.equals(this.proyecto)) neg.modify(this.proyecto);
+            }
+        } catch(EJBException e) {
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage()));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Probablemente hay algún campo de tipo numérico incorrecto o algún campo está incompleto", null));
         }
-        
+            
         this.proyecto = new Proyecto();
         
         return "proyectos.xhtml";
@@ -63,12 +85,8 @@ public class ControlProyecto implements Serializable {
         this.proyecto = proyecto;
     }
     
-    public ArrayList<Proyecto> getProyectos() {
-        return proyectos;
-    }
-
-    public void setProyectos(ArrayList<Proyecto> proyectos) {
-        this.proyectos = proyectos;
+    public List<Proyecto> getProyectos() {
+        return neg.getRows("getProyectos");
     }
     
 }

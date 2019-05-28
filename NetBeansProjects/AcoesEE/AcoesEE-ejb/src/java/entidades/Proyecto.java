@@ -1,14 +1,19 @@
 package entidades;
 
 import java.io.Serializable;
-import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+
+@NamedQuery(
+    name = "getProyectos",
+    query = "SELECT p FROM Proyecto p"
+)
 
 @Entity
 public class Proyecto implements Serializable {
@@ -86,45 +91,13 @@ public class Proyecto implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 71 * hash + Objects.hashCode(this.id);
-        hash = 71 * hash + Objects.hashCode(this.nombre);
-        hash = 71 * hash + Objects.hashCode(this.localizacion);
-        hash = 71 * hash + Objects.hashCode(this.capacidad);
-        hash = 71 * hash + Objects.hashCode(this.ninos);
-        return hash;
+        return id != null ? id.hashCode() : 0;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Proyecto other = (Proyecto) obj;
-        if (!Objects.equals(this.nombre, other.nombre)) {
-            return false;
-        }
-        if (!Objects.equals(this.localizacion, other.localizacion)) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.capacidad, other.capacidad)) {
-            return false;
-        }
-        if (!Objects.equals(this.ninos, other.ninos)) {
-            return false;
-        }
-        return true;
+        if (!(obj instanceof Proyecto)) return false;
+        return this.id.equals(((Proyecto)obj).id);
     }
-    
-    
 
 }

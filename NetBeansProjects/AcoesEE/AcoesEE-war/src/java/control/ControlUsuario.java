@@ -24,7 +24,7 @@ public class ControlUsuario implements Serializable {
     
     @EJB
     private NegocioUsuario negUsuario;
-    
+      
     private String usuarioNombre;
     private String contrasenia;
     private Usuario usuario;
@@ -72,10 +72,9 @@ public class ControlUsuario implements Serializable {
     } 
 
     
-    public String autenticar() {
+    public String autenticar() {        
         FacesContext ctx = FacesContext.getCurrentInstance();
-        
-        
+
         // No es la forma mas elegante de solucionar esto, pero es que no se donde
         // es el mejor lugar para poner esto sin que me salten excepciones con el
         // entity manager.

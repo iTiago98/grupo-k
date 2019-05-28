@@ -27,8 +27,9 @@ public class ControlSocio implements Serializable {
     
     public String addSocio() {
         //negSocio.addSocio(socio);
-        neg.add(socio);
-        socio = new Socio();
+        neg.add(this.socio);
+
+        this.socio = new Socio();
         return null;
     }
     
@@ -47,7 +48,7 @@ public class ControlSocio implements Serializable {
         for(Object soc: /*negSocio.getSocios()*/ neg.getRows("getSocios")) {
             if(soc.equals(this.socio)) neg.modify(this.socio);
         }
-        
+            
         this.socio = new Socio();
         
         return "socios.xhtml";

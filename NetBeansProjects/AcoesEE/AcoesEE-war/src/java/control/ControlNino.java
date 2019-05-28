@@ -1,38 +1,53 @@
 package control;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import entidades.Nino;
 import java.util.Date;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.ejb.EJBException;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import negocio.NegocioGenerico;
 
 @Named(value = "ControlNino")
 @SessionScoped
 public class ControlNino implements Serializable {
     private Nino nino;
     private int year, month, day;
-    private ArrayList<Nino> ninos;
-
+    //private ArrayList<Nino> ninos;
+    @EJB
+    private NegocioGenerico neg;
     
     public ControlNino() {
         nino = new Nino();
         this.year = 1;
         this.month = 1;
         this.day = 1;
-        
+        /*
         ninos = new ArrayList<>();
         // Por alguna razón Java decide que añadir 1900 años a las fechas es algo
         // completamente comprensible. Muchas gracias JAVA.
         ninos.add(new Nino("Ramón", "Yuzo", 'H', new Date(1999 - 1900, 10 - 1, 20)));
         ninos.add(new Nino("Aquiles", "Rodrigez", 'H', new Date(1999 - 1900, 8 - 1, 9)));
         ninos.add(new Nino("Marina", "Balmén", 'M', new Date(2003 - 1900, 1 - 1, 20)));
+        */
     }
     
     public String addNino() {
         this.nino.setFechaNacimiento(new Date(this.year - 1900, this.month - 1, this.day));
-        ninos.add(this.nino);
+        //ninos.add(this.nino);
+        try {
+            neg.add(this.nino);
+        } catch(EJBException e) {
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage()));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Probablemente hay algún campo de tipo numérico incorrecto o algún campo está incompleto", null));
+        }
+        
         this.nino = new Nino();
         this.year = 1;
         this.month = 1;
@@ -42,7 +57,7 @@ public class ControlNino implements Serializable {
     }
     
     public String removeNino(Nino n) {
-        ninos.remove(n);
+        neg.remove(n);
         
         return null; // la misma página
     }
@@ -56,10 +71,12 @@ public class ControlNino implements Serializable {
     }
     
     public String modifyNino() {
-        for(Nino n: ninos) {
+        for(Object n: neg.getRows("getNinos")) {
             if(n.equals(this.nino)) {
-                n = this.nino;
-                n.setFechaNacimiento(new Date(this.year - 1900, this.month - 1, this.day));
+                //n = this.nino;
+                //n.setFechaNacimiento(new Date(this.year - 1900, this.month - 1, this.day));
+                this.nino.setFechaNacimiento(new Date(this.year - 1900, this.month - 1, this.day));
+                neg.modify(this.nino);
             }
         }
         
@@ -110,13 +127,13 @@ public class ControlNino implements Serializable {
         this.day = day;
     }
 
-    public ArrayList<Nino> getNinos() {
-        return ninos;
+    public List<Nino> getNinos() {
+        return neg.getRows("getNinos");
     }
-
+/*
     public void setNinos(ArrayList<Nino> ninos) {
         this.ninos = ninos;
     }
-
+*/
     
 }

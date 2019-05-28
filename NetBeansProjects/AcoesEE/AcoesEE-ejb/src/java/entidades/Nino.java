@@ -3,7 +3,6 @@ package entidades;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,9 +10,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+@NamedQuery(
+    name = "getNinos",
+    query = "SELECT n FROM Nino n"
+)
 
 @Entity
 public class Nino implements Serializable {
@@ -175,78 +180,14 @@ public class Nino implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.id);
-        hash = 59 * hash + Objects.hashCode(this.nombre);
-        hash = 59 * hash + Objects.hashCode(this.apellidos);
-        hash = 59 * hash + Objects.hashCode(this.sexo);
-        hash = 59 * hash + Objects.hashCode(this.fechaNacimiento);
-        hash = 59 * hash + Objects.hashCode(this.observaciones);
-        hash = 59 * hash + Objects.hashCode(this.prioridad);
-        hash = 59 * hash + Objects.hashCode(this.envio);
-        hash = 59 * hash + Objects.hashCode(this.colonia);
-        hash = 59 * hash + Objects.hashCode(this.proyecto);
-        hash = 59 * hash + Objects.hashCode(this.fichasAcademicas);
-        hash = 59 * hash + Objects.hashCode(this.socio);
-        hash = 59 * hash + Objects.hashCode(this.donaciones);
-        return hash;
+        return id != null ? id.hashCode() : 0;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Nino other = (Nino) obj;
-        if (!Objects.equals(this.nombre, other.nombre)) {
-            return false;
-        }
-        if (!Objects.equals(this.apellidos, other.apellidos)) {
-            return false;
-        }
-        if (!Objects.equals(this.observaciones, other.observaciones)) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.sexo, other.sexo)) {
-            return false;
-        }
-        if (!Objects.equals(this.fechaNacimiento, other.fechaNacimiento)) {
-            return false;
-        }
-        if (!Objects.equals(this.prioridad, other.prioridad)) {
-            return false;
-        }
-        if (!Objects.equals(this.envio, other.envio)) {
-            return false;
-        }
-        if (!Objects.equals(this.colonia, other.colonia)) {
-            return false;
-        }
-        if (!Objects.equals(this.proyecto, other.proyecto)) {
-            return false;
-        }
-        if (!Objects.equals(this.fichasAcademicas, other.fichasAcademicas)) {
-            return false;
-        }
-        if (!Objects.equals(this.socio, other.socio)) {
-            return false;
-        }
-        if (!Objects.equals(this.donaciones, other.donaciones)) {
-            return false;
-        }
-        return true;
+        if (!(obj instanceof Nino)) return false;
+        return this.id.equals(((Nino)obj).id);
     }
-    
-   
 
 }
 
