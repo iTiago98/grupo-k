@@ -5,7 +5,13 @@ import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+
+@NamedQuery(
+        name = "getBeneficiarios",
+        query = "SELECT b FROM Beneficiario b"
+)
 
 @Entity
 @IdClass(BeneficiarioId.class)

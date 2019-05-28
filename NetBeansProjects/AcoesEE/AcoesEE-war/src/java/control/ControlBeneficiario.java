@@ -2,36 +2,32 @@ package control;
 
 import entidades.Beca;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import entidades.Beneficiario;
 import entidades.Nino;
-import java.util.Date;
+import negocio.NegocioGenerico;
 
 @Named(value = "ControlBeneficiario")
 @SessionScoped
 public class ControlBeneficiario implements Serializable {
     private Beneficiario beneficiario;
-    private ArrayList<Beneficiario> beneficiarios;
-     
+    private NegocioGenerico neg;
+        
     private Beca beca;
     private Nino nino;
        
     public ControlBeneficiario() {
-        beneficiario = new Beneficiario();
-        
+        this.beneficiario = new Beneficiario();
         this.beca = new Beca();
-        this.nino = new Nino();
-        
-        beneficiarios = new ArrayList<>();    
-        beneficiarios.add(new Beneficiario(new Beca("BAB", "Beca para alumnos con mayor rendimiento que la media."), new Nino("Ramón", "Yuzo", 'H', new Date(1999 - 1900, 10 - 1, 20)), 2005, null));
+        this.nino = new Nino();    
     }
     
     public String addBeneficiario() {
         this.beneficiario.setNino(this.nino);
         this.beneficiario.setBeca(this.beca);
-        beneficiarios.add(this.beneficiario);
+        neg.add(this.beneficiario);
         
         this.beneficiario = new Beneficiario();
         this.nino = new Nino();
@@ -40,23 +36,23 @@ public class ControlBeneficiario implements Serializable {
         return null;
     }
     
-    public String removeBeneficiario(Beneficiario bene) {
-        beneficiarios.remove(bene);
+    public String removeBeneficiario(Beneficiario b) {
+        neg.remove(b);
         
         return null;
     }
     
-    public String goModifyBeneficiario(Beneficiario bene) {
-        this.nino = bene.getNino();
-        this.beca = bene.getBeca();
-        this.beneficiario = bene;
+    public String goModifyBeneficiario(Beneficiario b) {
+        this.nino = b.getNino();
+        this.beca = b.getBeca();
+        this.beneficiario = b;
         
         return "beneficiariosModificar.xhtml";
     }
     
     public String modifyBeneficiario() {
-        for(Beneficiario bene: beneficiarios) {
-            if(bene.equals(this.beneficiario)) bene = this.beneficiario;
+        for(Object b: neg.getRows("getBeneficiarios")) {
+            if(b.equals(this.beneficiario)) b = this.beneficiario;
         }
         
         this.beneficiario = new Beneficiario();
@@ -75,16 +71,12 @@ public class ControlBeneficiario implements Serializable {
         return beneficiario;
     }
 
-    public void setBeneficiario(Beneficiario bene) {
-        this.beneficiario = bene;
+    public void setBeneficiario(Beneficiario b) {
+        this.beneficiario = b;
     }
     
-    public ArrayList<Beneficiario> getBeneficiarios() {
-        return beneficiarios;
-    }
-
-    public void setSocios(ArrayList<Beneficiario> benes) {
-        this.beneficiarios = benes;
+    public List<Beneficiario> getBeneficiarios() {
+        return neg.getRows("getBeneficiarios");
     }
 
     public Beca getBeca() {
