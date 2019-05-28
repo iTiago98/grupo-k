@@ -1,51 +1,50 @@
 package control;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
+import negocio.NegocioGenerico;
 import entidades.Beca;
+import javax.ejb.EJB;
 
 @Named(value = "ControlBeca")
 @SessionScoped
 public class ControlBeca implements Serializable
 {
+    @EJB
+    private NegocioGenerico neg;
+    
     private Beca beca;
-    private ArrayList<Beca> becas;
     
     public ControlBeca()
     {
         this.beca = new Beca();
-        this.becas = new ArrayList<>();
-        
-        this.becas.add(new Beca("BAB", "Beca para alumnos con mayor rendimiento que la media."));
-        this.becas.add(new Beca("AMEB", "Beca para cubrir los costes de los materiales escolares básicos."));
     }
-    
     public String addBeca()
     {
-        this.becas.add(this.beca);
-        this.beca = new Beca();
+        neg.add(beca);
+        beca = new Beca();
         return null;
     }
     
-    public String removeBeca(Beca beca)
+    public String removeBeca(Beca b)
     {
-        this.becas.remove(beca);
+        neg.remove(b);
         return null;
     }
     
-    public String goModifyBeca(Beca beca)
+    public String goModifyBeca(Beca b)
     {
-        this.beca = beca;
+        this.beca = b;
         return "becasModificar.xhtml";
     }
     
     public String modifyBeca()
     {
-        for(Beca beca : this.becas){
-            if(beca.equals(this.beca)) beca = this.beca;
+        for(Object b : neg.getRows("getBecas")){
+            if(b.equals(this.beca)) neg.modify(this.beca);
         }            
         
         this.beca = new Beca();
@@ -67,13 +66,8 @@ public class ControlBeca implements Serializable
         this.beca = beca;
     }
     
-    public ArrayList<Beca> getBecas()
+    public List<Beca> getBecas()
     {
-        return this.becas;
-    }
-    
-    public void setBecas(ArrayList<Beca> becas)
-    {
-        this.becas = becas;
+        return neg.getRows("getBecas");
     }
 }
