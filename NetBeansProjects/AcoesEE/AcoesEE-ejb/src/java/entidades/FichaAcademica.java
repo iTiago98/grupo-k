@@ -10,14 +10,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/*@NamedQuery(
-    name = "getFichaAcademica",
-    query = "SELECT f FROM FichaAcademica f"
-)*/
+@NamedQuery (
+        name = "getFichas",
+        query = "SELECT f FROM FichaAcademica f"
+)
 
 @Entity
 public class FichaAcademica implements Serializable {
@@ -88,7 +89,7 @@ public class FichaAcademica implements Serializable {
         }
         return msg;
     }
-
+    
     @Override
     public int hashCode() {
        return id != null ? id.hashCode() : 0;
@@ -100,6 +101,4 @@ public class FichaAcademica implements Serializable {
         return this.id.equals(((FichaAcademica)obj).id);
     }
     
-    
-
 }
