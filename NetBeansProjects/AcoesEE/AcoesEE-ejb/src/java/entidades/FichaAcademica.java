@@ -14,6 +14,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@NamedQuery(
+    name = "getFichaAcademica",
+    query = "SELECT f FROM FichaAcademica f"
+)
+
 @Entity
 public class FichaAcademica implements Serializable {
     private static final long serialVersionUID = 1L;
