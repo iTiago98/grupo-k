@@ -91,7 +91,11 @@ public class ControlEnvio implements Serializable {
     
     public String modifyEnvio() {
         for(Object b : neg.getRows("getEnvios")){
-            if(b.equals(this.envio)) neg.modify(this.envio);
+            if(b.equals(this.envio)){
+                neg.modify(this.envio);
+                neg.modify(this.nino);
+                neg.modify(this.socio);
+            }
         }
         
         this.envio = new Envio();
