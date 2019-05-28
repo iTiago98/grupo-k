@@ -7,12 +7,14 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import entidades.Beneficiario;
 import entidades.Nino;
+import javax.ejb.EJB;
 import negocio.NegocioGenerico;
 
 @Named(value = "ControlBeneficiario")
 @SessionScoped
 public class ControlBeneficiario implements Serializable {
     private Beneficiario beneficiario;
+    @EJB
     private NegocioGenerico neg;
         
     private Beca beca;
@@ -52,7 +54,7 @@ public class ControlBeneficiario implements Serializable {
     
     public String modifyBeneficiario() {
         for(Object b: neg.getRows("getBeneficiarios")) {
-            if(b.equals(this.beneficiario)) b = this.beneficiario;
+            if(b.equals(this.beneficiario)) neg.modify(this.beneficiario);
         }
         
         this.beneficiario = new Beneficiario();
