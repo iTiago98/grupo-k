@@ -1,34 +1,40 @@
 package control;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import entidades.Socio;
 import java.util.List;
-import negocio.NegocioSocio;
+//import negocio.NegocioSocio;
+import negocio.NegocioGenerico;
 import javax.ejb.EJB;
+
 
 @Named(value = "ControlSocio")
 @SessionScoped
 public class ControlSocio implements Serializable {
     private Socio socio;
      
+    //@EJB
+    //private NegocioSocio negSocio;
+    
     @EJB
-    private NegocioSocio negSocio;
+    private NegocioGenerico neg;
      
     public ControlSocio() {
         socio = new Socio();
     }
     
     public String addSocio() {
-        negSocio.addSocio(socio);
+        //negSocio.addSocio(socio);
+        neg.add(socio);
         socio = new Socio();
         return null;
     }
     
     public String removeSocio(Socio soc) {
-        negSocio.removeSocio(soc);
+        //negSocio.removeSocio(soc);
+        neg.remove(soc);
         return null;
     }
     
@@ -38,8 +44,8 @@ public class ControlSocio implements Serializable {
     }
     
     public String modifySocio() {
-        for(Socio soc: negSocio.getSocios()) {
-            if(soc.equals(this.socio)) negSocio.modifySocio(this.socio);
+        for(Object soc: /*negSocio.getSocios()*/ neg.getRows("getSocios")) {
+            if(soc.equals(this.socio)) neg.modify(this.socio);
         }
         
         this.socio = new Socio();
