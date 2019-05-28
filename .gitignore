@@ -1,6 +1,9 @@
 NetBeansProjects/AcoesEE/build/*
 NetBeansProjects/AcoesEE/dist/*
+NetBeansProjects/AcoesEE/nbproject/private/*
 NetBeansProjects/AcoesEE/AcoesEE-war/dist/*
+NetBeansProjects/AcoesEE/AcoesEE-war/nbproject/private/*
 NetBeansProjects/AcoesEE/AcoesEE-war/build/*
 NetBeansProjects/AcoesEE/AcoesEE-ejb/dist/*
+NetBeansProjects/AcoesEE/AcoesEE-ejb/nbproject/private/*
 NetBeansProjects/AcoesEE/AcoesEE-ejb/build/*
