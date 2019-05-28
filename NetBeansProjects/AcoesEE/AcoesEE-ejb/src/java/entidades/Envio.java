@@ -9,6 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+
+@NamedQuery(
+        name = "getEnvios",
+        query = "SELECT e FROM Envio e"
+)
 
 @Entity
 public class Envio implements Serializable {
@@ -82,39 +88,13 @@ public class Envio implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.id);
-        hash = 67 * hash + Objects.hashCode(this.observaciones);
-        hash = 67 * hash + Objects.hashCode(this.nino);
-        hash = 67 * hash + Objects.hashCode(this.socio);
-        return hash;
+        return id != null ? id.hashCode() : 0;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Envio other = (Envio) obj;
-        if (!Objects.equals(this.observaciones, other.observaciones)) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.nino, other.nino)) {
-            return false;
-        }
-        if (!Objects.equals(this.socio, other.socio)) {
-            return false;
-        }
-        return true;
+        if (!(obj instanceof Envio)) return false;
+        return this.id.equals(((Envio)obj).id);
     }
     
     

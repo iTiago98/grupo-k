@@ -8,7 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+
+@NamedQuery (
+        name = "getColonias",
+        query = "SELECT c FROM Colonia c"
+)
 
 @Entity
 public class Colonia implements Serializable {
@@ -84,43 +90,13 @@ public class Colonia implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 11 * hash + Objects.hashCode(this.id);
-        hash = 11 * hash + Objects.hashCode(this.nombre);
-        hash = 11 * hash + Objects.hashCode(this.localizacion);
-        hash = 11 * hash + Objects.hashCode(this.descripcion);
-        hash = 11 * hash + Objects.hashCode(this.ninos);
-        return hash;
+        return id != null ? id.hashCode() : 0;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Colonia other = (Colonia) obj;
-        if (!Objects.equals(this.nombre, other.nombre)) {
-            return false;
-        }
-        if (!Objects.equals(this.localizacion, other.localizacion)) {
-            return false;
-        }
-        if (!Objects.equals(this.descripcion, other.descripcion)) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.ninos, other.ninos)) {
-            return false;
-        }
-        return true;
+        if (!(obj instanceof Colonia)) return false;
+        return this.id.equals(((Colonia)obj).id);
     }
     
     
