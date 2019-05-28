@@ -1,6 +1,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
@@ -67,24 +68,42 @@ public class Beneficiario implements Serializable {
     public void setAno(Integer ano) {
         this.ano = ano;
     }
-    
-      /**** NUEVO ****/
+
     @Override
-    public boolean equals(Object o){
-        if(this==o)
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.beca);
+        hash = 97 * hash + Objects.hashCode(this.nino);
+        hash = 97 * hash + Objects.hashCode(this.ano);
+        hash = 97 * hash + Objects.hashCode(this.observaciones);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
-        if(!(o instanceof Beneficiario))
+        }
+        if (obj == null) {
             return false;
-        
-        Beneficiario s = (Beneficiario)o;
-        return super.equals(s)
-            && this.beca.equals(s.beca)
-            && this.nino.equals(s.nino);
-    } 
-    
-    @Override
-    public int hashCode(){
-        return Objects.hash(beca,nino);
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Beneficiario other = (Beneficiario) obj;
+        if (!Objects.equals(this.observaciones, other.observaciones)) {
+            return false;
+        }
+        if (!Objects.equals(this.beca, other.beca)) {
+            return false;
+        }
+        if (!Objects.equals(this.nino, other.nino)) {
+            return false;
+        }
+        if (!Objects.equals(this.ano, other.ano)) {
+            return false;
+        }
+        return true;
     }
 
 }

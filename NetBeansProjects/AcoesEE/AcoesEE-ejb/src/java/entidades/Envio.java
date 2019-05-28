@@ -2,6 +2,7 @@ package entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -78,24 +79,45 @@ public class Envio implements Serializable {
     public void setSocio(Socio socio) {
         this.socio = socio;
     }
-    
-      /**** NUEVO ****/
+
     @Override
-    public boolean equals(Object o){
-        if(this==o)
-            return true;
-        if(!(o instanceof Envio))
-            return false;
-        
-        Envio s = (Envio)o;
-        return super.equals(s)
-            && this.id.equals(s.id);
-    } 
-    
-    @Override
-    public int hashCode(){
-        return Objects.hash(id);
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.id);
+        hash = 67 * hash + Objects.hashCode(this.observaciones);
+        hash = 67 * hash + Objects.hashCode(this.nino);
+        hash = 67 * hash + Objects.hashCode(this.socio);
+        return hash;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Envio other = (Envio) obj;
+        if (!Objects.equals(this.observaciones, other.observaciones)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.nino, other.nino)) {
+            return false;
+        }
+        if (!Objects.equals(this.socio, other.socio)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 
 }
 

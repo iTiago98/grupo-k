@@ -1,6 +1,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -82,23 +83,48 @@ public class Proyecto implements Serializable {
     public void setNinos(Set<Nino> ninos) {
         this.ninos = ninos;
     }
-    
-     /**** NUEVO ****/
+
     @Override
-    public boolean equals(Object o){
-        if(this==o)
-            return true;
-        if(!(o instanceof Proyecto))
-            return false;
-        
-        Proyecto s = (Proyecto)o;
-        return super.equals(s)
-            && this.id.equals(s.id);
-    } 
-    
-    @Override
-    public int hashCode(){
-        return Objects.hash(id);
+    public int hashCode() {
+        int hash = 3;
+        hash = 71 * hash + Objects.hashCode(this.id);
+        hash = 71 * hash + Objects.hashCode(this.nombre);
+        hash = 71 * hash + Objects.hashCode(this.localizacion);
+        hash = 71 * hash + Objects.hashCode(this.capacidad);
+        hash = 71 * hash + Objects.hashCode(this.ninos);
+        return hash;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Proyecto other = (Proyecto) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.localizacion, other.localizacion)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.capacidad, other.capacidad)) {
+            return false;
+        }
+        if (!Objects.equals(this.ninos, other.ninos)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 
 }

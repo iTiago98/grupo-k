@@ -1,6 +1,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -49,23 +50,40 @@ public class Asignatura implements Serializable {
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
     }
-    
-      /**** NUEVO ****/
+
     @Override
-    public boolean equals(Object o){
-        if(this==o)
-            return true;
-        if(!(o instanceof Asignatura))
-            return false;
-        
-        Asignatura s = (Asignatura)o;
-        return super.equals(s)
-            && this.id.equals(s.id);
-    } 
-    
-    @Override
-    public int hashCode(){
-        return Objects.hash(id);
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.id);
+        hash = 29 * hash + Objects.hashCode(this.calificacion);
+        hash = 29 * hash + Objects.hashCode(this.observaciones);
+        return hash;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Asignatura other = (Asignatura) obj;
+        if (!Objects.equals(this.observaciones, other.observaciones)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.calificacion, other.calificacion)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 
 }

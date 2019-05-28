@@ -3,6 +3,7 @@ package entidades;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -94,25 +95,46 @@ public class Donacion implements Serializable {
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
     }
-    
-      /**** NUEVO ****/
+
     @Override
-    public boolean equals(Object o){
-        if(this==o)
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.socio);
+        hash = 97 * hash + Objects.hashCode(this.nino);
+        hash = 97 * hash + Objects.hashCode(this.fecha);
+        hash = 97 * hash + Objects.hashCode(this.importe);
+        hash = 97 * hash + Objects.hashCode(this.observaciones);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
-        if(!(o instanceof Donacion))
+        }
+        if (obj == null) {
             return false;
-        
-        Donacion s = (Donacion)o;
-        return super.equals(s)
-            && this.socio.equals(s.socio)
-            && this.nino.equals(s.nino)
-            && this.fecha.equals(s.fecha);
-    } 
-    
-    @Override
-    public int hashCode(){
-        return Objects.hash(socio,nino,fecha);
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Donacion other = (Donacion) obj;
+        if (!Objects.equals(this.observaciones, other.observaciones)) {
+            return false;
+        }
+        if (!Objects.equals(this.socio, other.socio)) {
+            return false;
+        }
+        if (!Objects.equals(this.nino, other.nino)) {
+            return false;
+        }
+        if (!Objects.equals(this.fecha, other.fecha)) {
+            return false;
+        }
+        if (!Objects.equals(this.importe, other.importe)) {
+            return false;
+        }
+        return true;
     }
 
 }

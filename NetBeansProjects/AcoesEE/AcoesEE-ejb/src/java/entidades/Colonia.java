@@ -1,6 +1,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -80,23 +81,48 @@ public class Colonia implements Serializable {
     public void setNinos(Set<Nino> ninos) {
         this.ninos = ninos;
     }
-    
-      /**** NUEVO ****/
+
     @Override
-    public boolean equals(Object o){
-        if(this==o)
-            return true;
-        if(!(o instanceof Colonia))
-            return false;
-        
-        Colonia s = (Colonia)o;
-        return super.equals(s)
-            && this.id.equals(s.id);
-    } 
-    
-    @Override
-    public int hashCode(){
-        return Objects.hash(id);
+    public int hashCode() {
+        int hash = 7;
+        hash = 11 * hash + Objects.hashCode(this.id);
+        hash = 11 * hash + Objects.hashCode(this.nombre);
+        hash = 11 * hash + Objects.hashCode(this.localizacion);
+        hash = 11 * hash + Objects.hashCode(this.descripcion);
+        hash = 11 * hash + Objects.hashCode(this.ninos);
+        return hash;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Colonia other = (Colonia) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.localizacion, other.localizacion)) {
+            return false;
+        }
+        if (!Objects.equals(this.descripcion, other.descripcion)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.ninos, other.ninos)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 
 }

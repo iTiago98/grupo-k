@@ -3,6 +3,7 @@ package entidades;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -82,23 +83,44 @@ public class FichaAcademica implements Serializable {
         }
         return msg;
     }
-    
-      /**** NUEVO ****/
+
     @Override
-    public boolean equals(Object o){
-        if(this==o)
-            return true;
-        if(!(o instanceof FichaAcademica))
-            return false;
-        
-        FichaAcademica s = (FichaAcademica)o;
-        return super.equals(s)
-            && this.id.equals(s.id);
-    } 
-    
-    @Override
-    public int hashCode(){
-        return Objects.hash(id);
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.id);
+        hash = 53 * hash + Objects.hashCode(this.curso);
+        hash = 53 * hash + Objects.hashCode(this.fechaMatriculacion);
+        hash = 53 * hash + Objects.hashCode(this.asignaturas);
+        return hash;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final FichaAcademica other = (FichaAcademica) obj;
+        if (!Objects.equals(this.fechaMatriculacion, other.fechaMatriculacion)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.curso, other.curso)) {
+            return false;
+        }
+        if (!Objects.equals(this.asignaturas, other.asignaturas)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 
 }

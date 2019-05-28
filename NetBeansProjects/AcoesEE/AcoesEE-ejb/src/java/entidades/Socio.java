@@ -1,6 +1,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -56,27 +57,71 @@ public class Socio implements Serializable {
     public String toString() {
         return this.nombre + " " + this.apellidos;
     }
-    
-    /*NUEVO*/
+
     @Override
-    public boolean equals(Object o){
-        if(this==o)
-            return true;
-        if(!(o instanceof Socio))
-            return false;
-        
-        Socio s = (Socio)o;
-        return super.equals(s)
-            && this.DNI.equals(s.DNI)
-            && this.id.equals(s.id);
-    } 
-    
-    @Override
-    public int hashCode(){
-        return Objects.hash(DNI,id);
+    public int hashCode() {
+        int hash = 3;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        hash = 37 * hash + Objects.hashCode(this.DNI);
+        hash = 37 * hash + Objects.hashCode(this.nombre);
+        hash = 37 * hash + Objects.hashCode(this.apellidos);
+        hash = 37 * hash + Objects.hashCode(this.direccion);
+        hash = 37 * hash + Objects.hashCode(this.telefono);
+        hash = 37 * hash + Objects.hashCode(this.correo);
+        hash = 37 * hash + Objects.hashCode(this.observaciones);
+        hash = 37 * hash + Objects.hashCode(this.envios);
+        hash = 37 * hash + Objects.hashCode(this.ninos);
+        hash = 37 * hash + Objects.hashCode(this.donaciones);
+        return hash;
     }
-    /*FIN NUEVO*/
-   
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Socio other = (Socio) obj;
+        if (!Objects.equals(this.DNI, other.DNI)) {
+            return false;
+        }
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.apellidos, other.apellidos)) {
+            return false;
+        }
+        if (!Objects.equals(this.direccion, other.direccion)) {
+            return false;
+        }
+        if (!Objects.equals(this.telefono, other.telefono)) {
+            return false;
+        }
+        if (!Objects.equals(this.correo, other.correo)) {
+            return false;
+        }
+        if (!Objects.equals(this.observaciones, other.observaciones)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.envios, other.envios)) {
+            return false;
+        }
+        if (!Objects.equals(this.ninos, other.ninos)) {
+            return false;
+        }
+        if (!Objects.equals(this.donaciones, other.donaciones)) {
+            return false;
+        }
+        return true;
+    }
     
     public Long getId() {
         return id;
