@@ -12,6 +12,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@NamedQuery(
+        name = "getDonaciones",
+        query = "SELECT d FROM Donacion d"
+)
+
 @Entity
 @IdClass(DonacionId.class)
 public class Donacion implements Serializable {
