@@ -53,35 +53,13 @@ public class Asignatura implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.id);
-        hash = 29 * hash + Objects.hashCode(this.calificacion);
-        hash = 29 * hash + Objects.hashCode(this.observaciones);
-        return hash;
+        return id != null ? id.hashCode() : 0;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Asignatura other = (Asignatura) obj;
-        if (!Objects.equals(this.observaciones, other.observaciones)) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.calificacion, other.calificacion)) {
-            return false;
-        }
-        return true;
+       if (!(obj instanceof Asignatura)) return false;
+        return this.id.equals(((Asignatura)obj).id);
     }
     
     
