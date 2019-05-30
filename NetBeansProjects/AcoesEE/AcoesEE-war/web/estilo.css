@@ -49,3 +49,21 @@
     padding:1px 16px;
     height:1000px;
 }
+
+table {
+  margin-top: 8px;
+  border: transparent;
+  border-bottom: 1px solid black;
+  background-color: white;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: antiquewhite;
+  padding: 7px
+}
+
+td {
+  padding-left: 4px;
+  padding-right: 4px;
+}
