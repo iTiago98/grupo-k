@@ -52,7 +52,7 @@ public class ControlEnvio implements Serializable {
         
         String ninoQuery = "SELECT n FROM Nino n WHERE upper(n.nombre) = upper(\'" + this.nino.getNombre() + "\') and upper(n.apellidos) = upper(\'" + this.nino.getApellidos() + "\')";
         String socioQuery = "SELECT s FROM Socio s WHERE upper(s.nombre) = upper(\'" + this.socio.getNombre() + "\') and upper(s.apellidos) = upper(\'" + this.socio.getApellidos() + "\')";
-        String socioQueryDNI = "SELECT s FROM Socio s WHERE upper(s.dni) = upper(\'" + this.socio.getDNI() + "\')";
+        String socioQueryDNI = "SELECT s FROM Socio s WHERE upper(s.DNI) = upper(\'" + this.socio.getDNI() + "\')";
         
         if(this.nino.getId() != null) ln = neg.getRowById("Nino", this.nino.getId());
         if(this.socio.getId() != null) ls = neg.getRowById("Socio", this.socio.getId());  
