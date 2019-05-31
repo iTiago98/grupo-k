@@ -31,6 +31,7 @@ public class ControlEnvio implements Serializable {
     private Envio envio;
     private Nino nino;
     private Socio socio;
+    private Date fecha;
     
     private int year, month, day;
     
@@ -38,6 +39,7 @@ public class ControlEnvio implements Serializable {
         envio = new Envio();
         nino = new Nino();
         socio = new Socio();
+        fecha= new Date();
         
         year = 1;
         month = 1;
@@ -45,6 +47,9 @@ public class ControlEnvio implements Serializable {
     }
     
     public String addEnvio() {
+        setFecha2();
+        envio.setFecha(this.fecha);
+        
         FacesContext ctx = FacesContext.getCurrentInstance();
         
         List<Nino> ln = new ArrayList();
@@ -75,6 +80,7 @@ public class ControlEnvio implements Serializable {
         this.envio = new Envio();
         this.nino = new Nino();
         this.socio = new Socio();
+        this.fecha= new Date();
         
         this.year = 1;
         this.month = 1;
@@ -99,6 +105,8 @@ public class ControlEnvio implements Serializable {
         this.nino = env.getNino();
         this.socio = env.getSocio();
         this.envio = env;
+        setFecha2();
+        this.envio.setFecha(this.fecha);
         
         this.year = this.nino.getFechaNacimiento().getYear();
         this.month = this.nino.getFechaNacimiento().getMonth();
@@ -114,6 +122,7 @@ public class ControlEnvio implements Serializable {
         this.envio = new Envio();
         this.nino = new Nino();
         this.socio = new Socio();
+        this.fecha= new Date();
         
         return "envios.xhtml";
     }
@@ -185,5 +194,19 @@ public class ControlEnvio implements Serializable {
 
     public void setDay(int day) {
         this.day = day;
+    }
+    
+    public Date getFecha(){
+        return this.fecha;
+    }
+    
+    public void setFecha(Date Fecha){
+        this.fecha=fecha;
+    }
+    
+    public void setFecha2(){
+        this.fecha.setDate(this.day);
+        this.fecha.setMonth(this.month);
+        this.fecha.setYear(this.year);
     }
 }
