@@ -50,6 +50,15 @@
     /*height:1000px;*/
 }
 
+#secret {
+    background-color: black;
+    color: black;
+}
+
+#secret:hover {
+    color: white;
+}
+
 table {
   margin-top: 8px;
   border: transparent;

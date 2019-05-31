@@ -66,7 +66,5 @@ public class Beca implements Serializable {
         if (!(obj instanceof Beca)) return false;
         return this.id.equals(((Beca)obj).id);
     }
-    
-    
 
 }

@@ -52,6 +52,7 @@ public class ControlEnvio implements Serializable {
         
         String ninoQuery = "SELECT n FROM Nino n WHERE upper(n.nombre) = upper(\'" + this.nino.getNombre() + "\') and upper(n.apellidos) = upper(\'" + this.nino.getApellidos() + "\')";
         String socioQuery = "SELECT s FROM Socio s WHERE upper(s.nombre) = upper(\'" + this.socio.getNombre() + "\') and upper(s.apellidos) = upper(\'" + this.socio.getApellidos() + "\')";
+        String socioQueryDNI = "SELECT s FROM Socio s WHERE upper(s.dni) = upper(\'" + this.socio.getDNI() + "\')";
         
         if(this.nino.getId() != null) ln = neg.getRowById("Nino", this.nino.getId());
         if(this.socio.getId() != null) ls = neg.getRowById("Socio", this.socio.getId());  
@@ -61,7 +62,7 @@ public class ControlEnvio implements Serializable {
             if(ln.size() == 1 || (ln = neg.getRowsCustomQuery(ninoQuery)).size() == 1) this.envio.setNino(ln.get(0));
             else throw new EJBException("La búsqueda del niño en la base de datos ha devuelto un número de resultados distinto del que se esperaba (!= 1)");
 
-            if(ls.size() == 1 || (ls = neg.getRowsCustomQuery(socioQuery)).size() == 1) this.envio.setSocio(ls.get(0));
+            if(ls.size() == 1 || (ls = neg.getRowsCustomQuery(socioQuery)).size() == 1 || (ls = neg.getRowsCustomQuery(socioQueryDNI)).size() == 1) this.envio.setSocio(ls.get(0));
             else throw new EJBException("La búsqueda del socio en la base de datos ha devuelto un número de resultados distinto del que se esperaba (!= 1)");
 
             neg.add(this.envio);

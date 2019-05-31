@@ -9,8 +9,8 @@ import java.util.List;
 import entidades.Nino;
 import entidades.Socio;
 import java.io.Serializable;
-import java.util.ArrayList;
-//import java.util.Date;
+//import java.util.ArrayList;
+import java.util.Date;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.enterprise.context.SessionScoped;
@@ -33,7 +33,14 @@ public class ControlDonacion implements Serializable {
     int year, month, day;
     
     public ControlDonacion() {
-        donacion = new Donacion();
+        this.donacion = new Donacion();
+        this.socio = new Socio();
+        this.nino = new Nino();
+        
+        this.year = 1;
+        this.month = 1;
+        this.day = 1;
+        
         /*  
         donaciones = new ArrayList<>();
         donaciones.add(new Donacion(new Socio("898928W", "Álvaro", "Ramírez"), new Nino("Marina", "Balmén", 'M', new Date(2003 - 1900, 1 - 1, 20)), new Date(2018-1900, 10, 3), 120.0, "Todo bien"));
@@ -41,15 +48,26 @@ public class ControlDonacion implements Serializable {
     }
     
     public String addDonacion() {
-        try{
+        this.donacion.setSocio(this.socio);
+        this.donacion.setNino(this.nino);
+        this.donacion.setFecha(new Date(this.year - 1900, this.month - 1, this.day));
+        
+        try {
             neg.add(this.donacion);
-        } catch(EJBException e){
+        } catch(EJBException e) {
             FacesContext ctx = FacesContext.getCurrentInstance();
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,e.getMessage(),e.getMessage()));
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Probablemente hay algún campo de tipo numérico incorrecto o algún campo está incompleto", null));
         }
         
         this.donacion = new Donacion();
+        this.socio = new Socio();
+        this.nino = new Nino();
+        
+        this.year = 1;
+        this.month = 1;
+        this.day = 1;
+        
         
         return null;
     }
@@ -67,16 +85,16 @@ public class ControlDonacion implements Serializable {
     }
     
     public String modifyDonacion() {
-        try{
+        try {
             for(Object don: neg.getRows("getDonaciones"))
                 if(don.equals(this.donacion)) neg.modify(this.donacion);
-        }catch(EJBException e){
+        } catch(EJBException e) {
             FacesContext ctx = FacesContext.getCurrentInstance();
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage()));
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Probablemente hay algún campo de tipo numérico incorrecto o algún campo está incompleto", null));
         } 
         
-        this.donacion=new Donacion();
+        this.donacion = new Donacion();
         return "donaciones.xhtml";
     }
     
