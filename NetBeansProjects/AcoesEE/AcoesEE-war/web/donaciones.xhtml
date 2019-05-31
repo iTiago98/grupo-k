@@ -40,23 +40,29 @@
         </h:form>
         <h:form>
             <h3>Añadir nueva donación</h3>
+            ID del socio:
+            <h:inputText value="#{ControlDonacion.socio.id}" size="5"></h:inputText>
             Nombre del socio:
-            <h:inputText value="#{ControlDonacion.socio.nombre}"></h:inputText><br/>
+            <h:inputText value="#{ControlDonacion.socio.nombre}"></h:inputText>
             Apellidos del socio:
-            <h:inputText value="#{ControlDonacion.socio.apellidos}"></h:inputText><br/>
+            <h:inputText value="#{ControlDonacion.socio.apellidos}"></h:inputText>
+            DNI del socio:
+            <h:inputText value="#{ControlDonacion.socio.DNI}"></h:inputText>
             <hr/>
+            ID del niño:
+            <h:inputText value="#{ControlDonacion.nino.id}"></h:inputText>
             Nombre del niño:
-            <h:inputText value="#{ControlDonacion.nino.nombre}"></h:inputText><br/>
+            <h:inputText value="#{ControlDonacion.nino.nombre}"></h:inputText>
             Apellidos del niño:
-            <h:inputText value="#{ControlDonacion.nino.apellidos}"></h:inputText><br/>
+            <h:inputText value="#{ControlDonacion.nino.apellidos}"></h:inputText>
             <hr/>
             Cantidad:
             <h:inputText value="#{ControlDonacion.donacion.importe}"></h:inputText>
             <hr/>
             Fecha:<br/>
-            Año: <h:inputText value="#{ControlDonacion.year}"></h:inputText> <br/> 
-            Mes: <h:inputText value="#{ControlDonacion.month}"></h:inputText> <br/>
-            Día: <h:inputText value="#{ControlDonacion.day}"></h:inputText> <br/>
+            Año: <h:inputText value="#{ControlDonacion.year}" size="4"></h:inputText> 
+            Mes: <h:inputText value="#{ControlDonacion.month}" size="2"></h:inputText>
+            Día: <h:inputText value="#{ControlDonacion.day}" size="2"></h:inputText>
             <hr/>
             Observaciones:
             <h:inputText value="#{ControlDonacion.donacion.observaciones}"></h:inputText>

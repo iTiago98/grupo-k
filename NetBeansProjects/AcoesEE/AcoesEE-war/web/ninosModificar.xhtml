@@ -20,20 +20,20 @@
             <h:inputText value="#{ControlNino.nino.sexo}"></h:inputText>
             <hr/>
             ID Colonia:
-            <h:inputText value="#{ControlNino.colonia.id}"></h:inputText>
+            <h:inputText value="#{ControlNino.colonia.id}" size="5"></h:inputText>
             Nombre Colonia:
             <h:inputText value="#{ControlNino.colonia.nombre}"></h:inputText>
             <hr/>
             Fecha de nacimiento:<br/>
-            Año: <h:inputText value="#{ControlNino.year}"></h:inputText> <br/> 
-            Mes: <h:inputText value="#{ControlNino.month}"></h:inputText> <br/>
-            Día: <h:inputText value="#{ControlNino.day}"></h:inputText> <br/>
+            Año: <h:inputText value="#{ControlNino.year}" size="4"></h:inputText> 
+            Mes: <h:inputText value="#{ControlNino.month}" size="2"></h:inputText> 
+            Día: <h:inputText value="#{ControlNino.day}" size="2"></h:inputText> 
             <hr/>
             <h:commandButton value="Modificar" action="#{ControlNino.modifyNino}"></h:commandButton>
             <br/>
             <h3>Apadrinando niño <h:outputText value="#{ControlNino.nino}"/></h3>
             ID socio:
-            <h:inputText value="#{ControlNino.socio.id}"></h:inputText>
+            <h:inputText value="#{ControlNino.socio.id}" size="5"></h:inputText>
             Nombre socio:
             <h:inputText value="#{ControlNino.socio.nombre}"></h:inputText>
             Apellidos socio:

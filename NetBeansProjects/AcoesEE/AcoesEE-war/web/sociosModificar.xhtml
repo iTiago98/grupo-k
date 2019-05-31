@@ -12,9 +12,22 @@
         <h:form>
             <h3>Modificando socio <h:outputText value="#{ControlSocio.socio}"/></h3>
             Nombre:
-            <h:inputText value="#{ControlSocio.socio.nombre}"></h:inputText><br/>
+            <h:inputText value="#{ControlSocio.socio.nombre}"></h:inputText>
             Apellido:
-            <h:inputText value="#{ControlSocio.socio.apellidos}"></h:inputText><br/>
+            <h:inputText value="#{ControlSocio.socio.apellidos}"></h:inputText>
+            DNI:
+            <h:inputText value="#{ControlSocio.socio.DNI}"></h:inputText>
+            <hr/>
+            Direccion:
+            <h:inputText value="#{ControlSocio.socio.direccion}"></h:inputText>
+            Correo:
+            <h:inputText value="#{ControlSocio.socio.correo}"></h:inputText>
+            Telefono:
+            <h:inputText value="#{ControlSocio.socio.telefono}"></h:inputText>
+            <hr/>
+            Observaciones:
+            <br/>
+            <h:inputTextarea value="#{ControlSocio.socio.observaciones}"></h:inputTextarea>
             <hr/>
             <h:commandButton value="Modificar" action="#{ControlSocio.modifySocio()}"></h:commandButton>
         </h:form>

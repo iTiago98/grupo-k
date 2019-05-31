@@ -56,7 +56,7 @@
             Sexo:
             <h:inputText value="#{ControlNino.nino.sexo}"></h:inputText><hr/>
             ID Colonia:
-            <h:inputText value="#{ControlNino.colonia.id}"></h:inputText>
+            <h:inputText value="#{ControlNino.colonia.id}" size="5"></h:inputText>
             Nombre Colonia:
             <h:inputText value="#{ControlNino.colonia.nombre}"></h:inputText>
             <hr/>
@@ -65,7 +65,7 @@
             Mes: <h:inputText value="#{ControlNino.month}" size="2"></h:inputText>
             Día: <h:inputText value="#{ControlNino.day}" size="2"></h:inputText> <br/>
             <hr/>
-            <h:commandButton value="Añadir" action="#{ControlNino.addNino()}"></h:commandButton>
+            <h:commandButton value="Añadir" action="#{ControlNino.addNino}"></h:commandButton>
         </h:form>
         <h:messages></h:messages>
     </ui:define>
