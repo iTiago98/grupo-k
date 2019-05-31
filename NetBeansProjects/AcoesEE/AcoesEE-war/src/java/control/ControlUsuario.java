@@ -14,6 +14,7 @@ import javax.inject.Named;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import negocio.NegocioGenerico;
 
 
 @Named(value = "ControlUsuario")
@@ -23,7 +24,8 @@ public class ControlUsuario implements Serializable {
     private ControlAutorizacion ctrl;
     
     @EJB
-    private NegocioUsuario negUsuario;
+    private NegocioGenerico neg;
+    //private NegocioUsuario negUsuario;
       
     private String usuarioNombre;
     private String contrasenia;
@@ -40,7 +42,7 @@ public class ControlUsuario implements Serializable {
     public String addUsuario() {
         //usuarios.add(this.usuario);
         //try {
-            negUsuario.addUsuario(this.usuario);
+            neg.add(this.usuario);
         /*} catch(DatosDuplicadosException e) {
             FacesContext ctx = FacesContext.getCurrentInstance();
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage()));
@@ -51,7 +53,7 @@ public class ControlUsuario implements Serializable {
     
     public String removeUsuario(Usuario u) {
         //usuarios.remove(u);
-        negUsuario.removeUsuario(u);
+        neg.remove(u);
         return null;
     }
     
@@ -62,8 +64,8 @@ public class ControlUsuario implements Serializable {
     
     public String modifyUsuario() {
         //for(Usuario u: usuarios) {
-        for(Usuario user: negUsuario.getUsuarios()) {
-            if(user.equals(this.usuario)) negUsuario.modifyUsuario(this.usuario);
+        for(Object user: neg.getRows("getUsuarios")) {
+            if(user.equals(this.usuario)) neg.modify(this.usuario);
         }
         
         this.usuario = new Usuario();
@@ -81,16 +83,16 @@ public class ControlUsuario implements Serializable {
        
         // Las siguientes lineas añaden un usuario "admin" con passwd "admin" a la
         // base de datos.
-        this.usuario.setUsuario("admin");
-        this.usuario.setContrasenia("admin");
-        this.usuario.setRol(Usuario.Rol.ADMINISTRADOR);
-        this.addUsuario();
+        if(neg.getRowsCustomQuery("SELECT u FROM Usuario u WHERE u.usuario = \'admin\' and u.contrasenia = \'admin\'").isEmpty()) {
+            this.usuario.setUsuario("admin");
+            this.usuario.setContrasenia("admin");
+            this.usuario.setRol(Usuario.Rol.ADMINISTRADOR);
+            this.addUsuario();
+        }
         
-        
-        //for(Usuario u: usuarios) {
-        for(Usuario u: negUsuario.getUsuarios()) {
-            if(u.getUsuario().equals(this.usuarioNombre) && u.getContrasenia().equals(this.contrasenia)) {
-                ctrl.setUsuario(u);
+        for(Object u: neg.getRows("getUsuarios")) {
+            if(((Usuario) u).getUsuario().equals(this.usuarioNombre) && ((Usuario) u).getContrasenia().equals(this.contrasenia)) {
+                ctrl.setUsuario((Usuario) u);
                 return "home.xhtml";
             }
         }
@@ -130,7 +132,7 @@ public class ControlUsuario implements Serializable {
     }
     
     public List<Usuario> getUsuarios() {
-        return negUsuario.getUsuarios();
+        return neg.getRows("getUsuarios");
     }
     
     /*
