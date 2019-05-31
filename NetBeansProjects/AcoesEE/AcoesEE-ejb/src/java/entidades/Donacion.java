@@ -8,13 +8,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @NamedQuery(
-        name = "getDonaciones",
-        query = "SELECT d FROM Donacion d"
+    name = "getDonaciones",
+    query = "SELECT d FROM Donacion d"
 )
 
 @Entity
@@ -101,45 +102,18 @@ public class Donacion implements Serializable {
         this.observaciones = observaciones;
     }
 
+    // TODO: A ver como hacemos esto 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.socio);
-        hash = 97 * hash + Objects.hashCode(this.nino);
-        hash = 97 * hash + Objects.hashCode(this.fecha);
-        hash = 97 * hash + Objects.hashCode(this.importe);
-        hash = 97 * hash + Objects.hashCode(this.observaciones);
-        return hash;
+        return this.nino.hashCode() + this.socio.hashCode() + this.fecha.hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Donacion other = (Donacion) obj;
-        if (!Objects.equals(this.observaciones, other.observaciones)) {
-            return false;
-        }
-        if (!Objects.equals(this.socio, other.socio)) {
-            return false;
-        }
-        if (!Objects.equals(this.nino, other.nino)) {
-            return false;
-        }
-        if (!Objects.equals(this.fecha, other.fecha)) {
-            return false;
-        }
-        if (!Objects.equals(this.importe, other.importe)) {
-            return false;
-        }
-        return true;
+        if (!(obj instanceof Donacion)) return false;
+        return this.nino.equals(((Donacion)obj).nino) &&
+               this.socio.equals(((Donacion)obj).socio) &&
+               this.fecha.equals(((Donacion)obj).fecha);
     }
 
 }
