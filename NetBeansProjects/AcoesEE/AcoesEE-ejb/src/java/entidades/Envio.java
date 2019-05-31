@@ -1,6 +1,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
@@ -10,10 +11,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @NamedQuery(
-        name = "getEnvios",
-        query = "SELECT e FROM Envio e"
+    name = "getEnvios",
+    query = "SELECT e FROM Envio e"
 )
 
 @Entity
@@ -23,6 +26,9 @@ public class Envio implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    //@Temporal(TemporalType.DATE)
+    //private Date fecha;
 
     private String observaciones;
     @ManyToOne
@@ -32,12 +38,19 @@ public class Envio implements Serializable {
     
     public Envio() {}
     
-    public Envio(String observaciones, Nino nino, Socio socio) {
+    public Envio(String observaciones, Nino nino, Socio socio, Date fecha) {
         this.observaciones = observaciones;
         this.nino = nino;
         this.socio = socio;
+      //  this.fecha=fecha;
     }
-    
+    /*
+    public Envio(Nino nino, Socio socio, Date fecha) {
+        this.nino = nino;
+        this.socio = socio;
+        this.fecha=fecha;
+    }
+    */
     public Envio(Nino nino, Socio socio) {
         this.nino = nino;
         this.socio = socio;
@@ -85,7 +98,20 @@ public class Envio implements Serializable {
     public void setSocio(Socio socio) {
         this.socio = socio;
     }
+    /*
+    public String getFechaFormat() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-YYYY");
+        return sdf.format(this.fecha);
+    }
+    
+    public Date getFecha() {
+        return fecha;
+    }
 
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+    */
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;

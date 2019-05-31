@@ -187,7 +187,5 @@ public class Nino implements Serializable {
     public boolean equals(Object obj) {
         if (!(obj instanceof Nino)) return false;
         return this.id.equals(((Nino)obj).id);
-    }
-
-}
+    }}
 
