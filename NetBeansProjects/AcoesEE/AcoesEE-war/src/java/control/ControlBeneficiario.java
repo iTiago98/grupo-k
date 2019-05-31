@@ -65,8 +65,14 @@ public class ControlBeneficiario implements Serializable {
     }
     
     public String removeBeneficiario(Beneficiario b) {
-        neg.remove(b);
+        FacesContext ctx = FacesContext.getCurrentInstance();
         
+        try {
+            neg.remove(b);
+        }catch (EJBException e) {
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Este beneficiario está siendo utilizado por otras entidades, pruebe a eliminar esas referencias primero.", null));
+        }
         return null;
     }
     

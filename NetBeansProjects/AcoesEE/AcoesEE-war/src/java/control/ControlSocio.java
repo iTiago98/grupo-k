@@ -48,8 +48,14 @@ public class ControlSocio implements Serializable {
     }
     
     public String removeSocio(Socio soc) {
-        //negSocio.removeSocio(soc);
-        neg.remove(soc);
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        
+        try {
+            neg.remove(soc);
+        }catch (EJBException e) {
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Este socio está siendo utilizado por otras entidades, pruebe a eliminar esas referencias primero.", null));
+        }
         return null;
     }
     

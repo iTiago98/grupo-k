@@ -7,6 +7,9 @@ import javax.inject.Named;
 import entidades.Colonia;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import negocio.NegocioGenerico;
 
 @Named(value = "ControlColonia")
@@ -29,8 +32,14 @@ public class ControlColonia implements Serializable {
     }
     
     public String removeColonia(Colonia col) {
-        neg.remove(col);
+        FacesContext ctx = FacesContext.getCurrentInstance();
         
+        try {
+            neg.remove(col);
+        }catch (EJBException e) {
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Esta colonia está siendo utilizada por otras entidades, pruebe a eliminar esas referencias primero.", null));
+        }
         return null;
     }
     

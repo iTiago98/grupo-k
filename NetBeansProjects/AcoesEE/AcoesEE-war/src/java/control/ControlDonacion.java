@@ -73,8 +73,14 @@ public class ControlDonacion implements Serializable {
     }
     
     public String removeDonacion(Donacion don) {
-        neg.remove(don);
+        FacesContext ctx = FacesContext.getCurrentInstance();
         
+        try {
+            neg.remove(don);
+        }catch (EJBException e) {
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Esta donación está siendo utilizada por otras entidades, pruebe a eliminar esas referencias primero.", null));
+        }
         return null;
     }
     

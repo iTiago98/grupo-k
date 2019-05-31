@@ -57,9 +57,15 @@ public class ControlNino implements Serializable {
     }
     
     public String removeNino(Nino n) {
-        neg.remove(n);
+        FacesContext ctx = FacesContext.getCurrentInstance();
         
-        return null; // la misma página
+        try {
+            neg.remove(n);
+        }catch (EJBException e) {
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Este niño está siendo utilizada por otras entidades, pruebe a eliminar esas referencias primero.", null));
+        }
+        return null;
     }
     
     public String goModifyNino(Nino n) {

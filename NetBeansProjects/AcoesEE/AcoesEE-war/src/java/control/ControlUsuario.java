@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.faces.application.FacesMessage;
@@ -52,8 +53,14 @@ public class ControlUsuario implements Serializable {
     }
     
     public String removeUsuario(Usuario u) {
-        //usuarios.remove(u);
-        neg.remove(u);
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        
+        try {
+            neg.remove(u);
+        }catch (EJBException e) {
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Este usuario está siendo utilizada por otras entidades, pruebe a eliminar esas referencias primero.", null));
+        }
         return null;
     }
     
