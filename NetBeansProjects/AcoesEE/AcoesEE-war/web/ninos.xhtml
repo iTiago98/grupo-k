@@ -36,9 +36,13 @@
                     <h:outputText value="#{nino.fechaNacimientoFormat}"></h:outputText>
                 </h:column>
                 <h:column>
+                    <f:facet name="header">Padrino</f:facet>
+                    <h:outputText value="#{nino.socio}"></h:outputText>
+                </h:column>
+                <h:column>
                     <f:facet name="header">Acción</f:facet>
                     <h:commandButton value="Borrar" action="#{ControlNino.removeNino(nino)}"></h:commandButton>
-                    <h:commandButton value="Modificar" action="#{ControlNino.goModifyNino(nino)}"></h:commandButton>
+                    <h:commandButton value="Modificar/Apadrinar" action="#{ControlNino.goModifyNino(nino)}"></h:commandButton>
                 </h:column>
             </h:dataTable>
         </h:form>

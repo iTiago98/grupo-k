@@ -25,6 +25,18 @@
             Día: <h:inputText value="#{ControlNino.day}"></h:inputText> <br/>
             <hr/>
             <h:commandButton value="Modificar" action="#{ControlNino.modifyNino}"></h:commandButton>
+            <br/>
+            <h3>Apadrinando niño <h:outputText value="#{ControlNino.nino}"/></h3>
+            ID socio:
+            <h:inputText value="#{ControlNino.socio.id}"></h:inputText>
+            Nombre socio:
+            <h:inputText value="#{ControlNino.socio.nombre}"></h:inputText>
+            Apellidos socio:
+            <h:inputText value="#{ControlNino.socio.apellidos}"></h:inputText>
+            DNI socio:
+            <h:inputText value="#{ControlNino.socio.DNI}"></h:inputText>
+            <hr/>
+            <h:commandButton value="Apadrinar" action="#{ControlNino.apadrinarNino}"></h:commandButton>
         </h:form>
         <h:messages></h:messages>
     </ui:define>
