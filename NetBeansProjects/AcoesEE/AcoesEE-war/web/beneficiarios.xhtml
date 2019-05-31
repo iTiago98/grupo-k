@@ -33,22 +33,27 @@
                     <h:commandButton value="Modificar" action="#{ControlBeneficiario.goModifyBeneficiario(benef)}"></h:commandButton>
                 </h:column>
             </h:dataTable>
-            <h3>Añadir nuevo beneficiario</h3>
-            Nombre beneficiario:
-            <h:inputText value="#{ControlBeneficiario.nino.nombre}"></h:inputText><br/>
-            Apellido beneficiario:
+            <h3>Nuevo beneficiario</h3>
+            ID niño:
+            <h:inputText value="#{ControlBeneficiario.nino.id}" size="5"></h:inputText>
+            Nombre niño:
+            <h:inputText value="#{ControlBeneficiario.nino.nombre}"></h:inputText>
+            Apellidos niño:
             <h:inputText value="#{ControlBeneficiario.nino.apellidos}"></h:inputText>
+            <hr/>
+            ID beca:
+            <h:inputText value="#{ControlBeneficiario.beca.id}" size="5"></h:inputText>
+            Nombre beca:
+            <h:inputText value="#{ControlBeneficiario.beca.nombre}"></h:inputText>
             <hr/>
             Año:
             <h:inputText value="#{ControlBeneficiario.beneficiario.ano}"></h:inputText>
             <hr/>
-            Beca:
-            <h:inputText value="#{ControlBeneficiario.beca.nombre}"></h:inputText>
-            <hr/>
             Observaciones:
-            <h:inputText value="#{ControlBeneficiario.beneficiario.observaciones}"></h:inputText>
+            <br/>
+            <h:inputTextarea value="#{ControlBeneficiario.beneficiario.observaciones}"></h:inputTextarea>
             <hr/>
-            <h:commandButton value="Añadir" action="#{ControlBeneficiario.addBeneficiario()}"></h:commandButton>
+            <h:commandButton value="Añadir" action="#{ControlBeneficiario.addBeneficiario}"></h:commandButton>
         </h:form>
         <h:messages></h:messages>
     </ui:define>
