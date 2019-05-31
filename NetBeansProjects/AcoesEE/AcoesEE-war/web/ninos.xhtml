@@ -12,6 +12,10 @@
         <h:form>
             <h:dataTable value="#{ControlNino.getNinos()}" var="nino" border="1">
                 <h:column>                   
+                    <f:facet name="header">ID</f:facet>                 
+                    <h:outputText value="#{nino.id}"></h:outputText>
+                </h:column>
+                <h:column>                   
                     <f:facet name="header">Nombre</f:facet>                 
                     <h:outputText value="#{nino.nombre}"></h:outputText>
                 </h:column>
@@ -24,8 +28,12 @@
                     <h:outputText value="#{nino.sexo}"></h:outputText>
                 </h:column>
                 <h:column>
+                    <f:facet name="header">Colonia</f:facet>
+                    <h:outputText value="#{nino.colonia.nombre}"></h:outputText>
+                </h:column>
+                <h:column>
                     <f:facet name="header">Fecha de nacimiento</f:facet>
-                    <h:outputText value="#{nino.getFechaNacimientoFormat()}"></h:outputText>
+                    <h:outputText value="#{nino.fechaNacimientoFormat}"></h:outputText>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Acción</f:facet>
@@ -41,11 +49,14 @@
             <hr/>
             Sexo:
             <h:inputText value="#{ControlNino.nino.sexo}"></h:inputText>
+            <!--
+            Colonia:
+            <h:inputText value="#{ControlNino.nino.colonia.nombre}"></h:inputText>-->
             <hr/>
             Fecha de nacimiento:<br/>
-            Año: <h:inputText value="#{ControlNino.year}"></h:inputText> <br/> 
-            Mes: <h:inputText value="#{ControlNino.month}"></h:inputText> <br/>
-            Día: <h:inputText value="#{ControlNino.day}"></h:inputText> <br/>
+            Año: <h:inputText value="#{ControlNino.year}" size="4"></h:inputText>
+            Mes: <h:inputText value="#{ControlNino.month}" size="2"></h:inputText>
+            Día: <h:inputText value="#{ControlNino.day}" size="2"></h:inputText> <br/>
             <hr/>
             <h:commandButton value="Añadir" action="#{ControlNino.addNino}"></h:commandButton>
         </h:form>

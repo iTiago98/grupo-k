@@ -12,20 +12,12 @@
         <h:form>
             <h:dataTable value="#{ControlEnvio.getEnvios()}" var="env" border="1">
                 <h:column>                   
-                    <f:facet name="header">Nombre niño</f:facet>                 
-                    <h:outputText value="#{env.nino.nombre}"></h:outputText>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Apellidos niño</f:facet>
-                    <h:outputText value="#{env.nino.apellidos}"></h:outputText>
+                    <f:facet name="header">Niño</f:facet>                 
+                    <h:outputText value="#{env.nino}"></h:outputText>
                 </h:column>
                 <h:column>                   
-                    <f:facet name="header">Nombre socio</f:facet>                 
-                    <h:outputText value="#{env.socio.nombre}"></h:outputText>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Apellidos socio</f:facet>
-                    <h:outputText value="#{env.socio.apellidos}"></h:outputText>
+                    <f:facet name="header">Socio</f:facet>                 
+                    <h:outputText value="#{env.socio}"></h:outputText>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Observaciones</f:facet>
@@ -38,11 +30,15 @@
                 </h:column>
             </h:dataTable>
             <h3>Añadir nuevo envío</h3>
+            ID niño:
+            <h:inputText value="#{ControlEnvio.nino.id}" size="5"></h:inputText>
             Nombre niño:
             <h:inputText value="#{ControlEnvio.nino.nombre}"></h:inputText>
             Apellidos niño:
             <h:inputText value="#{ControlEnvio.nino.apellidos}"></h:inputText>
             <hr/>
+            ID socio:
+            <h:inputText value="#{ControlEnvio.socio.id}" size="5"></h:inputText>
             Nombre socio:
             <h:inputText value="#{ControlEnvio.socio.nombre}"></h:inputText>
             Apellidos socio:
@@ -51,9 +47,10 @@
             <h:inputText value="#{ControlEnvio.socio.DNI}"></h:inputText>
             <hr/>
             Observaciones:
-            <h:inputText value="#{ControlEnvio.envio.observaciones}"></h:inputText>
+            <h:inputTextarea value="#{ControlEnvio.envio.observaciones}"></h:inputTextarea>
             <hr/>
             <h:commandButton value="Añadir" action="#{ControlEnvio.addEnvio}"></h:commandButton>
+            
         </h:form>
         <h:messages></h:messages>
     </ui:define>
