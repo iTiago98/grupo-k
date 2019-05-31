@@ -26,9 +26,8 @@ public class Envio implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    //@Temporal(TemporalType.DATE)
-    //private Date fecha;
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
 
     private String observaciones;
     @ManyToOne
@@ -42,15 +41,15 @@ public class Envio implements Serializable {
         this.observaciones = observaciones;
         this.nino = nino;
         this.socio = socio;
-      //  this.fecha=fecha;
+        this.fecha=fecha;
     }
-    /*
+    
     public Envio(Nino nino, Socio socio, Date fecha) {
         this.nino = nino;
         this.socio = socio;
         this.fecha=fecha;
     }
-    */
+    
     public Envio(Nino nino, Socio socio) {
         this.nino = nino;
         this.socio = socio;
@@ -98,7 +97,7 @@ public class Envio implements Serializable {
     public void setSocio(Socio socio) {
         this.socio = socio;
     }
-    /*
+    
     public String getFechaFormat() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-YYYY");
         return sdf.format(this.fecha);
@@ -111,7 +110,7 @@ public class Envio implements Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    */
+    
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
