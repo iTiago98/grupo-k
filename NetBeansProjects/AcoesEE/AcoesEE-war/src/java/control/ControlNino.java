@@ -5,6 +5,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import entidades.Nino;
+import entidades.Socio;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -18,12 +20,14 @@ import negocio.NegocioGenerico;
 public class ControlNino implements Serializable {
     private Nino nino;
     private int year, month, day;
+    private Socio socio;
     //private ArrayList<Nino> ninos;
     @EJB
     private NegocioGenerico neg;
     
     public ControlNino() {
         nino = new Nino();
+        socio = new Socio();
         this.year = 1;
         this.month = 1;
         this.day = 1;
@@ -49,6 +53,7 @@ public class ControlNino implements Serializable {
         }
         
         this.nino = new Nino();
+        this.socio = new Socio();
         this.year = 1;
         this.month = 1;
         this.day = 1;
@@ -72,9 +77,10 @@ public class ControlNino implements Serializable {
         this.year = n.getFechaNacimiento().getYear();
         this.month = n.getFechaNacimiento().getMonth();
         this.day = n.getFechaNacimiento().getDay();
-        this.nino = n;
-        return "ninosModificar.xhtml";
+        this.nino = n; 
+       return "ninosModificar.xhtml";
     }
+    
     
     public String modifyNino() {
         for(Object n: neg.getRows("getNinos")) {
@@ -87,12 +93,41 @@ public class ControlNino implements Serializable {
         }
         
         this.nino = new Nino(); // cleanup
+        this.socio = new Socio();
         this.year = 1;
         this.month = 1;
         this.day = 1;
         
         
         return "ninos.xhtml";
+    }
+    
+    public String apadrinarNino(){
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        
+        List<Socio> ls = new ArrayList();
+
+        String socioQuery = "SELECT s FROM Socio s WHERE upper(s.nombre) = upper(\'" + this.socio.getNombre() + "\') and upper(s.apellidos) = upper(\'" + this.socio.getApellidos() + "\')";
+        String socioQueryDNI = "SELECT s FROM Socio s WHERE upper(s.DNI) = upper(\'" + this.socio.getDNI() + "\')";
+        
+        if(this.socio.getId() != null) ls = neg.getRowById("Socio", this.socio.getId());  
+        
+        try {
+            // 10x
+            if(ls.size() == 1 || (ls = neg.getRowsCustomQuery(socioQuery)).size() == 1 || (ls = neg.getRowsCustomQuery(socioQueryDNI)).size() == 1) this.nino.setSocio(ls.get(0));
+            else throw new EJBException("La búsqueda del socio en la base de datos ha devuelto un número de resultados distinto del que se esperaba (!= 1)");
+
+            //neg.add(this.envio);
+
+        } catch(EJBException e) {
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Pruebe a ser más preciso con la búsqueda, rellenando el campo id", null));
+        }
+        
+        modifyNino();
+        
+        return "ninos.xhtml";
+        
     }
     
 
@@ -107,6 +142,14 @@ public class ControlNino implements Serializable {
 
     public void setNino(Nino nino) {
         this.nino = nino;
+    }
+    
+    public Socio getSocio() {
+        return socio;
+    }
+    
+    public void setSocio(Socio socio) {
+        this.socio = socio;
     }
 
     public int getYear() {
