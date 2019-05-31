@@ -8,6 +8,9 @@ import javax.inject.Named;
 import negocio.NegocioGenerico;
 import entidades.Beca;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 @Named(value = "ControlBeca")
 @SessionScoped
@@ -31,7 +34,14 @@ public class ControlBeca implements Serializable
     
     public String removeBeca(Beca b)
     {
-        neg.remove(b);
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        
+        try {
+            neg.remove(b);
+        }catch (EJBException e) {
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Esta beca está siendo utilizada por otras entidades, pruebe a eliminar esas referencias primero.", null));
+        }
         return null;
     }
     
