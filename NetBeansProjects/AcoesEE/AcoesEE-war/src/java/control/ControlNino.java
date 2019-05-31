@@ -1,5 +1,6 @@
 package control;
 
+import entidades.Colonia;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -21,6 +22,7 @@ public class ControlNino implements Serializable {
     private Nino nino;
     private int year, month, day;
     private Socio socio;
+    private Colonia colonia;
     //private ArrayList<Nino> ninos;
     @EJB
     private NegocioGenerico neg;
@@ -28,6 +30,7 @@ public class ControlNino implements Serializable {
     public ControlNino() {
         nino = new Nino();
         socio = new Socio();
+        colonia= new Colonia();
         this.year = 1;
         this.month = 1;
         this.day = 1;
@@ -44,6 +47,7 @@ public class ControlNino implements Serializable {
     public String addNino() {
         this.nino.setFechaNacimiento(new Date(this.year - 1900, this.month - 1, this.day));
         //ninos.add(this.nino);
+        coloniaNino();
         try {
             neg.add(this.nino);
         } catch(EJBException e) {
@@ -54,6 +58,7 @@ public class ControlNino implements Serializable {
         
         this.nino = new Nino();
         this.socio = new Socio();
+        this.colonia= new Colonia();
         this.year = 1;
         this.month = 1;
         this.day = 1;
@@ -83,6 +88,8 @@ public class ControlNino implements Serializable {
     
     
     public String modifyNino() {
+        coloniaNino();
+        
         for(Object n: neg.getRows("getNinos")) {
             if(n.equals(this.nino)) {
                 //n = this.nino;
@@ -94,6 +101,7 @@ public class ControlNino implements Serializable {
         
         this.nino = new Nino(); // cleanup
         this.socio = new Socio();
+        this.colonia= new Colonia();
         this.year = 1;
         this.month = 1;
         this.day = 1;
@@ -130,6 +138,30 @@ public class ControlNino implements Serializable {
         
     }
     
+    public String coloniaNino(){
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        
+        List<Colonia> ls = new ArrayList();
+
+        String coloniaQuery = "SELECT c FROM Colonia c WHERE upper(c.nombre) = upper(\'" + this.colonia.getNombre() + "\')";
+        if(this.colonia.getId() != null) ls = neg.getRowById("Colonia", this.colonia.getId());  
+        
+        try {
+            // 10x
+            if(ls.size() == 1 || (ls = neg.getRowsCustomQuery(coloniaQuery)).size() == 1) this.nino.setColonia(ls.get(0));
+            else throw new EJBException("La búsqueda de la colonia en la base de datos ha devuelto un número de resultados distinto del que se esperaba (!= 1)");
+
+            //neg.add(this.envio);
+
+        } catch(EJBException e) {
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Pruebe a ser más preciso con la búsqueda, rellenando el campo id", null));
+        }
+        
+        return null;
+        
+    }
+    
 
     
     /**************************************************/
@@ -150,6 +182,14 @@ public class ControlNino implements Serializable {
     
     public void setSocio(Socio socio) {
         this.socio = socio;
+    }
+    
+    public Colonia getColonia() {
+        return colonia;
+    }
+    
+    public void setColonia(Colonia colonia) {
+        this.colonia = colonia;
     }
 
     public int getYear() {
