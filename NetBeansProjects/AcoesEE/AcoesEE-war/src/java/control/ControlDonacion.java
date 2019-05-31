@@ -9,6 +9,7 @@ import java.util.List;
 import entidades.Nino;
 import entidades.Socio;
 import java.io.Serializable;
+import java.util.ArrayList;
 //import java.util.ArrayList;
 import java.util.Date;
 import javax.ejb.EJB;
@@ -29,6 +30,7 @@ public class ControlDonacion implements Serializable {
     private NegocioGenerico neg;
     private Socio socio;
     private Nino nino;
+    private Date fecha;
     
     int year, month, day;
     
@@ -36,6 +38,7 @@ public class ControlDonacion implements Serializable {
         this.donacion = new Donacion();
         this.socio = new Socio();
         this.nino = new Nino();
+        this.fecha= new Date();
         
         this.year = 1;
         this.month = 1;
@@ -48,26 +51,43 @@ public class ControlDonacion implements Serializable {
     }
     
     public String addDonacion() {
-        this.donacion.setSocio(this.socio);
-        this.donacion.setNino(this.nino);
-        this.donacion.setFecha(new Date(this.year - 1900, this.month - 1, this.day));
+        setFecha2();
+        this.donacion.setFecha(this.fecha);
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        
+        List<Nino> ln = new ArrayList();
+        List<Socio> ls = new ArrayList();
+        
+        String ninoQuery = "SELECT n FROM Nino n WHERE upper(n.nombre) = upper(\'" + this.nino.getNombre() + "\') and upper(n.apellidos) = upper(\'" + this.nino.getApellidos() + "\')";
+        String socioQuery = "SELECT s FROM Socio s WHERE upper(s.nombre) = upper(\'" + this.socio.getNombre() + "\') and upper(s.apellidos) = upper(\'" + this.socio.getApellidos() + "\')";
+        String socioQueryDNI = "SELECT s FROM Socio s WHERE upper(s.DNI) = upper(\'" + this.socio.getDNI() + "\')";
+        
+        if(this.nino.getId() != null) ln = neg.getRowById("Nino", this.nino.getId());
+        if(this.socio.getId() != null) ls = neg.getRowById("Socio", this.socio.getId());  
         
         try {
+            // 10x
+            if(ln.size() == 1 || (ln = neg.getRowsCustomQuery(ninoQuery)).size() == 1) this.donacion.setNino(ln.get(0));
+            else throw new EJBException("La búsqueda del niño en la base de datos ha devuelto un número de resultados distinto del que se esperaba (!= 1)");
+
+            if(ls.size() == 1 || (ls = neg.getRowsCustomQuery(socioQuery)).size() == 1 || (ls = neg.getRowsCustomQuery(socioQueryDNI)).size() == 1) this.donacion.setSocio(ls.get(0));
+            else throw new EJBException("La búsqueda del socio en la base de datos ha devuelto un número de resultados distinto del que se esperaba (!= 1)");
+
             neg.add(this.donacion);
+
         } catch(EJBException e) {
-            FacesContext ctx = FacesContext.getCurrentInstance();
-            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,e.getMessage(),e.getMessage()));
-            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Probablemente hay algún campo de tipo numérico incorrecto o algún campo está incompleto", null));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Pruebe a ser más preciso con la búsqueda, rellenando el campo id", null));
         }
         
         this.donacion = new Donacion();
-        this.socio = new Socio();
         this.nino = new Nino();
+        this.socio = new Socio();
+        this.fecha= new Date();
         
         this.year = 1;
         this.month = 1;
         this.day = 1;
-        
         
         return null;
     }
@@ -86,6 +106,8 @@ public class ControlDonacion implements Serializable {
     
     public String goModifyDonacion(Donacion don) {
         this.donacion = don;
+        setFecha2();
+        this.donacion.setFecha(this.fecha);
         
         return "donacionesModificar.xhtml";
     }
@@ -101,6 +123,7 @@ public class ControlDonacion implements Serializable {
         } 
         
         this.donacion = new Donacion();
+        this.fecha= new Date();
         return "donaciones.xhtml";
     }
     
@@ -163,6 +186,20 @@ public class ControlDonacion implements Serializable {
 
     public void setNino(Nino nino) {
         this.nino = nino;
+    }
+    
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+    
+    public void setFecha2() {
+        this.fecha.setDate(this.day);
+        this.fecha.setMonth(this.month);
+        this.fecha.setYear(this.year);
     }
     
 }
