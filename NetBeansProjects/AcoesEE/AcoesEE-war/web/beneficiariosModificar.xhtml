@@ -12,15 +12,12 @@
         <h:form>
             <h3>Modificando beneficiario <h:outputText value="#{ControlBeneficiario.beneficiario.nino}"></h:outputText></h3>
             Nombre beneficiario:
-            <h:inputText value="#{ControlBeneficiario.nino.nombre}"></h:inputText><br/>
-            Apellido beneficiario:
-            <h:inputText value="#{ControlBeneficiario.nino.apellidos}"></h:inputText>
-            <hr/>
-            Año:
-            <h:inputText value="#{ControlBeneficiario.beneficiario.ano}"></h:inputText>
-            <hr/>
+            <h:outputText value="#{ControlBeneficiario.nino}"></h:outputText><br/>
             Beca:
-            <h:inputText value="#{ControlBeneficiario.beca.nombre}"></h:inputText>
+            <h:outputText value="#{ControlBeneficiario.beca.nombre}"></h:outputText>
+            <br/>
+            Año:
+            <h:outputText value="#{ControlBeneficiario.beneficiario.ano}"></h:outputText>
             <hr/>
             Observaciones:
             <h:inputText value="#{ControlBeneficiario.beneficiario.observaciones}"></h:inputText>
