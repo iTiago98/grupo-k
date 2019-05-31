@@ -59,7 +59,7 @@ public class ControlUsuario implements Serializable {
             neg.remove(u);
         }catch (EJBException e) {
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null));
-            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Este usuario está siendo utilizada por otras entidades, pruebe a eliminar esas referencias primero.", null));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Este elemento está siendo utilizado por otras entidades, pruebe a eliminar esas referencias primero.", null));
         }
         return null;
     }

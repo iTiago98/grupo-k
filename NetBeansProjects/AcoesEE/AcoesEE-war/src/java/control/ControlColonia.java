@@ -38,7 +38,7 @@ public class ControlColonia implements Serializable {
             neg.remove(col);
         }catch (EJBException e) {
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null));
-            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Esta colonia está siendo utilizada por otras entidades, pruebe a eliminar esas referencias primero.", null));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Este elemento está siendo utilizado por otras entidades, pruebe a eliminar esas referencias primero.", null));
         }
         return null;
     }
