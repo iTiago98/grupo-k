@@ -8,6 +8,9 @@ import java.util.List;
 //import negocio.NegocioSocio;
 import negocio.NegocioGenerico;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 
 @Named(value = "ControlSocio")
@@ -27,9 +30,20 @@ public class ControlSocio implements Serializable {
     
     public String addSocio() {
         //negSocio.addSocio(socio);
-        neg.add(this.socio);
+        try{
+            for(Object s: neg.getRows("getSocios")) {
+                if(((Socio) s).getDNI().equalsIgnoreCase(this.socio.getDNI())){
+                    throw new EJBException();
+                }
+            }
+            neg.add(this.socio);
+            this.socio = new Socio();
+        }catch(EJBException e) {
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ya existe un socio con ese DNI", null));
+            //ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage()));
+        }
 
-        this.socio = new Socio();
         return null;
     }
     

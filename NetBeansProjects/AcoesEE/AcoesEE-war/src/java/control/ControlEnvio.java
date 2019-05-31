@@ -18,6 +18,8 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
+import javax.faces.model.SelectItemGroup;
 import negocio.NegocioGenerico;
 
 @Named(value = "ControlEnvio")
@@ -44,21 +46,66 @@ public class ControlEnvio implements Serializable {
     
     public String addEnvio() {
         
-        this.nino.setFechaNacimiento(new Date(this.year - 1900, this.month - 1, this.day));
-        this.nino.setSexo('i');
-        this.envio.setNino(this.nino);
-        this.envio.setSocio(this.socio);
+        int a=0;
+        int b=0;
+        int c=0;
         
-        //try {
-            neg.add(this.nino);
-            neg.add(this.socio);
-            neg.add(this.envio);
-            
-        /*} catch(EJBException e) {
+        for(Object n: neg.getRows("getNinos")) {
+            if(((Nino) n).getId().equals(this.nino.getId())){
+                this.envio.setNino(((Nino) n));
+                a=1;
+                break;
+            }else if(((Nino) n).getNombre().equalsIgnoreCase(this.nino.getNombre()) && 
+            ((Nino) n).getApellidos().equalsIgnoreCase(this.nino.getApellidos())) {
+               this.envio.setNino(((Nino) n));
+               if(c==0) a=0;
+               a++;
+               c=1;
+            }else if(c!=1 && (((Nino) n).getNombre().equalsIgnoreCase(this.nino.getNombre()) || 
+            ((Nino) n).getApellidos().equalsIgnoreCase(this.nino.getApellidos()))) {
+               this.envio.setNino(((Nino) n));
+                a++;
+            }
+        }
+        c=0;
+        for(Object s: neg.getRows("getSocios")) {
+            if(((Socio) s).getId().equals(this.socio.getId()) || 
+            ((Socio) s).getDNI().equalsIgnoreCase(this.socio.getDNI())){
+                this.envio.setSocio(((Socio) s));
+                b=1;
+                break;
+            }else if(((Socio) s).getNombre().equalsIgnoreCase(this.socio.getNombre()) && 
+            ((Socio) s).getApellidos().equalsIgnoreCase(this.socio.getApellidos())) {
+                this.envio.setSocio(((Socio) s));
+                if(c==0) b=0;
+                b++;
+                c=1;
+            }else if(c!=1 && (((Socio) s).getNombre().equalsIgnoreCase(this.socio.getNombre()) || 
+            ((Socio) s).getApellidos().equalsIgnoreCase(this.socio.getApellidos()))) {
+                this.envio.setSocio(((Socio) s));
+                b++;
+            }
+        }
+        
+        try {
+            if(a==1&&b==1){
+                neg.add(this.envio);
+            }else{
+                throw new EJBException();
+            }
+            //neg.add(this.nino);
+            //neg.add(this.socio); 
+        } catch(EJBException e) {
             FacesContext ctx = FacesContext.getCurrentInstance();
-            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage()));
+            if(a==0) ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "No existe ningún niño con esos datos", null));
+            else if(a>1) ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Existen varios niños con esos datos, sea más específico", null));
+                
+            if(b==0) ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "No existe ningún socio con esos datos", null));
+            else if(b>1) ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Existen varios socios con esos datos, sea más específico", null));
+            
+            //ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage()));
             //ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error de creacion", null));
-        }*/
+        }
         
         this.envio = new Envio();
         this.nino = new Nino();
@@ -90,13 +137,8 @@ public class ControlEnvio implements Serializable {
     }
     
     public String modifyEnvio() {
-        for(Object b : neg.getRows("getEnvios")){
-            if(b.equals(this.envio)){
-                neg.modify(this.envio);
-                neg.modify(this.nino);
-                neg.modify(this.socio);
-            }
-        }
+        
+        neg.modify(this.envio);
         
         this.envio = new Envio();
         this.nino = new Nino();
@@ -124,6 +166,14 @@ public class ControlEnvio implements Serializable {
     /*
     public void setEnvio(ArrayList<Envio> envios) {
         this.envios = envios;
+    }
+    
+    public ArrayList<Nino> getNinos(){
+        return ninos;
+    }
+    
+    public ArrayList<Socio> getSocios(){
+        return socios;
     }
     */
     public Nino getNino() {
@@ -165,5 +215,4 @@ public class ControlEnvio implements Serializable {
     public void setDay(int day) {
         this.day = day;
     }
-
 }
