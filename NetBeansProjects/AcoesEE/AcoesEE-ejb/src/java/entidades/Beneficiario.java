@@ -77,39 +77,18 @@ public class Beneficiario implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.beca);
-        hash = 97 * hash + Objects.hashCode(this.nino);
-        hash = 97 * hash + Objects.hashCode(this.ano);
-        hash = 97 * hash + Objects.hashCode(this.observaciones);
-        return hash;
+        int hashBeca = this.beca != null ? this.beca.hashCode() : 0;
+        int hashNino = this.nino != null ? this.nino.hashCode() : 0;
+        int hashAno = this.ano != null ? this.ano.hashCode() : 0;
+        return hashBeca+hashNino+hashAno;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Beneficiario other = (Beneficiario) obj;
-        if (!Objects.equals(this.observaciones, other.observaciones)) {
-            return false;
-        }
-        if (!Objects.equals(this.beca, other.beca)) {
-            return false;
-        }
-        if (!Objects.equals(this.nino, other.nino)) {
-            return false;
-        }
-        if (!Objects.equals(this.ano, other.ano)) {
-            return false;
-        }
-        return true;
+        if(!(obj instanceof Beneficiario)) return false;
+        return this.beca.equals(((Beneficiario)obj).beca)
+            && this.nino.equals(((Beneficiario)obj).nino)
+            && this.ano.equals(((Beneficiario)obj).ano);
     }
 
 }
