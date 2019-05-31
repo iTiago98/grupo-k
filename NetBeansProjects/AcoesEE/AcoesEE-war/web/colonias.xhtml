@@ -12,6 +12,10 @@
         <h:form>
             <h:dataTable value="#{ControlColonia.getColonias()}" var="col" border="1">
                 <h:column>                   
+                    <f:facet name="header">ID</f:facet>                 
+                    <h:outputText value="#{col.id}"></h:outputText>
+                </h:column>
+                <h:column>                   
                     <f:facet name="header">Nombre</f:facet>                 
                     <h:outputText value="#{col.nombre}"></h:outputText>
                 </h:column>

@@ -12,6 +12,10 @@
         <h:form>
             <h:dataTable value="#{ControlUsuario.getUsuarios()}" var="user" border="1">
                 <h:column>                   
+                    <f:facet name="header">ID</f:facet>                 
+                    <h:outputText value="#{user.id}"></h:outputText>
+                </h:column>
+                <h:column>                   
                     <f:facet name="header">Nombre</f:facet>                 
                     <h:outputText value="#{user.usuario}"></h:outputText>
                 </h:column>

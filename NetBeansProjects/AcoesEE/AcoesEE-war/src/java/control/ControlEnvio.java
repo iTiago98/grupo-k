@@ -45,66 +45,30 @@ public class ControlEnvio implements Serializable {
     }
     
     public String addEnvio() {
+        FacesContext ctx = FacesContext.getCurrentInstance();
         
-        int a=0;
-        int b=0;
-        int c=0;
+        List<Nino> ln = new ArrayList();
+        List<Socio> ls = new ArrayList();
         
-        for(Object n: neg.getRows("getNinos")) {
-            if(((Nino) n).getId().equals(this.nino.getId())){
-                this.envio.setNino(((Nino) n));
-                a=1;
-                break;
-            }else if(((Nino) n).getNombre().equalsIgnoreCase(this.nino.getNombre()) && 
-            ((Nino) n).getApellidos().equalsIgnoreCase(this.nino.getApellidos())) {
-               this.envio.setNino(((Nino) n));
-               if(c==0) a=0;
-               a++;
-               c=1;
-            }else if(c!=1 && (((Nino) n).getNombre().equalsIgnoreCase(this.nino.getNombre()) || 
-            ((Nino) n).getApellidos().equalsIgnoreCase(this.nino.getApellidos()))) {
-               this.envio.setNino(((Nino) n));
-                a++;
-            }
-        }
-        c=0;
-        for(Object s: neg.getRows("getSocios")) {
-            if(((Socio) s).getId().equals(this.socio.getId()) || 
-            ((Socio) s).getDNI().equalsIgnoreCase(this.socio.getDNI())){
-                this.envio.setSocio(((Socio) s));
-                b=1;
-                break;
-            }else if(((Socio) s).getNombre().equalsIgnoreCase(this.socio.getNombre()) && 
-            ((Socio) s).getApellidos().equalsIgnoreCase(this.socio.getApellidos())) {
-                this.envio.setSocio(((Socio) s));
-                if(c==0) b=0;
-                b++;
-                c=1;
-            }else if(c!=1 && (((Socio) s).getNombre().equalsIgnoreCase(this.socio.getNombre()) || 
-            ((Socio) s).getApellidos().equalsIgnoreCase(this.socio.getApellidos()))) {
-                this.envio.setSocio(((Socio) s));
-                b++;
-            }
-        }
+        String ninoQuery = "SELECT n FROM Nino n WHERE upper(n.nombre) = upper(\'" + this.nino.getNombre() + "\') and upper(n.apellidos) = upper(\'" + this.nino.getApellidos() + "\')";
+        String socioQuery = "SELECT s FROM Socio s WHERE upper(s.nombre) = upper(\'" + this.socio.getNombre() + "\') and upper(s.apellidos) = upper(\'" + this.socio.getApellidos() + "\')";
+        
+        if(this.nino.getId() != null) ln = neg.getRowById("Nino", this.nino.getId());
+        if(this.socio.getId() != null) ls = neg.getRowById("Socio", this.socio.getId());  
         
         try {
-            if(a==1&&b==1){
-                neg.add(this.envio);
-            }else{
-                throw new EJBException();
-            }
-            //neg.add(this.nino);
-            //neg.add(this.socio); 
+            // 10x
+            if(ln.size() == 1 || (ln = neg.getRowsCustomQuery(ninoQuery)).size() == 1) this.envio.setNino(ln.get(0));
+            else throw new EJBException("La búsqueda del niño en la base de datos ha devuelto un número de resultados distinto del que se esperaba (!= 1)");
+
+            if(ls.size() == 1 || (ls = neg.getRowsCustomQuery(socioQuery)).size() == 1) this.envio.setSocio(ls.get(0));
+            else throw new EJBException("La búsqueda del socio en la base de datos ha devuelto un número de resultados distinto del que se esperaba (!= 1)");
+
+            neg.add(this.envio);
+
         } catch(EJBException e) {
-            FacesContext ctx = FacesContext.getCurrentInstance();
-            if(a==0) ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "No existe ningún niño con esos datos", null));
-            else if(a>1) ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Existen varios niños con esos datos, sea más específico", null));
-                
-            if(b==0) ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "No existe ningún socio con esos datos", null));
-            else if(b>1) ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Existen varios socios con esos datos, sea más específico", null));
-            
-            //ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage()));
-            //ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error de creacion", null));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Pruebe a ser más preciso con la búsqueda, rellenando el campo id", null));
         }
         
         this.envio = new Envio();

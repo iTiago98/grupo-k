@@ -12,6 +12,10 @@
         <h:form>
             <h:dataTable value="#{ControlProyecto.getProyectos()}" var="pro" border="1">
                 <h:column>                   
+                    <f:facet name="header">ID</f:facet>                 
+                    <h:outputText value="#{pro.id}"></h:outputText>
+                </h:column>
+                <h:column>                   
                     <f:facet name="header">Nombre</f:facet>                 
                     <h:outputText value="#{pro.nombre}"></h:outputText>
                 </h:column>
@@ -43,6 +47,13 @@
             Capacidad:
             <h:inputText value="#{ControlProyecto.proyecto.capacidad}"></h:inputText>
             <hr/>
+            Niños en el proyecto:
+            <hr/>
+            <h:selectManyListbox value="#{ControlProyecto.ninos_en_proyecto}">
+                <f:selectItems value="#{ControlProyecto.ninos}"></f:selectItems>
+            </h:selectManyListbox>
+            <hr/>
+            
             <h:commandButton value="Añadir" action="#{ControlProyecto.addProyecto}"></h:commandButton>
         </h:form>
         <h:messages></h:messages>

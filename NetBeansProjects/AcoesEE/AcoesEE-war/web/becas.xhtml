@@ -12,6 +12,10 @@
         <h:form>
             <h:dataTable value="#{ControlBeca.getBecas()}" var="beca" border="1">
                 <h:column>                   
+                    <f:facet name="header">ID</f:facet>                 
+                    <h:outputText value="#{beca.id}"></h:outputText>
+                </h:column>
+                <h:column>                   
                     <f:facet name="header">Nombre</f:facet>                 
                     <h:outputText value="#{beca.nombre}"></h:outputText>
                 </h:column>

@@ -35,7 +35,7 @@ public class NegocioGenerico {
         return em.createQuery(query).getResultList();
     }
     
-    public <T extends Serializable> List<T> getRowById(String res, int id) {
+    public <T extends Serializable> List<T> getRowById(String res, long id) {
         return em.createQuery("SELECT o FROM " + res + " o WHERE o.id = " + id).getResultList();
     }
 }
