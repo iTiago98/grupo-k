@@ -32,6 +32,10 @@
                     <h:outputText value="#{nino.colonia.nombre}"></h:outputText>
                 </h:column>
                 <h:column>
+                    <f:facet name="header">Proyecto</f:facet>
+                    <h:outputText value="#{nino.proyecto.nombre}"></h:outputText>
+                </h:column>
+                <h:column>
                     <f:facet name="header">Fecha de nacimiento</f:facet>
                     <h:outputText value="#{nino.fechaNacimientoFormat}"></h:outputText>
                 </h:column>
@@ -57,8 +61,13 @@
             <h:inputText value="#{ControlNino.nino.sexo}"></h:inputText><hr/>
             ID Colonia:
             <h:inputText value="#{ControlNino.colonia.id}" size="5"></h:inputText>
-            Nombre Colonia:
+            Nombre de la colonia:
             <h:inputText value="#{ControlNino.colonia.nombre}"></h:inputText>
+            <hr/>
+            ID Proyecto:
+            <h:inputText value="#{ControlNino.proyecto.id}" size="5"></h:inputText>
+            Nombre del proyecto:
+            <h:inputText value="#{ControlNino.proyecto.nombre}" size="5"></h:inputText>
             <hr/>
             Fecha de nacimiento:<br/>
             Año: <h:inputText value="#{ControlNino.year}" size="4"></h:inputText>

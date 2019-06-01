@@ -6,6 +6,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import entidades.Nino;
+import entidades.Proyecto;
 import entidades.Socio;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,31 +24,28 @@ public class ControlNino implements Serializable {
     private int year, month, day;
     private Socio socio;
     private Colonia colonia;
-    //private ArrayList<Nino> ninos;
+    private Proyecto proyecto;
+    
     @EJB
     private NegocioGenerico neg;
     
     public ControlNino() {
-        nino = new Nino();
-        socio = new Socio();
-        colonia= new Colonia();
+        this.nino = new Nino();
+        this.socio = new Socio();
+        this.colonia= new Colonia();
+        this.proyecto = new Proyecto();
+        
         this.year = 1;
         this.month = 1;
         this.day = 1;
-        /*
-        ninos = new ArrayList<>();
-        // Por alguna razón Java decide que añadir 1900 años a las fechas es algo
-        // completamente comprensible. Muchas gracias JAVA.
-        ninos.add(new Nino("Ramón", "Yuzo", 'H', new Date(1999 - 1900, 10 - 1, 20)));
-        ninos.add(new Nino("Aquiles", "Rodrigez", 'H', new Date(1999 - 1900, 8 - 1, 9)));
-        ninos.add(new Nino("Marina", "Balmén", 'M', new Date(2003 - 1900, 1 - 1, 20)));
-        */
+
     }
     
     public String addNino() {
         this.nino.setFechaNacimiento(new Date(this.year - 1900, this.month - 1, this.day));
         //ninos.add(this.nino);
         coloniaNino();
+        proyectoNino();
         try {
             neg.add(this.nino);
         } catch(EJBException e) {
@@ -58,7 +56,8 @@ public class ControlNino implements Serializable {
         
         this.nino = new Nino();
         this.socio = new Socio();
-        this.colonia= new Colonia();
+        this.colonia = new Colonia();
+        this.proyecto = new Proyecto();
         this.year = 1;
         this.month = 1;
         this.day = 1;
@@ -83,12 +82,16 @@ public class ControlNino implements Serializable {
         this.month = n.getFechaNacimiento().getMonth();
         this.day = n.getFechaNacimiento().getDay();
         this.nino = n; 
-       return "ninosModificar.xhtml";
+        this.colonia = (this.nino.getColonia() != null)?this.nino.getColonia():new Colonia();
+        this.socio = (this.nino.getSocio() != null)?this.nino.getSocio():new Socio();
+        this.proyecto = (this.nino.getProyecto() != null)?this.nino.getProyecto():new Proyecto();
+        return "ninosModificar.xhtml";
     }
     
     
     public String modifyNino() {
         coloniaNino();
+        proyectoNino();
         
         for(Object n: neg.getRows("getNinos")) {
             if(n.equals(this.nino)) {
@@ -99,7 +102,7 @@ public class ControlNino implements Serializable {
             }
         }
         
-        this.nino = new Nino(); // cleanup
+        this.nino = new Nino();
         this.socio = new Socio();
         this.colonia= new Colonia();
         this.year = 1;
@@ -121,12 +124,8 @@ public class ControlNino implements Serializable {
         if(this.socio.getId() != null) ls = neg.getRowById("Socio", this.socio.getId());  
         
         try {
-            // 10x
             if(ls.size() == 1 || (ls = neg.getRowsCustomQuery(socioQuery)).size() == 1 || (ls = neg.getRowsCustomQuery(socioQueryDNI)).size() == 1) this.nino.setSocio(ls.get(0));
             else throw new EJBException("La búsqueda del socio en la base de datos ha devuelto un número de resultados distinto del que se esperaba (!= 1)");
-
-            //neg.add(this.envio);
-
         } catch(EJBException e) {
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null));
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Pruebe a ser más preciso con la búsqueda, rellenando el campo id", null));
@@ -138,30 +137,40 @@ public class ControlNino implements Serializable {
         
     }
     
-    public String coloniaNino(){
+    public void coloniaNino(){
         FacesContext ctx = FacesContext.getCurrentInstance();
         
-        List<Colonia> ls = new ArrayList();
+        List<Colonia> lc = new ArrayList();
 
         String coloniaQuery = "SELECT c FROM Colonia c WHERE upper(c.nombre) = upper(\'" + this.colonia.getNombre() + "\')";
-        if(this.colonia.getId() != null) ls = neg.getRowById("Colonia", this.colonia.getId());  
+        if(this.colonia.getId() != null) lc = neg.getRowById("Colonia", this.colonia.getId());  
         
         try {
-            // 10x
-            if(ls.size() == 1 || (ls = neg.getRowsCustomQuery(coloniaQuery)).size() == 1) this.nino.setColonia(ls.get(0));
+            if(lc.size() == 1 || (lc = neg.getRowsCustomQuery(coloniaQuery)).size() == 1) this.nino.setColonia(lc.get(0));
             else throw new EJBException("La búsqueda de la colonia en la base de datos ha devuelto un número de resultados distinto del que se esperaba (!= 1)");
-
-            //neg.add(this.envio);
-
         } catch(EJBException e) {
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null));
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Pruebe a ser más preciso con la búsqueda, rellenando el campo id", null));
         }
         
-        return null;
-        
     }
     
+    public void proyectoNino() {
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        
+        List<Proyecto> lp = new ArrayList();
+
+        String proyectoQuery = "SELECT p FROM Proyecto p WHERE upper(p.nombre) = upper(\'" + this.proyecto.getNombre() + "\')";
+        if(this.proyecto.getId() != null) lp = neg.getRowById("Proyecto", this.proyecto.getId());  
+        
+        try {
+            if(lp.size() == 1 || (lp = neg.getRowsCustomQuery(proyectoQuery)).size() == 1) this.nino.setProyecto(lp.get(0));
+            else throw new EJBException("La búsqueda del proyecto en la base de datos ha devuelto un número de resultados distinto del que se esperaba (!= 1)");
+        } catch(EJBException e) {
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Pruebe a ser más preciso con la búsqueda, rellenando el campo id", null));
+        }
+    }
 
     
     /**************************************************/
@@ -190,6 +199,14 @@ public class ControlNino implements Serializable {
     
     public void setColonia(Colonia colonia) {
         this.colonia = colonia;
+    }
+
+    public Proyecto getProyecto() {
+        return proyecto;
+    }
+
+    public void setProyecto(Proyecto proyecto) {
+        this.proyecto = proyecto;
     }
 
     public int getYear() {

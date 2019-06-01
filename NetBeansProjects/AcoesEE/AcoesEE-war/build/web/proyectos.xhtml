@@ -29,10 +29,6 @@
                     <h:outputText value="#{pro.capacidad}"></h:outputText>
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Niños</f:facet>
-                    <h:outputText value="#{pro.ninos}"></h:outputText>
-                </h:column>
-                <h:column>
                     <f:facet name="header">Acción</f:facet>
                     <h:commandButton value="Borrar" action="#{ControlProyecto.removeProyecto(pro)}"></h:commandButton>
                     <h:commandButton value="Modificar" action="#{ControlProyecto.goModifyProyecto(pro)}"></h:commandButton>
@@ -50,13 +46,6 @@
             Capacidad:
             <h:inputText value="#{ControlProyecto.proyecto.capacidad}"></h:inputText>
             <hr/>
-            Niños en el proyecto:
-            <hr/>
-            <h:selectManyListbox>
-                <f:selectItems value="#{ControlProyecto.ninos}"></f:selectItems>
-            </h:selectManyListbox>
-            <hr/>
-            
             <h:commandButton value="Añadir" action="#{ControlProyecto.addProyecto}"></h:commandButton>
         </h:form>
         <h:messages></h:messages>
