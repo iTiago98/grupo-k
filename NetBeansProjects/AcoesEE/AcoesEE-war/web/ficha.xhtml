@@ -33,7 +33,23 @@
                     <h:commandButton value="Borrar" action="#{ControlFicha.removeFicha(ficha)}"></h:commandButton>
                 </h:column>
             </h:dataTable>
-            <a href="anadirFicha.xhtml"><h3>Añadir nueva ficha</h3></a>
+        </h:form>
+        <h:form>
+            <br/>
+            <h3>Insertar nueva ficha</h3>
+            Expediente número:
+            <br/><br/>
+            <h:inputText value="#{ControlFicha.ficha.id}"></h:inputText>
+            <hr/>
+            Fecha:
+            <br/><br/>
+            <h:inputText value="#{ControlFicha.ficha.fechaMatriculacion}"></h:inputText>
+            <hr/>
+            Curso:
+            <br/><br/>
+            <h:inputText value="#{ControlFicha.ficha.curso}"></h:inputText>
+            <hr/>
+            <h:commandButton value="Insertar Ficha" action="#{ControlFicha.addFicha}"></h:commandButton>
         </h:form>
         <h:messages></h:messages>
     </ui:define>
