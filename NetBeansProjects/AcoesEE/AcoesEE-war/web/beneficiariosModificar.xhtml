@@ -1,0 +1,30 @@
+<ui:composition template="/WEB-INF/res/plantilla.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" 
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <ui:define name="title">Modificar beneficiario</ui:define>
+    <ui:define name="rolUsuario"><h:outputText value="#{ControlAutorizacion.usuario.rol}"></h:outputText></ui:define>
+    <ui:define name="nombreUsuario"><h:outputText value="#{ControlAutorizacion.usuario.usuario}"></h:outputText></ui:define>
+    <ui:define name="content">
+        <h1>Beneficiarios</h1>
+        <h:form>
+            <h3>Modificando beneficiario <h:outputText value="#{ControlBeneficiario.beneficiario.nino}"></h:outputText></h3>
+            Nombre beneficiario:
+            <h:outputText value="#{ControlBeneficiario.nino}"></h:outputText><br/>
+            Beca:
+            <h:outputText value="#{ControlBeneficiario.beca.nombre}"></h:outputText>
+            <br/>
+            Año:
+            <h:outputText value="#{ControlBeneficiario.beneficiario.ano}"></h:outputText>
+            <hr/>
+            Observaciones:
+            <h:inputText value="#{ControlBeneficiario.beneficiario.observaciones}"></h:inputText>
+            <hr/>
+            <h:commandButton value="Modificar" action="#{ControlBeneficiario.modifyBeneficiario}"></h:commandButton>
+        </h:form>
+        <h:messages></h:messages>
+    </ui:define>
+</ui:composition>

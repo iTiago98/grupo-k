@@ -1,0 +1,82 @@
+<ui:composition template="/WEB-INF/res/plantilla.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <ui:define name="title">Niños</ui:define>
+    <ui:define name="rolUsuario"><h:outputText value="#{ControlAutorizacion.usuario.rol}"></h:outputText></ui:define>
+    <ui:define name="nombreUsuario"><h:outputText value="#{ControlAutorizacion.usuario.usuario}"></h:outputText></ui:define>
+    <ui:define name="content">
+        <h1>Niños</h1>
+        <h:form>
+            <h:dataTable value="#{ControlNino.getNinos()}" var="nino" border="1">
+                <h:column>                   
+                    <f:facet name="header">ID</f:facet>                 
+                    <h:outputText value="#{nino.id}"></h:outputText>
+                </h:column>
+                <h:column>                   
+                    <f:facet name="header">Nombre</f:facet>                 
+                    <h:outputText value="#{nino.nombre}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Apellidos</f:facet>
+                    <h:outputText value="#{nino.apellidos}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Sexo</f:facet>
+                    <h:outputText value="#{nino.sexo}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Colonia</f:facet>
+                    <h:outputText value="#{nino.colonia.nombre}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Proyecto</f:facet>
+                    <h:outputText value="#{nino.proyecto.nombre}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Fecha de nacimiento</f:facet>
+                    <h:outputText value="#{nino.fechaNacimientoFormat}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Padrino</f:facet>
+                    <h:outputText value="#{nino.socio}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Acción</f:facet>
+                    <h:commandButton value="Borrar" action="#{ControlNino.removeNino(nino)}"></h:commandButton>
+                    <h:commandButton value="Modificar/Apadrinar" action="#{ControlNino.goModifyNino(nino)}"></h:commandButton>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+        <h:form>
+            <h3>Añadir nuevo niño</h3>
+            Nombre:
+            <h:inputText value="#{ControlNino.nino.nombre}"></h:inputText>
+            Apellidos:
+            <h:inputText value="#{ControlNino.nino.apellidos}"></h:inputText>
+            <hr/>
+            Sexo:
+            <h:inputText value="#{ControlNino.nino.sexo}"></h:inputText><hr/>
+            ID Colonia:
+            <h:inputText value="#{ControlNino.colonia.id}" size="5"></h:inputText>
+            Nombre de la colonia:
+            <h:inputText value="#{ControlNino.colonia.nombre}"></h:inputText>
+            <hr/>
+            ID Proyecto:
+            <h:inputText value="#{ControlNino.proyecto.id}" size="5"></h:inputText>
+            Nombre del proyecto:
+            <h:inputText value="#{ControlNino.proyecto.nombre}" size="5"></h:inputText>
+            <hr/>
+            Fecha de nacimiento:<br/>
+            Año: <h:inputText value="#{ControlNino.year}" size="4"></h:inputText>
+            Mes: <h:inputText value="#{ControlNino.month}" size="2"></h:inputText>
+            Día: <h:inputText value="#{ControlNino.day}" size="2"></h:inputText> <br/>
+            <hr/>
+            <h:commandButton value="Añadir" action="#{ControlNino.addNino}"></h:commandButton>
+        </h:form>
+        <h:messages></h:messages>
+    </ui:define>
+</ui:composition>

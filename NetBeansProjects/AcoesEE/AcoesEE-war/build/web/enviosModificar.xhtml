@@ -1,0 +1,38 @@
+<ui:composition template="/WEB-INF/res/plantilla.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <ui:define name="title">Modificar envío</ui:define>
+    <ui:define name="rolUsuario"><h:outputText value="#{ControlAutorizacion.usuario.rol}"></h:outputText></ui:define>
+    <ui:define name="nombreUsuario"><h:outputText value="#{ControlAutorizacion.usuario.usuario}"></h:outputText></ui:define>
+    <ui:define name="content">
+        <h:form>
+            <h3>Modificando envío</h3>
+            Nombre niño:
+            <h:outputText value="#{ControlEnvio.nino.nombre}"></h:outputText>
+            Apellidos niño:
+            <h:outputText value="#{ControlEnvio.nino.apellidos}"></h:outputText>
+            <hr/>
+            Nombre socio:
+            <h:outputText value="#{ControlEnvio.socio.nombre}"></h:outputText>
+            Apellidos socio:
+            <h:outputText value="#{ControlEnvio.socio.apellidos}"></h:outputText>
+            DNI socio:
+            <h:outputText value="#{ControlEnvio.socio.DNI}"></h:outputText>
+            <hr/>
+            Fecha:<br/>
+            Año: <h:inputText value="#{ControlEnvio.year}" size="4"></h:inputText> 
+            Mes: <h:inputText value="#{ControlEnvio.month}" size="2"></h:inputText>
+            Día: <h:inputText value="#{ControlEnvio.day}" size="2"></h:inputText>
+            <hr/>
+            Observaciones:
+            <h:inputText value="#{ControlEnvio.envio.observaciones}"></h:inputText>
+            <hr/>
+            <h:commandButton value="Modificar" action="#{ControlEnvio.modifyEnvio()}"></h:commandButton>
+        </h:form>
+        <h:messages></h:messages>
+    </ui:define>
+</ui:composition>
