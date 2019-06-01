@@ -91,13 +91,13 @@ public class ControlDonacion implements Serializable {
     }
     
     public String goModifyDonacion(Donacion don) {
-        this.year = don.getFecha().getYear();
-        this.month = don.getFecha().getMonth();
+        this.year = don.getFecha().getYear() + 1899; // no entiendo
+        this.month = don.getFecha().getMonth() + 1;
         this.day = don.getFecha().getDay();
 
+        this.socio = don.getSocio();
+        this.nino = don.getNino();
         this.donacion = don;
-        this.socio = this.donacion.getSocio();
-        this.nino = this.donacion.getNino();
         
         return "donacionesModificar.xhtml";
     }
@@ -105,8 +105,8 @@ public class ControlDonacion implements Serializable {
     public String modifyDonacion() {
         this.donacion.setFecha(new Date(this.year - 1900, this.month - 1, this.day));
         try {
-            for(Object don: neg.getRows("getDonaciones"))
-                if(don.equals(this.donacion)) neg.modify(this.donacion);
+            this.donacion.setFecha(new Date(this.year - 1900, this.month - 1, this.day));
+            neg.modify(this.donacion);
         } catch(EJBException e) {
             FacesContext ctx = FacesContext.getCurrentInstance();
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage()));
