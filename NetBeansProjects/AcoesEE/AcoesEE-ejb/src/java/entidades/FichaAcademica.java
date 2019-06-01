@@ -33,7 +33,7 @@ public class FichaAcademica implements Serializable {
     @Column(nullable = false)
     //@Temporal(TemporalType.DATE)
     private String fechaMatriculacion;
-    @OneToMany
+    @OneToMany(orphanRemoval=true)
     private Set<Asignatura> asignaturas;
 
     public FichaAcademica(int i, String date, Set<Asignatura> asignaturas) {
