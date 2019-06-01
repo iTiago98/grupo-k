@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -27,7 +28,7 @@ public class ControlFicha implements Serializable{
     private NegocioGenerico neg;
     
     private FichaAcademica ficha;
-    private final ArrayList<String> asignaturasOfertadas = new ArrayList<>();
+    private ArrayList<String> asignaturasOfertadas = new ArrayList<>();
     
     public ControlFicha() throws ParseException{
         ficha = new FichaAcademica();
@@ -42,9 +43,16 @@ public class ControlFicha implements Serializable{
     }
     
     public String addFicha(){
-        neg.add(ficha);
-        ficha.getAsignaturas().clear();
-        return "ficha.xhtml";
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        try {
+            neg.add(ficha);
+            this.ficha = new FichaAcademica();
+        } catch (EJBException e){
+            this.ficha = new FichaAcademica();
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ese expediente ya existe", null));
+        }
+        return null;
     }
     
     public String addAsig(Asignatura asignatura){
@@ -52,6 +60,7 @@ public class ControlFicha implements Serializable{
         if(asignaturasOfertadas.contains(asignatura.getObservaciones())){
             ficha.getAsignaturas().add(asignatura);
             neg.modify(ficha);
+            this.ficha = new FichaAcademica();
             return "ficha.xhtml";
         }else{
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Introduzca una de las asignaturas ofertadas", null));
@@ -68,6 +77,7 @@ public class ControlFicha implements Serializable{
         ficha.getAsignaturas().clear();
         neg.modify(ficha);
         neg.remove(ficha);
+        this.ficha = new FichaAcademica();
         return null;
     }
 
