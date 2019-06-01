@@ -9,6 +9,7 @@
     <ui:define name="rolUsuario"><h:outputText value="#{ControlAutorizacion.usuario.rol}"></h:outputText></ui:define>
     <ui:define name="nombreUsuario"><h:outputText value="#{ControlAutorizacion.usuario.usuario}"></h:outputText></ui:define>
     <ui:define name="content">
+        <h1>Colonias</h1>
         <h:form>
             <h:dataTable value="#{ControlColonia.getColonias()}" var="col" border="1">
                 <h:column>                   
