@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.enterprise.context.SessionScoped;
@@ -39,25 +41,29 @@ public class ControlFicha implements Serializable{
     public String addFicha(){
         FacesContext ctx = FacesContext.getCurrentInstance();
         try {
+            if(ficha.getCurso()<=0 || ficha.getCurso() >4) throw new Exception();
             neg.add(ficha);
             this.ficha = new FichaAcademica();
         } catch (EJBException e){
             this.ficha = new FichaAcademica();
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null));
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ese expediente ya existe", null));
+        } catch (Exception ex) {
+            this.ficha = new FichaAcademica();
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Introduzca un curso válido(de 1 a 4)", null));
         }
         return null;
     }
     
     public String addAsig(Asignatura asignatura){
         FacesContext ctx = FacesContext.getCurrentInstance();
-        if(asignaturasOfertadas.contains(asignatura.getObservaciones())){
+        if(asignaturasOfertadas.contains(asignatura.getObservaciones()) && (asignatura.getCalificacion() <= 10) && (asignatura.getCalificacion() >= 0)){
             ficha.getAsignaturas().add(asignatura);
             neg.modify(ficha);
             this.ficha = new FichaAcademica();
             return "ficha.xhtml";
         }else{
-            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Introduzca una de las asignaturas ofertadas", null));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Introduzca una de las asignaturas ofertadas o una nota válida.", null));
             return null;
         }
     }
