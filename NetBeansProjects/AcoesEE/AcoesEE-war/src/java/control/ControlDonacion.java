@@ -106,8 +106,11 @@ public class ControlDonacion implements Serializable {
     
     public String goModifyDonacion(Donacion don) {
         this.donacion = don;
-        setFecha2();
-        this.donacion.setFecha(this.fecha);
+        this.socio=this.donacion.getSocio();
+        this.nino=this.donacion.getNino();
+        this.day=this.donacion.getFecha().getDay();
+        this.month=this.donacion.getFecha().getMonth()+1;
+        this.year=this.donacion.getFecha().getYear()+1900;
         
         return "donacionesModificar.xhtml";
     }
@@ -123,7 +126,13 @@ public class ControlDonacion implements Serializable {
         } 
         
         this.donacion = new Donacion();
+        this.socio = new Socio();
+        this.nino = new Nino();
         this.fecha= new Date();
+        this.year = 1;
+        this.month = 1;
+        this.day = 1;
+        
         return "donaciones.xhtml";
     }
     
@@ -198,8 +207,8 @@ public class ControlDonacion implements Serializable {
     
     public void setFecha2() {
         this.fecha.setDate(this.day);
-        this.fecha.setMonth(this.month);
-        this.fecha.setYear(this.year);
+        this.fecha.setMonth(this.month-1);
+        this.fecha.setYear(this.year-1900);
     }
     
 }
