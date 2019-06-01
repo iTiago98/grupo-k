@@ -11,22 +11,21 @@
     <ui:define name="content">
         <h:form>
             <h3>Modificando donación del <h:outputText value="#{ControlDonacion.donacion.getFechaFormat()}"/></h3>
-            <h3>Añadir nueva donación</h3>
             ID del socio:
-            <h:inputText value="#{ControlDonacion.socio.id}" size="5"></h:inputText>
+            <h:outputText value="#{ControlDonacion.socio.id}"></h:outputText><br/>
             Nombre del socio:
-            <h:inputText value="#{ControlDonacion.socio.nombre}"></h:inputText>
+            <h:outputText value="#{ControlDonacion.socio.nombre}"></h:outputText><br/>
             Apellidos del socio:
-            <h:inputText value="#{ControlDonacion.socio.apellidos}"></h:inputText>
+            <h:outputText value="#{ControlDonacion.socio.apellidos}"></h:outputText><br/>
             DNI del socio:
-            <h:inputText value="#{ControlDonacion.socio.DNI}"></h:inputText>
+            <h:outputText value="#{ControlDonacion.socio.DNI}"></h:outputText>
             <hr/>
             ID del niño:
-            <h:inputText value="#{ControlDonacion.nino.id}"></h:inputText>
+            <h:outputText value="#{ControlDonacion.nino.id}"></h:outputText><br/>
             Nombre del niño:
-            <h:inputText value="#{ControlDonacion.nino.nombre}"></h:inputText>
+            <h:outputText value="#{ControlDonacion.nino.nombre}"></h:outputText><br/>
             Apellidos del niño:
-            <h:inputText value="#{ControlDonacion.nino.apellidos}"></h:inputText>
+            <h:outputText value="#{ControlDonacion.nino.apellidos}"></h:outputText>
             <hr/>
             Cantidad:
             <h:inputText value="#{ControlDonacion.donacion.importe}"></h:inputText>
