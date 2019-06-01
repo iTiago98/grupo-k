@@ -98,13 +98,20 @@ public class ControlNino implements Serializable {
                 //n = this.nino;
                 //n.setFechaNacimiento(new Date(this.year - 1900, this.month - 1, this.day));
                 this.nino.setFechaNacimiento(new Date(this.year - 1900, this.month - 1, this.day));
-                neg.modify(this.nino);
+                try {
+                    neg.modify(this.nino);
+                } catch(EJBException e) {
+                    FacesContext ctx = FacesContext.getCurrentInstance();
+                    ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage()));
+                    ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Probablemente hay algún campo de tipo numérico incorrecto o algún campo está incompleto", null));
+                }
             }
         }
         
         this.nino = new Nino();
         this.socio = new Socio();
         this.colonia= new Colonia();
+        this.proyecto = new Proyecto();
         this.year = 1;
         this.month = 1;
         this.day = 1;

@@ -21,19 +21,22 @@ public class ControlBeca implements Serializable
     
     private Beca beca;
     
-    public ControlBeca()
-    {
+    public ControlBeca() {
         this.beca = new Beca();
     }
-    public String addBeca()
-    {
-        neg.add(beca);
+    public String addBeca() {
+        try {
+            neg.add(beca);
+        } catch (EJBException e) {
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage()));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Probablemente hay algún campo de tipo numérico incorrecto o algún campo está incompleto", null));
+        }
         beca = new Beca();
         return null;
     }
     
-    public String removeBeca(Beca b)
-    {
+    public String removeBeca(Beca b) {
         FacesContext ctx = FacesContext.getCurrentInstance();
         
         try {
@@ -54,7 +57,14 @@ public class ControlBeca implements Serializable
     public String modifyBeca()
     {
         for(Object b : neg.getRows("getBecas")){
-            if(b.equals(this.beca)) neg.modify(this.beca);
+            if(b.equals(this.beca)) { 
+                try { neg.modify(this.beca);
+                } catch(EJBException e) {
+                    FacesContext ctx = FacesContext.getCurrentInstance();
+                    ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage()));
+                    ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Probablemente hay algún campo de tipo numérico incorrecto o algún campo está incompleto", null));
+                }
+            }
         }            
         
         this.beca = new Beca();

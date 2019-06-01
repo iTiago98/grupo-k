@@ -85,10 +85,13 @@ public class ControlBeneficiario implements Serializable {
     }
     
     public String modifyBeneficiario() {
-        /*for(Object b: neg.getRows("getBeneficiarios")) {
-            if(b.equals(this.beneficiario)) neg.modify(this.beneficiario);
-        }*/
-        neg.modify(this.beneficiario);
+        try {
+            neg.modify(this.beneficiario);
+        } catch(EJBException e) {
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage()));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Probablemente hay algún campo de tipo numérico incorrecto o algún campo está incompleto", null));
+        }
         
         this.beneficiario = new Beneficiario();
         this.nino = new Nino();

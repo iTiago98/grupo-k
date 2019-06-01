@@ -65,8 +65,16 @@ public class ControlSocio implements Serializable {
     }
     
     public String modifySocio() {
-        for(Object soc: /*negSocio.getSocios()*/ neg.getRows("getSocios")) {
-            if(soc.equals(this.socio)) neg.modify(this.socio);
+        for(Object soc: neg.getRows("getSocios")) {
+            if(soc.equals(this.socio)) {
+                try { 
+                    neg.modify(this.socio);
+                } catch(EJBException e) {
+                    FacesContext ctx = FacesContext.getCurrentInstance();
+                    ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage()));
+                    ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Probablemente hay algún campo de tipo numérico incorrecto o algún campo está incompleto", null));
+                }
+            }
         }
             
         this.socio = new Socio();

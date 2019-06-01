@@ -113,8 +113,13 @@ public class ControlEnvio implements Serializable {
     }
     
     public String modifyEnvio() {
-        
-        neg.modify(this.envio);
+        try {
+            neg.modify(this.envio);
+        } catch(EJBException e) {
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage()));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Probablemente hay algún campo de tipo numérico incorrecto o algún campo está incompleto", null));
+        }
         
         this.envio = new Envio();
         this.nino = new Nino();

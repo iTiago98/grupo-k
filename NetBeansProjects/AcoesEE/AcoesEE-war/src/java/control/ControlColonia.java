@@ -26,7 +26,13 @@ public class ControlColonia implements Serializable {
     }
     
     public String addColonia() {
-        neg.add(this.colonia);
+        try {
+            neg.add(this.colonia);
+        } catch(EJBException e) {
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage()));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Probablemente hay algún campo de tipo numérico incorrecto o algún campo está incompleto", null));
+        }
         this.colonia = new Colonia();
         return null;
     }
@@ -50,7 +56,15 @@ public class ControlColonia implements Serializable {
     
     public String modifyColonia() {
         for(Object b : neg.getRows("getColonias")){
-            if(b.equals(this.colonia)) neg.modify(this.colonia);
+            if(b.equals(this.colonia)) {
+                try {
+                    neg.modify(this.colonia);
+                } catch(EJBException e) {
+                    FacesContext ctx = FacesContext.getCurrentInstance();
+                    ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage()));
+                    ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Probablemente hay algún campo de tipo numérico incorrecto o algún campo está incompleto", null));
+                }
+            }
         }
         
         this.colonia = new Colonia();
