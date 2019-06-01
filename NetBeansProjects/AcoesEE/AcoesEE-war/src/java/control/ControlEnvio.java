@@ -108,9 +108,6 @@ public class ControlEnvio implements Serializable {
         setFecha2();
         this.envio.setFecha(this.fecha);
         
-        this.year = this.nino.getFechaNacimiento().getYear();
-        this.month = this.nino.getFechaNacimiento().getMonth();
-        this.day = this.nino.getFechaNacimiento().getDay();
         
         return "enviosModificar.xhtml";
     }
@@ -206,7 +203,7 @@ public class ControlEnvio implements Serializable {
     
     public void setFecha2(){
         this.fecha.setDate(this.day);
-        this.fecha.setMonth(this.month);
-        this.fecha.setYear(this.year);
+        this.fecha.setMonth(this.month-1);
+        this.fecha.setYear(this.year-1900);
     }
 }
