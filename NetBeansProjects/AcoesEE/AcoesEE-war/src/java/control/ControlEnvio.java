@@ -18,8 +18,6 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
-import javax.faces.model.SelectItemGroup;
 import negocio.NegocioGenerico;
 
 @Named(value = "ControlEnvio")
@@ -31,7 +29,6 @@ public class ControlEnvio implements Serializable {
     private Envio envio;
     private Nino nino;
     private Socio socio;
-    private Date fecha;
     
     private int year, month, day;
     
@@ -39,7 +36,6 @@ public class ControlEnvio implements Serializable {
         envio = new Envio();
         nino = new Nino();
         socio = new Socio();
-        fecha= new Date();
         
         year = 1;
         month = 1;
@@ -47,23 +43,29 @@ public class ControlEnvio implements Serializable {
     }
     
     public String addEnvio() {
-        setFecha2();
-        envio.setFecha(this.fecha);
+        envio.setFecha(new Date(this.year - 1900, this.month - 1, this.day));
         
         FacesContext ctx = FacesContext.getCurrentInstance();
         
         List<Nino> ln = new ArrayList();
         List<Socio> ls = new ArrayList();
         
+        // Scripts de JPQL para buscar por nombres y apellidos
+        // también por DNI en caso del socio
         String ninoQuery = "SELECT n FROM Nino n WHERE upper(n.nombre) = upper(\'" + this.nino.getNombre() + "\') and upper(n.apellidos) = upper(\'" + this.nino.getApellidos() + "\')";
         String socioQuery = "SELECT s FROM Socio s WHERE upper(s.nombre) = upper(\'" + this.socio.getNombre() + "\') and upper(s.apellidos) = upper(\'" + this.socio.getApellidos() + "\')";
         String socioQueryDNI = "SELECT s FROM Socio s WHERE upper(s.DNI) = upper(\'" + this.socio.getDNI() + "\')";
         
+        // Si el usuario introdujo un ID, entonces se busca por ID
         if(this.nino.getId() != null) ln = neg.getRowById("Nino", this.nino.getId());
         if(this.socio.getId() != null) ls = neg.getRowById("Socio", this.socio.getId());  
         
         try {
             // 10x
+            
+            // Se hace uso de los cortocircuitos con el operator || 
+            // Primero se comprueba el resultado de buscar por ID, si se devuelve 0 o más de una fila, entonces se considera
+            // que está mal y se realiza la búsqueda secundaria (por nombre, apellidos, dni...)
             if(ln.size() == 1 || (ln = neg.getRowsCustomQuery(ninoQuery)).size() == 1) this.envio.setNino(ln.get(0));
             else throw new EJBException("La búsqueda del niño en la base de datos ha devuelto un número de resultados distinto del que se esperaba (!= 1)");
 
@@ -80,8 +82,7 @@ public class ControlEnvio implements Serializable {
         this.envio = new Envio();
         this.nino = new Nino();
         this.socio = new Socio();
-        this.fecha= new Date();
-        
+
         this.year = 1;
         this.month = 1;
         this.day = 1;
@@ -102,11 +103,13 @@ public class ControlEnvio implements Serializable {
     }
     
     public String goModifyEnvio(Envio env) {
+        this.year = env.getFecha().getYear();
+        this.month = env.getFecha().getMonth();
+        this.day = env.getFecha().getDay();
+        
         this.nino = env.getNino();
         this.socio = env.getSocio();
         this.envio = env;
-        setFecha2();
-        this.envio.setFecha(this.fecha);
         
         
         return "enviosModificar.xhtml";
@@ -114,6 +117,7 @@ public class ControlEnvio implements Serializable {
     
     public String modifyEnvio() {
         try {
+            this.envio.setFecha(new Date(this.year - 1900, this.month - 1, this.day));
             neg.modify(this.envio);
         } catch(EJBException e) {
             FacesContext ctx = FacesContext.getCurrentInstance();
@@ -124,7 +128,10 @@ public class ControlEnvio implements Serializable {
         this.envio = new Envio();
         this.nino = new Nino();
         this.socio = new Socio();
-        this.fecha= new Date();
+        
+        this.year = 1;
+        this.month = 1;
+        this.day = 1;
         
         return "envios.xhtml";
     }
@@ -145,19 +152,7 @@ public class ControlEnvio implements Serializable {
     public List<Envio> getEnvios() {
         return neg.getRows("getEnvios");
     }
-    /*
-    public void setEnvio(ArrayList<Envio> envios) {
-        this.envios = envios;
-    }
-    
-    public ArrayList<Nino> getNinos(){
-        return ninos;
-    }
-    
-    public ArrayList<Socio> getSocios(){
-        return socios;
-    }
-    */
+
     public Nino getNino() {
         return nino;
     }
@@ -198,17 +193,4 @@ public class ControlEnvio implements Serializable {
         this.day = day;
     }
     
-    public Date getFecha(){
-        return this.fecha;
-    }
-    
-    public void setFecha(Date Fecha){
-        this.fecha=fecha;
-    }
-    
-    public void setFecha2(){
-        this.fecha.setDate(this.day);
-        this.fecha.setMonth(this.month-1);
-        this.fecha.setYear(this.year-1900);
-    }
 }

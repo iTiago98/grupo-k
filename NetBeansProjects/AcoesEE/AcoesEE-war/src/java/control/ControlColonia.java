@@ -75,8 +75,7 @@ public class ControlColonia implements Serializable {
     
     /**************************************************/
     // GETTERS Y SETTERS
-    /**
-     * @return ************************************************/
+    /*************************************************/
 
     public Colonia getColonia() {
         return this.colonia;
@@ -90,8 +89,4 @@ public class ControlColonia implements Serializable {
         return neg.getRows("getColonias");
     }
 
-   /* public void setColonias(ArrayList<Colonia> colonias) {
-        this.colonias = colonias;
-    }
-    */
 }

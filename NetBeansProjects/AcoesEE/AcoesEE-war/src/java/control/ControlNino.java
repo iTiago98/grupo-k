@@ -43,7 +43,6 @@ public class ControlNino implements Serializable {
     
     public String addNino() {
         this.nino.setFechaNacimiento(new Date(this.year - 1900, this.month - 1, this.day));
-        //ninos.add(this.nino);
         coloniaNino();
         proyectoNino();
         try {
@@ -95,8 +94,6 @@ public class ControlNino implements Serializable {
         
         for(Object n: neg.getRows("getNinos")) {
             if(n.equals(this.nino)) {
-                //n = this.nino;
-                //n.setFechaNacimiento(new Date(this.year - 1900, this.month - 1, this.day));
                 this.nino.setFechaNacimiento(new Date(this.year - 1900, this.month - 1, this.day));
                 try {
                     neg.modify(this.nino);

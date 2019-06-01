@@ -1,16 +1,11 @@
 package control;
 
-//import java.io.Serializable;
-//import javax.enterprise.context.SessionScoped;
-//import javax.inject.Named;
-
 import entidades.Donacion;
 import java.util.List;
 import entidades.Nino;
 import entidades.Socio;
 import java.io.Serializable;
 import java.util.ArrayList;
-//import java.util.ArrayList;
 import java.util.Date;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
@@ -24,13 +19,11 @@ import negocio.NegocioGenerico;
 @SessionScoped
 public class ControlDonacion implements Serializable {
     private Donacion donacion;
-    //private ArrayList<Donacion> donaciones;
-    
+
     @EJB
     private NegocioGenerico neg;
     private Socio socio;
     private Nino nino;
-    private Date fecha;
     
     int year, month, day;
     
@@ -38,21 +31,15 @@ public class ControlDonacion implements Serializable {
         this.donacion = new Donacion();
         this.socio = new Socio();
         this.nino = new Nino();
-        this.fecha= new Date();
         
         this.year = 1;
         this.month = 1;
         this.day = 1;
-        
-        /*  
-        donaciones = new ArrayList<>();
-        donaciones.add(new Donacion(new Socio("898928W", "Álvaro", "Ramírez"), new Nino("Marina", "Balmén", 'M', new Date(2003 - 1900, 1 - 1, 20)), new Date(2018-1900, 10, 3), 120.0, "Todo bien"));
-        */
     }
     
     public String addDonacion() {
-        setFecha2();
-        this.donacion.setFecha(this.fecha);
+        // Mirar el método addEnvio() en ControlEnvio.java para explicaciones
+        this.donacion.setFecha(new Date(this.year - 1900, this.month - 1, this.day));
         FacesContext ctx = FacesContext.getCurrentInstance();
         
         List<Nino> ln = new ArrayList();
@@ -83,8 +70,7 @@ public class ControlDonacion implements Serializable {
         this.donacion = new Donacion();
         this.nino = new Nino();
         this.socio = new Socio();
-        this.fecha= new Date();
-        
+
         this.year = 1;
         this.month = 1;
         this.day = 1;
@@ -105,17 +91,19 @@ public class ControlDonacion implements Serializable {
     }
     
     public String goModifyDonacion(Donacion don) {
+        this.year = don.getFecha().getYear();
+        this.month = don.getFecha().getMonth();
+        this.day = don.getFecha().getDay();
+
         this.donacion = don;
-        this.socio=this.donacion.getSocio();
-        this.nino=this.donacion.getNino();
-        this.day=this.donacion.getFecha().getDay();
-        this.month=this.donacion.getFecha().getMonth()+1;
-        this.year=this.donacion.getFecha().getYear()+1900;
+        this.socio = this.donacion.getSocio();
+        this.nino = this.donacion.getNino();
         
         return "donacionesModificar.xhtml";
     }
     
     public String modifyDonacion() {
+        this.donacion.setFecha(new Date(this.year - 1900, this.month - 1, this.day));
         try {
             for(Object don: neg.getRows("getDonaciones"))
                 if(don.equals(this.donacion)) neg.modify(this.donacion);
@@ -128,7 +116,7 @@ public class ControlDonacion implements Serializable {
         this.donacion = new Donacion();
         this.socio = new Socio();
         this.nino = new Nino();
-        this.fecha= new Date();
+
         this.year = 1;
         this.month = 1;
         this.day = 1;
@@ -152,11 +140,7 @@ public class ControlDonacion implements Serializable {
     public List<Donacion> getDonaciones() {
         return neg.getRows("getDonaciones");
     }
-    /*
-    public void setDonaciones(ArrayList<Donacion> donaciones) {
-        this.donaciones = donaciones;
-    }
-    */
+
     public int getYear() {
         return year;
     }
@@ -197,19 +181,4 @@ public class ControlDonacion implements Serializable {
         this.nino = nino;
     }
     
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-    
-    public void setFecha2() {
-        this.fecha.setDate(this.day);
-        this.fecha.setMonth(this.month-1);
-        this.fecha.setYear(this.year-1900);
-    }
-    
 }
-

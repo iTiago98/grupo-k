@@ -5,7 +5,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import entidades.Socio;
 import java.util.List;
-//import negocio.NegocioSocio;
 import negocio.NegocioGenerico;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
@@ -17,9 +16,6 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class ControlSocio implements Serializable {
     private Socio socio;
-     
-    //@EJB
-    //private NegocioSocio negSocio;
     
     @EJB
     private NegocioGenerico neg;
@@ -29,7 +25,6 @@ public class ControlSocio implements Serializable {
     }
     
     public String addSocio() {
-        //negSocio.addSocio(socio);
         try{
             for(Object s: neg.getRows("getSocios")) {
                 if(((Socio) s).getDNI().equalsIgnoreCase(this.socio.getDNI())){
@@ -41,7 +36,6 @@ public class ControlSocio implements Serializable {
         }catch(EJBException e) {
             FacesContext ctx = FacesContext.getCurrentInstance();
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ya existe un socio con ese DNI", null));
-            //ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage()));
         }
 
         return null;
@@ -96,7 +90,6 @@ public class ControlSocio implements Serializable {
     }
     
     public List<Socio> getSocios() {
-        //return negSocio.getSocios();
         return neg.getRows("getSocios");
     }
      

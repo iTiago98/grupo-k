@@ -37,5 +37,4 @@ public class ControlAsignatura implements Serializable{
         this.calificacion = calificacion;
     }
     
-    
 }

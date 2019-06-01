@@ -31,6 +31,7 @@ public class ControlBeneficiario implements Serializable {
     }
     
     public String addBeneficiario() {
+        // Mirar el método addEnvio() en ControlEnvio.java para explicaciones
         FacesContext ctx = FacesContext.getCurrentInstance();
         
         List<Nino> ln = new ArrayList<>();
@@ -43,7 +44,6 @@ public class ControlBeneficiario implements Serializable {
         if(this.beca.getId() != null) lb = neg.getRowById("Beca", this.beca.getId());
         
         try {
-            // 10x (bis)
             if(ln.size() == 1 || (ln = neg.getRowsCustomQuery(ninoQuery)).size() == 1) this.beneficiario.setNino(ln.get(0));
             else throw new EJBException("La búsqueda del niño en la base de datos ha devuelto un número de resultados distinto del que se esperaba (!= 1)");
         

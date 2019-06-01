@@ -24,6 +24,7 @@ public class ControlBeca implements Serializable
     public ControlBeca() {
         this.beca = new Beca();
     }
+    
     public String addBeca() {
         try {
             neg.add(beca);
@@ -54,8 +55,7 @@ public class ControlBeca implements Serializable
         return "becasModificar.xhtml";
     }
     
-    public String modifyBeca()
-    {
+    public String modifyBeca() {
         for(Object b : neg.getRows("getBecas")){
             if(b.equals(this.beca)) { 
                 try { neg.modify(this.beca);
@@ -76,18 +76,15 @@ public class ControlBeca implements Serializable
     // GETTERS Y SETTERS
     /**************************************************/
     
-    public Beca getBeca()
-    {
+    public Beca getBeca() {
         return this.beca;
     }
     
-    public void setBeca(Beca beca)
-    {
+    public void setBeca(Beca beca) {
         this.beca = beca;
     }
     
-    public List<Beca> getBecas()
-    {
+    public List<Beca> getBecas() {
         return neg.getRows("getBecas");
     }
 }

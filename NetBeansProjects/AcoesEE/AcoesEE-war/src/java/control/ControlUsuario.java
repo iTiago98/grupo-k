@@ -2,11 +2,7 @@ package control;
 
 import entidades.Usuario;
 
-import negocio.NegocioUsuario;
-import negocio.DatosDuplicadosException;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
